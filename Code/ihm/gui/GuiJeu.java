@@ -1,3 +1,7 @@
+package PilierDeLaTerre.ihm.gui;
+
+import PilierDeLaTerre.metier.Dalle;
+
 import javax.swing.*;
 import java.awt.Image;
 import java.awt.Graphics;

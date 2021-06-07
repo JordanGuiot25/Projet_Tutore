@@ -1,3 +1,9 @@
+package PilierDeLaTerre;
+
+import PilierDeLaTerre.ihm.gui.FrameDessin;
+import PilierDeLaTerre.metier.Dalle;
+import PilierDeLaTerre.metier.Parterre;
+
 import iut.algo.Clavier;
 
 import java.util.ArrayList;

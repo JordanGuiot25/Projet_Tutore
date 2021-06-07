@@ -1,3 +1,7 @@
+package PilierDeLaTerre.metier;
+
+import PilierDeLaTerre.metier.Dalle;
+
 import java.util.ArrayList;
 
 public class Parterre

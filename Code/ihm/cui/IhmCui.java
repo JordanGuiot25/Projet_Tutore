@@ -1,34 +1,42 @@
-public class TabParterre
+package PilierDeLaTerre.ihm.cui;
+
+import PilierDeLaTerre.metier.Dalle;
+import PilierDeLaTerre.metier.Parterre;
+
+import java.util.ArrayList;
+
+public class IhmCui
 {
-    private int nbDallePresente;
-    private Dalle[] dalles;
-    public TabParterre()
+    private int              nbDallePresente;
+    private ArrayList<Dalle> dalles;
+
+    public IhmCui()
     {
         this.nbDallePresente = 0;
-        this.dalles          = new Dalle[16];
+        this.dalles          = new ArrayList<Dalle>();
     }
 
-    public TabParterre(Parterre part)
+    public IhmCui(Parterre part)
     {
-        this.nbDallePresente = part.getNbDallePlace();
+        this.nbDallePresente = part.getDalles().size();
         this.dalles          = part.getDalles();
     }
 
     public boolean ajouterDalle(Dalle d)
     {
         if(nbDallePresente == 16){return false;}
-        dalles[nbDallePresente] = d;
+            dalles.add(d);
         this.nbDallePresente++;
         return true;
     }
 
     public String toString()
     {
-        String sRep ="          +-----------------------+\n"+
-                     "          |         Lié à         |\n"+
-                     "          +---+---+---+---+---+---+\n"+
-                     "          | 0 | 1 | 2 | 3 | 4 | 5 |\n"+
-                     "+---------+---+---+---+---+---+---+\n";
+        String sRep =   "          +-----------------------+\n"+
+                        "          |         Lié à         |\n"+
+                        "          +---+---+---+---+---+---+\n"+
+                        "          | 0 | 1 | 2 | 3 | 4 | 5 |\n"+
+                        "+---------+---+---+---+---+---+---+\n";
         for(Dalle d: dalles)
         {
             if(d != null)
@@ -52,7 +60,7 @@ public class TabParterre
     public static void main(String[] args)
     {
         Parterre part = new Parterre();
-        TabParterre tab2 = new TabParterre(part);
+        IhmCui tab2 = new IhmCui(part);
         System.out.println(tab2);
     }
-}
+    }

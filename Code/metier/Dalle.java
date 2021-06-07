@@ -1,3 +1,7 @@
+package PilierDeLaTerre.metier;
+
+import PilierDeLaTerre.metier.Pilier;
+
 public class Dalle
 {
 	private static final String IMAGE = "../Ressources/Dalle.png";

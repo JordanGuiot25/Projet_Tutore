@@ -1,9 +1,16 @@
+package PilierDeLaTerre.metier;
+
+import PilierDeLaTerre.metier.Dalle;
+import PilierDeLaTerre.metier.Pilier;
+
+import java.util.ArrayList;
+
 public class Joueur 
 {
-    Arraylist <Dalle >  tabDalles;
-    Arraylist <Pilier>  tabPilier;
+    private ArrayList<Dalle>   tabDalles;
+    private ArrayList<Pilier>  tabPilier;
 
-    private int nbPilier;
+    private int  nbPilier;
     private int  numJoueur ;
     private char coulJoueur;
 
@@ -27,7 +34,4 @@ public class Joueur
     {
         this.tabDalles.add(dalle);
     }
-
-    
-
 }
