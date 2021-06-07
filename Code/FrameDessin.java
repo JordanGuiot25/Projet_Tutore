@@ -12,7 +12,7 @@ public class FrameDessin extends JFrame
 
 		this.setTitle    ("Hexagonale");
 		this.setLocation (0, 0    );
-		this.setSize     (500, 500    );
+		this.setSize     (400, 350    );
 
 		this.panel   = new PanelDessin(this.ctrl);
 

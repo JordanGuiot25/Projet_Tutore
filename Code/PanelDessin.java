@@ -14,8 +14,6 @@ public class PanelDessin extends JPanel
 
 	public PanelDessin(Controleur  ctrl)
 	{
-		this.setSize(500,500);
-
 		this.ctrl  = ctrl;
 	}
 
