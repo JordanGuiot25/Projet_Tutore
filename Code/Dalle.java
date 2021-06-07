@@ -97,7 +97,7 @@ public class Dalle
 
 			System.out.println( numSommet + " : " + x + " " + y);
 
-			this.listeSommet[numSommet] = new Pilier(x,y);
+			this.listeSommet[numSommet] = new Pilier('M',x,y);
 
 			return true;
 		}
@@ -118,13 +118,27 @@ public class Dalle
 	}
 
 	public char getNom() { return this.nomDalle; }
-	public int  getX()   { return this.xDalle;   }
-	public int  getY()   { return this.yDalle;   }
+	public int  getX()   { return this.xDalle+33;   }
+	public int  getY()   { return this.yDalle+33;   }
 
-	public int getMilieuX() { return this.xDalle+33; }
-	public int getMilieuY() { return this.yDalle+33; }
+	public int getMilieuX() { return this.xDalle; }
+	public int getMilieuY() { return this.yDalle; }
 
 	public Dalle    getDalleAdjacent(int cote) { return this.listeDallesAdjacent[cote];}
 	public Pilier[] getSommets()            { return this.listeSommet;              }
 	public Dalle[]  getListeDallesAdjacent(){ return this.listeDallesAdjacent;      }
+
+
+	public String toString()
+	{
+		String sMessage = this.getNom() + " : ";
+
+		for ( Dalle voisin : this.getListeDallesAdjacent() )
+		{
+			if ( voisin != null )
+				sMessage += voisin.getNom() + ", " ;
+		}
+		
+		return sMessage;
+	}
 }
