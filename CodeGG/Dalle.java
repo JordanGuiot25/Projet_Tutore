@@ -21,15 +21,22 @@ public class Dalle
 
 	/*--------------------
 	           0
-	         ____
+	         ----
 	      5 /    \ 1
 	       /      \
 	       \      / 2
-	      4 \____/
-	         
+	      4 \    /
+	         ----
 	          3
 	---------------------*/
 
+
+    /* A supprimer*/
+    public Dalle()
+    {
+        this.nomDalle    = nbDalle++;
+        this.listeDallesAdjacent  = new Dalle[6];
+    }
 	public Dalle(int xDalle, int yDalle)
 	{
 		this.nomDalle    = nbDalle++;
@@ -41,15 +48,10 @@ public class Dalle
 		this.listeDallesAdjacent  = new Dalle[6];
 	}
 
-	public boolean rajoutDalleAdjacent (int cote, Dalle voisin)
+	public boolean ajouterAdjacent(int cote, Dalle dalle)
 	{
-		if ( voisin == null || cote > 5 && cote < 0 || this.listeDallesAdjacent[cote] != null )
-		{
-			return false;
-		}
-
-		this.listeDallesAdjacent[cote] = voisin;
-
+		if(!(this.listeDallesAdjacent[cote]==null)) {return false;}
+		this.listeDallesAdjacent[cote] = dalle;
 		return true;
 	}
 
@@ -97,7 +99,7 @@ public class Dalle
 
 			System.out.println( numSommet + " : " + x + " " + y);
 
-			this.listeSommet[numSommet] = new Pilier('M',x,y);
+			this.listeSommet[numSommet] = new Pilier('G',x,y);
 
 			return true;
 		}
@@ -117,28 +119,15 @@ public class Dalle
 		return false;
 	}
 
-	public char getNom() { return this.nomDalle; }
-	public int  getX()   { return this.xDalle-33;   }
-	public int  getY()   { return this.yDalle-33;   }
 
-	public int getMilieuX() { return this.xDalle; }
-	public int getMilieuY() { return this.yDalle; }
+	public char getNom() { return this.nomDalle; }
+	public int  getX()   { return this.xDalle;   }
+	public int  getY()   { return this.yDalle;   }
+
+	public int getMilieuX() { return this.xDalle+33; }
+	public int getMilieuY() { return this.yDalle+33; }
 
 	public Dalle    getDalleAdjacent(int cote) { return this.listeDallesAdjacent[cote];}
 	public Pilier[] getSommets()            { return this.listeSommet;              }
 	public Dalle[]  getListeDallesAdjacent(){ return this.listeDallesAdjacent;      }
-
-
-	public String toString()
-	{
-		String sMessage = this.getNom() + " : ";
-
-		for ( Dalle voisin : this.getListeDallesAdjacent() )
-		{
-			if ( voisin != null )
-				sMessage += voisin.getNom() + ", " ;
-		}
-		
-		return sMessage;
-	}
 }

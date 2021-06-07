@@ -4,7 +4,8 @@ public class Dalle
 {
 	private Dalle[] dalleAdjacentes = new Dalle [6];
 	/*
-     	  __0__
+     	  	0
+		  _____
        5 /     \  1
     	/       \
       4 \       / 2

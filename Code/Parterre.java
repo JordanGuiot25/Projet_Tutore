@@ -21,13 +21,11 @@ public class Parterre
 
 		for(int cpt1 = 0; cpt1 < 7; cpt1++ )
 		{
+			int xTmp = x;
 			for ( int cpt2 = 0; cpt2 < nbDalle; cpt2++)
 			{
-				int xTmp = x;
-
 				this.grilleDalles.add( new Dalle(xTmp,y) );
-
-				xTmp += 49 +49;
+				xTmp = xTmp + 49 +49;
 			}
 
 			if ( cpt1 < 3)
@@ -43,8 +41,6 @@ public class Parterre
 			else
 				nbDalle--;
 		}
-
-
 
 		/*   Dalle  A      */
 		Dalle dalle = this.grilleDalles.get(0);
