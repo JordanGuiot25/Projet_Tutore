@@ -21,12 +21,12 @@ public class Dalle
 
 	/*--------------------
 	           0
-	         ----
+	         ____
 	      5 /    \ 1
 	       /      \
 	       \      / 2
-	      4 \    /
-	         ----
+	      4 \____/
+	         
 	          3
 	---------------------*/
 
@@ -118,8 +118,8 @@ public class Dalle
 	}
 
 	public char getNom() { return this.nomDalle; }
-	public int  getX()   { return this.xDalle+33;   }
-	public int  getY()   { return this.yDalle+33;   }
+	public int  getX()   { return this.xDalle-33;   }
+	public int  getY()   { return this.yDalle-33;   }
 
 	public int getMilieuX() { return this.xDalle; }
 	public int getMilieuY() { return this.yDalle; }

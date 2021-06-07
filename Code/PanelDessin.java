@@ -4,62 +4,19 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
+import java.util.ArrayList;
+
 public class PanelDessin extends JPanel
 {
-	private static final Image RESSOURCE_DALLE  = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/Dalle.png");
-
-	private int xPilier;
-	private int yPilier;
-
-	private Dalle dalle;
+	private static final Image RESSOURCE_DALLE  = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/Images/Dalle.png");
 
 	private Controleur  ctrl;
 
 	public PanelDessin(Controleur  ctrl)
 	{
-		this.setSize(100,100);
+		this.setSize(500,500);
 
 		this.ctrl  = ctrl;
-		this.dalle = new Dalle(200,50);
-
-	}
-
-	public void ajoutPilier(int numSommet)
-	{
-		this.dalle.rajoutPillier(numSommet);
-
-		this.repaint();
-	}
-
-	public void detruirePillier(int numSommet)
-	{
-		this.dalle.detruirePillier(numSommet);
-
-		this.repaint();
-	}
-
-
-	public void paint(Graphics g)
-	{
-		Image imgPilier = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/pilier_gris.png");
-		Graphics2D g2 = (Graphics2D) g;
-
-		g2.drawImage ( PanelDessin.RESSOURCE_DALLE, this.dalle.getX(), this.dalle.getY(), this );
-
-		Pilier[] tabSommet = this.dalle.getSommets();
-
-		for( Pilier sommet : tabSommet )
-		{
-			if( sommet != null )
-			{
-				g2.drawImage( sommet.getImage(), sommet.getX(), sommet.getY(), this);
-			}
-		}
-
-		/*if ( this.xPilier == 0 && this.yPilier == 0)
-			g2.drawImage ( PanelDessin.RESSOURCE_DALLE, this.dalle.getX(), this.dalle.getY(), this );
-		else
-			g2.drawImage( imgPilier, this.xPilier, this.yPilier, this);*/
 	}
 
 	public void paintComponent(Graphics g)
@@ -68,7 +25,13 @@ public class PanelDessin extends JPanel
 
 		Graphics2D g2 = (Graphics2D) g;
 
-		
+		ArrayList<Dalle> listeDalle = this.ctrl.getGrilleDalles();
+
+		for(Dalle dalle : listeDalle )
+		{
+			g2.drawImage( RESSOURCE_DALLE, dalle.getX(), dalle.getY(), this);
+			g2.drawString( "" + dalle.getNom(), dalle.getMilieuX()-3, dalle.getMilieuY()+5);
+		}
 	}
 
 	
