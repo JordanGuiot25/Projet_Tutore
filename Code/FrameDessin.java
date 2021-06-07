@@ -20,14 +20,4 @@ public class FrameDessin extends JFrame
 
 		this.setVisible(true);
 	}
-
-	public void ajoutPilier(int numSommet)
-	{
-		this.panel.ajoutPilier(numSommet);
-	}
-
-	public void detruirePillier(int numSommet)
-	{
-		this.panel.detruirePillier(numSommet);
-	}
 }
