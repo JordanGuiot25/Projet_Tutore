@@ -12,6 +12,9 @@ public class Parterre
 	private Joueur joueur1;
 	private Joueur joueur2;
 
+	private boolean victoireJ1;
+	private boolean victoireJ2;
+
 	public Parterre()
 	{
 		this.grilleDalles = new ArrayList<Dalle>();
@@ -211,6 +214,32 @@ public class Parterre
 
 		/*   Dalle  P      */
 	}
+
+	public void victoire()
+	{
+		if(this.joueur1.getListeDalles().size() == 9) { this.victoireJ1 = true;}
+
+		if(this.joueur2.getListeDalles().size() == 9) { this.victoireJ2 = true;}
+
+		if(this.joueur1.getNbPilier() == 0 && this.joueur2.getNbPilier() == 0)
+		{
+			if(this.joueur1.getListeDalles().size() > this.joueur2.getListeDalles().size()&& this.victoireJ1 == false && this.victoireJ2 == false) { this.victoireJ1 = true;}
+			if(this.joueur1.getListeDalles().size() < this.joueur2.getListeDalles().size()&& this.victoireJ1 == false && this.victoireJ2 == false) { this.victoireJ2 = true;}
+
+			if(this.joueur1.getNbPilierDetruis()    > this.joueur2.getNbPilierDetruis()   && this.victoireJ1 == false && this.victoireJ2 == false) {this.victoireJ1 = true ;}
+			if(this.joueur1.getNbPilierDetruis()    < this.joueur2.getNbPilierDetruis()   && this.victoireJ1 == false && this.victoireJ2 == false) {this.victoireJ2 = true ;}
+
+			
+		}
+
+		 
+	}
+
+	public boolean getVictoireJ1() {return this.victoireJ1;}
+	public boolean getVictoireJ2() {return this.victoireJ2;}
+
+
+
 
 
 	public ArrayList<Dalle> getDalles() { return this.grilleDalles; }
