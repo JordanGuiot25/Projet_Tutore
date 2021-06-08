@@ -138,7 +138,58 @@ public class Dalle
 
 			System.out.println( numSommet + " : " + x + " " + y);
 
-			this.listeSommet[numSommet] = new Pilier(couleur,x,y);
+			Pilier pilierTmp = new Pilier(couleur,x,y);
+
+			this.listeSommet[numSommet] = pilierTmp;
+
+
+			/*  Rajout du pilier dans les autres dalles   */
+
+			int sommetAdjacent = numSommet;
+
+			/* Incrementation pour trouver le sommet de la dalle adjacent */
+			for (int cpt = 0; cpt < 2; cpt ++ )
+			{
+				sommetAdjacent++;
+				if( sommetAdjacent > 5 )
+				{
+					sommetAdjacent = 0;
+				}
+			}
+
+			if ( numSommet == 0 )
+			{
+				if(this.listeDallesAdjacent[5] != null)
+				{
+					System.out.println(this.listeDallesAdjacent[5].getNom() + " " + sommetAdjacent);
+					this.listeDallesAdjacent[5].posePilier(pilierTmp, sommetAdjacent);
+				}
+			}
+			else
+			{
+				
+				if(this.listeDallesAdjacent[numSommet-1] != null)
+				{
+					System.out.println(this.listeDallesAdjacent[numSommet-1].getNom() + " " + sommetAdjacent);
+					this.listeDallesAdjacent[numSommet-1].posePilier(pilierTmp, sommetAdjacent);
+				}
+			}
+				
+			for (int cpt = 0; cpt < 2; cpt ++ )
+			{
+				sommetAdjacent++;
+				if( sommetAdjacent > 5 )
+				{
+					sommetAdjacent = 0;
+				}
+			}
+			
+			if(this.listeDallesAdjacent[numSommet] != null)
+			{
+				System.out.println(this.listeDallesAdjacent[numSommet].getNom() + " " + sommetAdjacent);
+				this.listeDallesAdjacent[numSommet].posePilier(pilierTmp, sommetAdjacent);
+			}
+			
 
 			return true;
 		}
@@ -156,6 +207,11 @@ public class Dalle
 		}
 
 		return false;
+	}
+
+	private void posePilier(Pilier pilier, int numSommet)
+	{
+		this.listeSommet[numSommet] =  pilier;
 	}
 
 	public char getNom() { return this.nomDalle; }

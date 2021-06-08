@@ -1,6 +1,7 @@
 package PilierDeLaTerre;
 
 import PilierDeLaTerre.ihm.gui.FrameDessin;
+import PilierDeLaTerre.ihm.cui.IhmCui;
 import PilierDeLaTerre.metier.Dalle;
 import PilierDeLaTerre.metier.Parterre;
 
@@ -34,7 +35,10 @@ public class Controleur
 
 			this.ihm.miseAJourGrille();
 
-			Clavier.lireString();
+
+			System.out.println( new IhmCui(this.metier).getLiasonsPilier() );
+
+
 		}
 		
 	}

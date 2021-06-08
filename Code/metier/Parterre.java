@@ -217,19 +217,17 @@ public class Parterre
 
 			if(this.joueur1.getNbPilierDetruis()    > this.joueur2.getNbPilierDetruis()   && this.victoireJ1 == false && this.victoireJ2 == false) {this.victoireJ1 = true ;}
 			if(this.joueur1.getNbPilierDetruis()    < this.joueur2.getNbPilierDetruis()   && this.victoireJ1 == false && this.victoireJ2 == false) {this.victoireJ2 = true ;}
-
-			
 		}
-
-		 
 	}
 
-	public boolean getVictoireJ1() {return this.victoireJ1;}
-	public boolean getVictoireJ2() {return this.victoireJ2;}
+	public boolean posePilier(int numJoueur, char nomDalle, int numSommet )
+	{
+		
+		return true;
+	}
 
-
-
-
+	private boolean getVictoireJ1() {return this.victoireJ1;}
+	private boolean getVictoireJ2() {return this.victoireJ2;}
 
 	public ArrayList<Dalle> getDalles() { return this.grilleDalles; }
 }

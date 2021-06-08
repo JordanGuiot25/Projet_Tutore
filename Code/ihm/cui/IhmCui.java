@@ -37,7 +37,30 @@ public class IhmCui
         return true;
     }
 
-    public String toString()
+    public String getLiasonsPilier()
+    {
+         /*affichage des pillier*/
+        String sRep =   "\n\n          +-----------------------+\n"+
+                            "          |   Pillier present     |\n"+
+                            "          +---+---+---+---+---+---+\n"+
+                            "          | 0 | 1 | 2 | 3 | 4 | 5 |\n"+
+                            "+---------+---+---+---+---+---+---+\n";
+        for(Dalle d: dalles)
+        {
+            Pilier[] lstPil = d.getSommets();
+            if(d != null)
+            {
+                sRep   +="| Dalle " + d.getNom()  + " | "             + this.PilierToChar(lstPil[0]) +
+                        " | "+ this.PilierToChar(lstPil[1])  + " | " + this.PilierToChar(lstPil[2]) +
+                        " | "+ this.PilierToChar(lstPil[3])  + " | " + this.PilierToChar(lstPil[4]) +
+                        " | "+ this.PilierToChar(lstPil[5])  + " |\n"+
+                        "+---------+---+---+---+---+---+---+\n";
+            }
+        }
+        return sRep;
+    }
+
+    public String getLiasonsDalle()
     {
         /* affichage des liaison entre dalles*/
 
@@ -54,27 +77,6 @@ public class IhmCui
                         " | "+ this.DalleToChar(d.getDalleAdjacent(1))  + " | " + this.DalleToChar(d.getDalleAdjacent(2)) +
                         " | "+ this.DalleToChar(d.getDalleAdjacent(3))  + " | " + this.DalleToChar(d.getDalleAdjacent(4)) +
                         " | "+ this.DalleToChar(d.getDalleAdjacent(5))  + " |\n"+
-                        "+---------+---+---+---+---+---+---+\n";
-            }
-        }
-
-
-
-        /*affichage des pillier*/
-              sRep +=   "\n\n          +-----------------------+\n"+
-                            "          |   Pillier present     |\n"+
-                            "          +---+---+---+---+---+---+\n"+
-                            "          | 0 | 1 | 2 | 3 | 4 | 5 |\n"+
-                            "+---------+---+---+---+---+---+---+\n";
-        for(Dalle d: dalles)
-        {
-            Pilier[] lstPil = d.getSommets();
-            if(d != null)
-            {
-                sRep   +="| Dalle " + d.getNom()  + " | "             + this.PilierToChar(lstPil[0]) +
-                        " | "+ this.PilierToChar(lstPil[1])  + " | " + this.PilierToChar(lstPil[2]) +
-                        " | "+ this.PilierToChar(lstPil[3])  + " | " + this.PilierToChar(lstPil[4]) +
-                        " | "+ this.PilierToChar(lstPil[5])  + " |\n"+
                         "+---------+---+---+---+---+---+---+\n";
             }
         }

@@ -4,10 +4,10 @@ import java.awt.Image;
 
 public class Pilier
 {
-	private char couleur;
+	private char  couleur;
 	private Image imgPilier;
-	private int x;
-	private int y;
+	private int   x;
+	private int   y;
 
 	// Deux possibilité soit G pour un pilier gris
 	//                  soit M pour un pilier marron
