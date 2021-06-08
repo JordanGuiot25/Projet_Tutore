@@ -35,12 +35,26 @@ public class Controleur
 
 			this.ihm.miseAJourGrille();
 
+			Clavier.lireString();
+			System.out.println("Destruction du pillier");
+			dalle.detruirePillier(sommet);
 
-			System.out.println( new IhmCui(this.metier).getLiasonsPilier() );
-
+			this.ihm.miseAJourGrille();
+			this.Sauvegarde();
 
 		}
 		
+	}
+	
+	public void Sauvegarde()
+	{
+		try
+		{
+			PrintWriter pw = new PrintWriter( new FileOutputStream("../../Scenario/Sauvegarde") );
+			pw.println ( this.metier.getSauvegarde());
+			pw.close();
+		}
+		catch(Exception e){ e.printStackTrace(); }
 	}
 
 	public static void main (String[] a)

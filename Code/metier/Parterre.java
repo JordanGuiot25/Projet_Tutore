@@ -1,9 +1,12 @@
 package PilierDeLaTerre.metier;
 
 import PilierDeLaTerre.metier.Dalle;
+import PilierDeLaTerre.metier.Joueur;
 
 import java.util.ArrayList;
 import iut.algo.Clavier;
+import java.io.PrintWriter;
+import java.io.FileOutputStream;
 
 public class Parterre
 {
@@ -22,8 +25,60 @@ public class Parterre
 		this.joueur2      = new Joueur(2, 'M');
 
 		this.initierPlateau();
-	}
+	}		
 
+	public String getSauvegarde()
+    {
+		// Sauvegarde le plateau //
+        String sRep =this.grilleDalles.get(0).getX() +'\t'+ this.grilleDalles.get(0).getY() +'\n';
+		ArrayList<Dalle> arrDalleDejaUtil = new ArrayList<Dalle>();
+        for(Dalle dSource: this.grilleDalles)
+        {
+            if(dSource != null)
+            {
+                int cpt =0;
+                for(Dalle dDestination : dSource.getListeDallesAdjacent())
+                {
+                    if(d2 != null || arrDalleDejaUtil.indexOf(dDestination) ==-1)
+                    {
+                        sRep += dSource.getNom() + dDestination.getNom() + cpt+"\n";
+                    }
+                    cpt++;
+                }
+            }
+			arrDalleDejaUtil.add(dSource);
+        }
+
+		//Sauvegarde Les Pilliers//
+		sRep +="Pilier\n";
+		for(Dalle dTemp: this.grilleDalles)
+        {
+            if(dTemp != null)
+            {
+				int cpt = 0;
+				for(Pilier p : dTemp.getSommets())
+				{
+					if(p != null)
+					{
+						sRep += dTemp.getNom() + p.getCoul() +cpt+'\n';
+					}
+					cpt++;
+				}
+            }
+        }
+
+		//Sauvegarde les scores
+		//Jx->nbDalle->nbPilier->nbPilierDetruit
+		sRep +="Score\n";
+		sRep += 'J' + this.joueur1.getListeDalles().size()+ "->" + this.joueur1.getNumJoueur() + "->" + this.joueur1.getNbPilier() + "->" +this.joueur1.getNbPilierDetruis();
+		sRep += 'J' + this.joueur2.getListeDalles().size()+ "->" + this.joueur2.getNumJoueur() + "->" + this.joueur2.getNbPilier() + "->" +this.joueur2.getNbPilierDetruis();
+		
+		//Sauvegarde les tours
+		sRep +="Tour\n";
+		sRep += ""+(this.joueur1.getNbPilier() + this.joueur1.getNbPilierDetruis());
+		
+		return sRep;
+    }
 
 	public void initierPlateau()
 	{
