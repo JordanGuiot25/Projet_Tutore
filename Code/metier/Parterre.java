@@ -26,11 +26,11 @@ public class Parterre
 
 		this.initierPlateau();
 	}		
-	
+
 	public String getSauvegarde()
     {
 		// Sauvegarde le plateau //
-        String sRep ="Plateau \n A="+this.grilleDalles.get(0).getX() + this.grilleDalles.get(0).getY() +'\n';
+        String sRep =this.grilleDalles.get(0).getX() +'\t'+ this.grilleDalles.get(0).getY() +'\n';
 		ArrayList<Dalle> arrDalleDejaUtil = new ArrayList<Dalle>();
         for(Dalle dSource: this.grilleDalles)
         {
@@ -75,7 +75,7 @@ public class Parterre
 		
 		//Sauvegarde les tours
 		sRep +="Tour\n";
-		sRep += ""+(this.joueur1.getNbPilier() + this.joueur1.getNbPilierDetruis())
+		sRep += ""+(this.joueur1.getNbPilier() + this.joueur1.getNbPilierDetruis());
 		
 		return sRep;
     }
