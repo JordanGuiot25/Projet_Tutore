@@ -1,6 +1,6 @@
 package PilierDeLaTerre.metier;
 
-import PilierDeLaTerre.metier.Pilier;
+import iut.algo.Clavier;
 
 public class Dalle
 {
@@ -105,8 +105,6 @@ public class Dalle
 				}
 			}
 
-			System.out.println( numSommet + " : " + x + " " + y);
-
 			Pilier pilierTmp = new Pilier(couleur,x,y);
 
 			this.listeSommet[numSommet] = pilierTmp;
@@ -130,7 +128,6 @@ public class Dalle
 			{
 				if(this.listeDallesAdjacent[5] != null)
 				{
-					System.out.println(this.listeDallesAdjacent[5].getNom() + " " + sommetAdjacent);
 					this.listeDallesAdjacent[5].posePilier(pilierTmp, sommetAdjacent);
 				}
 			}
@@ -139,7 +136,6 @@ public class Dalle
 				
 				if(this.listeDallesAdjacent[numSommet-1] != null)
 				{
-					System.out.println(this.listeDallesAdjacent[numSommet-1].getNom() + " " + sommetAdjacent);
 					this.listeDallesAdjacent[numSommet-1].posePilier(pilierTmp, sommetAdjacent);
 				}
 			}
@@ -155,10 +151,8 @@ public class Dalle
 			
 			if(this.listeDallesAdjacent[numSommet] != null)
 			{
-				System.out.println(this.listeDallesAdjacent[numSommet].getNom() + " " + sommetAdjacent);
 				this.listeDallesAdjacent[numSommet].posePilier(pilierTmp, sommetAdjacent);
 			}
-			
 
 			return true;
 		}
@@ -256,14 +250,23 @@ public class Dalle
 	{
 		this.listeDallesAdjacent[cote] = voisin;
 
+		switch(cote)
+		{
+			case 0 -> voisin.setCoordonner(this.x,    this.y-67);
+			case 1 -> voisin.setCoordonner(this.x+49, this.y-33);
+			case 2 -> voisin.setCoordonner(this.x+49, this.y+33);
+			case 3 -> voisin.setCoordonner(this.x,    this.y+67);
+			case 4 -> voisin.setCoordonner(this.x-49, this.y+33);
+			case 5 -> voisin.setCoordonner(this.x-49, this.y-33);
+		}
+
 		for(int cpt = 0; cpt < 3; cpt++)
 		{
 			cote ++;
 			if( cote > 5)
 				cote = 0;
 		}
-		
-		voisin.setAdjacent(cote, this);
+		voisin.rajoutDalleAdjacent(cote, this);
 	}
 
 
@@ -275,6 +278,16 @@ public class Dalle
 		{
 			if ( voisin != null )
 				sMessage += voisin.getNom() + ", " ;
+		}
+
+		sMessage += "\n \tSommet : ";
+		
+		Pilier[] tabPilier = this.getSommets();
+
+		for ( int cpt = 0; cpt < tabPilier.length; cpt++ )
+		{
+			if ( tabPilier[cpt] != null )
+				sMessage += cpt + ", " ;
 		}
 		
 		return sMessage;

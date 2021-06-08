@@ -23,7 +23,6 @@ public class Joueur
         this.nbPilierDetruis = 0;
         this.listeDalles = new ArrayList<Dalle> ();
         this.listePilier = new ArrayList<Pilier>();
-
     }
 
     public boolean poserPilier()
@@ -40,6 +39,15 @@ public class Joueur
     public void ajouterDalles(Dalle dalle)
     {
         this.listeDalles.add(dalle);
+    }
+
+    public void setNbPilier(int nbPilier)
+    {
+        this.nbPilier = nbPilier;
+    }
+    public void setPilierDetruit(int nbPilierDetruis)
+    {
+        this.nbPilierDetruis = nbPilierDetruis;
     }
 
     public int  getNumJoueur()       { return this.numJoueur;       }

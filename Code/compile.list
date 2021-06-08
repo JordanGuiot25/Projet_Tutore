@@ -7,6 +7,5 @@
 ./ihm/cui/IhmCui.java
 ./ihm/gui/FrameDessin.java
 ./ihm/gui/PanelDessin.java
-./ihm/gui/GuiJeu.java
 
 ./Controleur.java

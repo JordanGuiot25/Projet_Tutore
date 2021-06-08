@@ -1,5 +1,5 @@
 //Plateau 
-167	17
+200	50
 AC2
 AE3
 AB4
@@ -35,10 +35,9 @@ NP2
 OP4
 //Pilier
 HG4
-KG2
-NG0
-//Score
+AM4
+//Joueur
 J1	0	24	0
 J2	0	24	0
 //Tour
-0
+10
