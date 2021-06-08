@@ -1,9 +1,12 @@
 package PilierDeLaTerre.metier;
 
 import PilierDeLaTerre.metier.Dalle;
+import PilierDeLaTerre.metier.Joueur;
 
 import java.util.ArrayList;
 import iut.algo.Clavier;
+import java.io.PrintWriter;
+import java.io.FileOutputStream;
 
 public class Parterre
 {
@@ -24,6 +27,48 @@ public class Parterre
 		this.initierPlateau();
 	}
 
+
+	public String getSauvegarde()
+    {
+		// Sauvegarde le plateau //
+        String sRep ="Plateau \n A="+this.grilleDalles.get(0).getX() + this.grilleDalles.get(0).getY() +'\n';
+		ArrayList<Dalle> arrDalleDejaUtil = new ArrayList<Dalle>();
+        for(Dalle dSource: this.grilleDalles)
+        {
+            if(dSource != null)
+            {
+                int cpt =0;
+                for(Dalle dDestination : dSource.getListeDallesAdjacent())
+                {
+                    if(d2 != null || arrDalleDejaUtil.indexOf(dDestination) ==-1)
+                    {
+                        sRep += dSource.getNom() + dDestination.getNom() + cpt+"\n";
+                    }
+                    cpt++;
+                }
+            }
+			arrDalleDejaUtil.add(dSource);
+        }
+
+		//Sauvegarde Les Pilliers//
+		sRep +="Pilier\n";
+		for(Dalle dTemp: this.grilleDalles)
+        {
+            if(dTemp != null)
+            {
+				int cpt = 0;
+				for(Pilier p : dTemp.getSommets())
+				{
+					if(p != null)
+					{
+						sRep += dTemp.getNom() + p.getCoul() +cpt+'\n';
+					}
+					cpt++;
+				}
+            }
+        }
+		return sRep;
+    }
 
 	public void initierPlateau()
 	{
