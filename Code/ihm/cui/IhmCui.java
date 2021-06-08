@@ -2,6 +2,7 @@ package PilierDeLaTerre.ihm.cui;
 
 import PilierDeLaTerre.metier.Dalle;
 import PilierDeLaTerre.metier.Parterre;
+import PilierDeLaTerre.metier.Pilier;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,12 @@ public class IhmCui
     {
         this.nbDallePresente = 0;
         this.dalles          = new ArrayList<Dalle>();
+    }
+
+    public char PilierToChar(Pilier p)
+    {
+        if(p == null){return ' ';}
+        return p.getCoul();
     }
 
     public IhmCui(Parterre part)
@@ -32,6 +39,8 @@ public class IhmCui
 
     public String toString()
     {
+        /* affichage des liaison entre dalles*/
+
         String sRep =   "          +-----------------------+\n"+
                         "          |         Lié à         |\n"+
                         "          +---+---+---+---+---+---+\n"+
@@ -45,6 +54,27 @@ public class IhmCui
                         " | "+ this.DalleToChar(d.getDalleAdjacent(1))  + " | " + this.DalleToChar(d.getDalleAdjacent(2)) +
                         " | "+ this.DalleToChar(d.getDalleAdjacent(3))  + " | " + this.DalleToChar(d.getDalleAdjacent(4)) +
                         " | "+ this.DalleToChar(d.getDalleAdjacent(5))  + " |\n"+
+                        "+---------+---+---+---+---+---+---+\n";
+            }
+        }
+
+
+
+        /*affichage des pillier*/
+              sRep +=   "\n\n          +-----------------------+\n"+
+                            "          |   Pillier present     |\n"+
+                            "          +---+---+---+---+---+---+\n"+
+                            "          | 0 | 1 | 2 | 3 | 4 | 5 |\n"+
+                            "+---------+---+---+---+---+---+---+\n";
+        for(Dalle d: dalles)
+        {
+            Pilier[] lstPil = d.getSommets();
+            if(d != null)
+            {
+                sRep   +="| Dalle " + d.getNom()  + " | "             + this.PilierToChar(lstPil[0]) +
+                        " | "+ this.PilierToChar(lstPil[1])  + " | " + this.PilierToChar(lstPil[2]) +
+                        " | "+ this.PilierToChar(lstPil[3])  + " | " + this.PilierToChar(lstPil[4]) +
+                        " | "+ this.PilierToChar(lstPil[5])  + " |\n"+
                         "+---------+---+---+---+---+---+---+\n";
             }
         }
