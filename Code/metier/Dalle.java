@@ -4,9 +4,8 @@ import PilierDeLaTerre.metier.Pilier;
 
 public class Dalle
 {
-	private static final String IMAGE = "../Ressources/Dalle.png";
+	private static final String IMAGE   = "../Ressources/Dalle.png";
 	private static char         nbDalle = 'A';
-	 
 	
 	private char      nomDalle;
 	private Pilier[]  listeSommet;
@@ -36,11 +35,11 @@ public class Dalle
 
 	public Dalle(int xDalle, int yDalle)
 	{
-		this.nomDalle    = nbDalle++;
-		this.listeSommet = new Pilier[6];
+		this.nomDalle             = nbDalle++;
+		this.listeSommet          = new Pilier[6];
 		
-		this.xDalle           = xDalle;
-		this.yDalle           = yDalle;
+		this.xDalle               = xDalle;
+		this.yDalle               = yDalle;
 
 		this.listeDallesAdjacent  = new Dalle[6];
 	}
@@ -54,10 +53,48 @@ public class Dalle
 
 		this.listeDallesAdjacent[cote] = voisin;
 
+		/*switch(cote)
+		{
+			case 0 ->
+			{
+				if(this.listeDallesAdjacent[1] != null)
+				{
+					voisin.rajoutDalleAdjacent(2, this.listeDallesAdjacent[1]);
+					this.listeDallesAdjacent[1].rajoutDalleAdjacent(5,voisin);
+				}
+
+				if(this.listeDallesAdjacent[5] != null)
+				{
+					voisin.rajoutDalleAdjacent(4, this.listeDallesAdjacent[5]);
+					this.listeDallesAdjacent[5].rajoutDalleAdjacent(1,voisin);
+				}
+			}
+			case 1 ->
+			{
+
+			}
+			case 2 ->
+			{
+
+			}
+			case 3 ->
+			{
+
+			}
+			case 4 ->
+			{
+
+			}
+			case 5 ->
+			{
+				
+			}
+		}*/
+
 		return true;
 	}
 
-	public boolean rajoutPillier(int numSommet)
+	public boolean rajoutPillier(char couleur, int numSommet)
 	{
 		if ( this.listeSommet[numSommet] == null )
 		{
@@ -101,7 +138,7 @@ public class Dalle
 
 			System.out.println( numSommet + " : " + x + " " + y);
 
-			this.listeSommet[numSommet] = new Pilier('M',x,y);
+			this.listeSommet[numSommet] = new Pilier(couleur,x,y);
 
 			return true;
 		}

@@ -17,14 +17,13 @@ public class Pilier
 		if ( couleur == 'G' )
 		{
 			this.imgPilier = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/pilier_gris.png");
-			this.couleur   ='G';
+			
 		}
 		if ( couleur == 'M')
 		{
-			this.imgPilier = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/pilier_marron.png");
-			this.couleur   ='M';
+			this.imgPilier = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/pilier_maron.png");
 		}
-		
+		this.couleur   = couleur;
 		this.x = x;
 		this.y = y;
 	}

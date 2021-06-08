@@ -8,6 +8,8 @@ import iut.algo.Clavier;
 
 import java.util.ArrayList;
 
+import PilierDeLaTerre.metier.Dalle;
+
 public class Controleur
 {
 	private FrameDessin ihm;
@@ -15,14 +17,31 @@ public class Controleur
 
 	public Controleur()
 	{
-		this.ihm    = new FrameDessin(this);
 		this.metier = new Parterre();
+		this.ihm    = new FrameDessin(this);
+
+		while(true)
+		{
+			ArrayList<Dalle> plateau = this.metier.getDalles();
+
+			int nbAlea  = (int) (Math.random() * plateau.size() );
+			Dalle dalle = plateau.get(nbAlea);
+
+			System.out.println( dalle.getNom() + " quel sommet ? ");
+			int sommet = Clavier.lire_int();
+
+			dalle.rajoutPillier('G', sommet);
+
+			this.ihm.miseAJourGrille();
+
+			Clavier.lireString();
+		}
+		
 	}
 
 	public static void main (String[] a)
 	{
 		new Controleur();
-		
 	}
 
 
