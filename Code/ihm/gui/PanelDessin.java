@@ -34,6 +34,11 @@ public class PanelDessin extends JPanel
 		{
 			g2.drawImage( RESSOURCE_DALLE, dalle.getX(), dalle.getY(), this);
 			g2.drawString( "" + dalle.getNom(), dalle.getMilieuX()-3, dalle.getMilieuY()+5);
+
+			for( Pilier pilier : dalle.getSommets() )
+			{
+				g2.drawImage( pilier.getImage(), pilier.getX(), pilier.getY(), this);
+			}
 		}
 	}
 
