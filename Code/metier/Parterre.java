@@ -5,8 +5,6 @@ import PilierDeLaTerre.metier.Joueur;
 
 import java.util.ArrayList;
 import iut.algo.Clavier;
-import java.io.PrintWriter;
-import java.io.FileOutputStream;
 
 public class Parterre
 {
@@ -30,7 +28,7 @@ public class Parterre
 	public String getSauvegarde()
     {
 		// Sauvegarde le plateau //
-        String sRep =this.grilleDalles.get(0).getX() +'\t'+ this.grilleDalles.get(0).getY() +'\n';
+        String sRep =""+this.grilleDalles.get(0).getX() +'\t'+ this.grilleDalles.get(0).getY() +'\n';
 		ArrayList<Dalle> arrDalleDejaUtil = new ArrayList<Dalle>();
         for(Dalle dSource: this.grilleDalles)
         {
@@ -39,7 +37,7 @@ public class Parterre
                 int cpt =0;
                 for(Dalle dDestination : dSource.getListeDallesAdjacent())
                 {
-                    if(d2 != null || arrDalleDejaUtil.indexOf(dDestination) ==-1)
+                    if(dDestination != null || arrDalleDejaUtil.indexOf(dDestination) ==-1)
                     {
                         sRep += dSource.getNom() + dDestination.getNom() + cpt+"\n";
                     }

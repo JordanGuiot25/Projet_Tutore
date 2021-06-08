@@ -9,6 +9,9 @@ import iut.algo.Clavier;
 
 import java.util.ArrayList;
 
+import java.io.PrintWriter;
+import java.io.FileOutputStream;
+
 import PilierDeLaTerre.metier.Dalle;
 
 public class Controleur
