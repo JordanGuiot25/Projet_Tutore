@@ -1,24 +1,30 @@
-package PilierDeLaTerre.Scenario;
+package PilierDeLaTerre.metier;
 
-import java.util.*;
-import PilierDeLaTerre.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.FileInputStream;
+
+import PilierDeLaTerre.metier.Joueur;
+import PilierDeLaTerre.metier.Dalle;
+import PilierDeLaTerre.metier.Parterre;
 
 import iut.algo.Decomposeur;
 
 public class Scenario 
 {
-    public Scenario()
-    {
-
-    }
-
     public static Parterre getScenario(int numScenario)
     {
-        ArrayList <Dalle> plateau = new ArrayList<Dalle>();
+        ArrayList <Dalle> plateau    = new ArrayList<Dalle>(); // Plateau
+        Joueur            joueur1    = new Joueur();           // Joueur 1
+        Joueur            joueur2    = new Joueur();           // Joueur 2
+        int               numeroTour = 0;                      // Numero du Tour
+
         for(int i = 0 ; i < 16; i++)
         {
             plateau.add(new Dalle());
         }
+
+
         try
 		{
 			Scanner sc = new Scanner ( new FileInputStream ( "entree.txt" ) );
@@ -50,6 +56,8 @@ public class Scenario
                     }
 
                     dalle1.setAdjacent(coteAdjacent, dalle2);
+
+                    ligne = sc.nextLine();
                 }
                 /*---------------------------------------*/
                 /*   Recuperation de la partie pilier    */
@@ -57,13 +65,56 @@ public class Scenario
                 {
                     if( ligne.substring(0, 1).equals("J1") )
                     {
-                        
+                        if(ligne.length() > 2)
+                        {
+                            dec = new Decomposeur(ligne);
+                            joueur1.setNbPilier      (dec.getInt(1) );
+                            joueur1.setPilierDetruit (dec.getInt(2) );
+                        }
+                        else
+                        {
+                            for(Dalle dalle : plateau)
+                            {
+                                if(dalle.getNom() == ligne.charAt(2) )
+                                    joueur1.ajouterDalles(dalle);
+                            }
+                        }
                     }
+                    else if ( ligne.substring(0, 1).equals("J2") )
+                    {
+                        if(ligne.length() > 2)
+                        {
+                            dec = new Decomposeur(ligne);
+                            joueur2.setNbPilier      (dec.getInt(1) );
+                            joueur2.setPilierDetruit (dec.getInt(2) );
+                        }
+                        else
+                        {
+                            for(Dalle dalle : plateau)
+                            {
+                                if(dalle.getNom() == ligne.charAt(2) )
+                                    joueur2.ajouterDalles(dalle);
+                            }
+                        }
+                    }
+
+                    ligne = sc.nextLine();
                 }
+                /*---------------------------------------*/
+                /*   Recuperation de la partie Tour      */
+                ligne = sc.nextLine();
+
+                numeroTour = Integer.parseInt( ligne.substring(1) );
+                
 
             }                
 
 			sc.close();
 		}
 		catch (Exception e){ e.printStackTrace(); }
+
+
+        return new Parterre(plateau,joueur1,joueur2,numeroTour);
+    }
+
 }
