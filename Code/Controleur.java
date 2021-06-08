@@ -40,7 +40,7 @@ public class Controleur
 			dalle.detruirePillier(sommet);
 
 			this.ihm.miseAJourGrille();
-
+			this.Sauvegarde();
 
 		}
 		
