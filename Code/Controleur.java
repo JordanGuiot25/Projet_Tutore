@@ -53,7 +53,7 @@ public class Controleur
 	{
 		try
 		{
-			PrintWriter pw = new PrintWriter( new FileOutputStream("../../Scenario/Sauvegarde") );
+			PrintWriter pw = new PrintWriter( new FileOutputStream("../Scenario/Sauvegarde.txt") );
 			pw.println ( this.metier.getSauvegarde());
 			pw.close();
 		}

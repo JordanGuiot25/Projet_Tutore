@@ -37,9 +37,11 @@ public class Parterre
                 int cpt =0;
                 for(Dalle dDestination : dSource.getListeDallesAdjacent())
                 {
-                    if(dDestination != null || arrDalleDejaUtil.indexOf(dDestination) ==-1)
+                    if(dDestination != null && arrDalleDejaUtil.indexOf(dDestination) ==-1)
                     {
-                        sRep += dSource.getNom() + dDestination.getNom() + cpt+"\n";
+                       // System.out.println(dSource.getNom());
+						System.out.println(dDestination.getNom());
+						sRep += dSource.getNom() + dDestination.getNom() + cpt+"\n";
                     }
                     cpt++;
                 }
@@ -66,15 +68,16 @@ public class Parterre
         }
 
 		//Sauvegarde les scores
-		//Jx->nbDalle->nbPilier->nbPilierDetruit
+		//Jx\tnbDalle\tnbPilier\tnbPilierDetruit
 		sRep +="Score\n";
-		sRep += 'J' + this.joueur1.getListeDalles().size()+ "->" + this.joueur1.getNumJoueur() + "->" + this.joueur1.getNbPilier() + "->" +this.joueur1.getNbPilierDetruis();
-		sRep += 'J' + this.joueur2.getListeDalles().size()+ "->" + this.joueur2.getNumJoueur() + "->" + this.joueur2.getNbPilier() + "->" +this.joueur2.getNbPilierDetruis();
+		sRep += 'J' + this.joueur1.getListeDalles().size()+ "\t" + this.joueur1.getNumJoueur() + "\t" + this.joueur1.getNbPilier() + "\t" +this.joueur1.getNbPilierDetruis()+'\n';
+		sRep += 'J' + this.joueur2.getListeDalles().size()+ "\t" + this.joueur2.getNumJoueur() + "\t" + this.joueur2.getNbPilier() + "\t" +this.joueur2.getNbPilierDetruis()+'\n';
 		
 		//Sauvegarde les tours
 		sRep +="Tour\n";
-		sRep += ""+(this.joueur1.getNbPilier() + this.joueur1.getNbPilierDetruis());
+		sRep += ""+(24 - this.joueur1.getNbPilier());
 		
+		System.out.println(sRep);
 		return sRep;
     }
 
