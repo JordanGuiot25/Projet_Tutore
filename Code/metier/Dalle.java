@@ -203,6 +203,53 @@ public class Dalle
 		{
 			this.listeSommet[numSommet] = null;
 
+			/*  Supression du pilier dans les autres dalles   */
+
+			int sommetAdjacent = numSommet;
+
+			/* Incrementation pour trouver le sommet de la dalle adjacent */
+			for (int cpt = 0; cpt < 2; cpt ++ )
+			{
+				sommetAdjacent++;
+				if( sommetAdjacent > 5 )
+				{
+					sommetAdjacent = 0;
+				}
+			}
+
+			if ( numSommet == 0 )
+			{
+				if(this.listeDallesAdjacent[5] != null)
+				{
+					System.out.println(this.listeDallesAdjacent[5].getNom() + " " + sommetAdjacent);
+					this.listeDallesAdjacent[5].detruirePilier(sommetAdjacent);
+				}
+			}
+			else
+			{
+				
+				if(this.listeDallesAdjacent[numSommet-1] != null)
+				{
+					System.out.println(this.listeDallesAdjacent[numSommet-1].getNom() + " " + sommetAdjacent);
+					this.listeDallesAdjacent[numSommet-1].detruirePilier(sommetAdjacent);
+				}
+			}
+				
+			for (int cpt = 0; cpt < 2; cpt ++ )
+			{
+				sommetAdjacent++;
+				if( sommetAdjacent > 5 )
+				{
+					sommetAdjacent = 0;
+				}
+			}
+			
+			if(this.listeDallesAdjacent[numSommet] != null)
+			{
+				System.out.println(this.listeDallesAdjacent[numSommet].getNom() + " " + sommetAdjacent);
+				this.listeDallesAdjacent[numSommet].detruirePilier(sommetAdjacent);
+			}
+
 			return true;
 		}
 
@@ -212,6 +259,11 @@ public class Dalle
 	private void posePilier(Pilier pilier, int numSommet)
 	{
 		this.listeSommet[numSommet] =  pilier;
+	}
+
+	private void detruirePilier(int numSommet)
+	{
+		this.listeSommet[numSommet] =  null;
 	}
 
 	public char getNom() { return this.nomDalle; }
