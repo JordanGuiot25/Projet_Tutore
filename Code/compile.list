@@ -2,6 +2,7 @@
 ./metier/Dalle.java
 ./metier/Joueur.java
 ./metier/Parterre.java
+./metier/Scenario.java
 
 ./ihm/cui/IhmCui.java
 ./ihm/gui/FrameDessin.java

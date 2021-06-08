@@ -27,7 +27,7 @@ public class Scenario
 
         try
 		{
-			Scanner sc = new Scanner ( new FileInputStream ( "entree.txt" ) );
+			Scanner sc = new Scanner ( new FileInputStream ( "../Scenario/Scenario" + numScenario + ".txt" ) );
 
 			while ( sc.hasNextLine() )
             {
@@ -42,6 +42,8 @@ public class Scenario
                     char nomD1 = ligne.charAt(0);
                     char nomD2 = ligne.charAt(1);
                     int coteAdjacent = Integer.parseInt(ligne.substring(2));
+                    Dalle dalle1;
+                    Dalle dalle2;
 
                     for(Dalle dalle : plateau)
                     {

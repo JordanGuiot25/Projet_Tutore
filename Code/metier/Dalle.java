@@ -9,8 +9,8 @@ public class Dalle
 	
 	private char      nomDalle;
 	private Pilier[]  listeSommet;
-	private int       xDalle;
-	private int       yDalle;
+	private int       x;
+	private int       y;
 
 	private Dalle[]   listeDallesAdjacent;
 
@@ -33,13 +33,20 @@ public class Dalle
 	          3
 	---------------------*/
 
-	public Dalle(int xDalle, int yDalle)
+	public Dalle()
+	{
+		this.nomDalle             = nbDalle++;
+		this.listeSommet          = new Pilier[6];
+		this.listeDallesAdjacent  = new Dalle[6];
+	}
+
+	public Dalle(int x, int y)
 	{
 		this.nomDalle             = nbDalle++;
 		this.listeSommet          = new Pilier[6];
 		
-		this.xDalle               = xDalle;
-		this.yDalle               = yDalle;
+		this.x               = x;
+		this.y               = y;
 
 		this.listeDallesAdjacent  = new Dalle[6];
 	}
@@ -52,44 +59,6 @@ public class Dalle
 		}
 
 		this.listeDallesAdjacent[cote] = voisin;
-
-		/*switch(cote)
-		{
-			case 0 ->
-			{
-				if(this.listeDallesAdjacent[1] != null)
-				{
-					voisin.rajoutDalleAdjacent(2, this.listeDallesAdjacent[1]);
-					this.listeDallesAdjacent[1].rajoutDalleAdjacent(5,voisin);
-				}
-
-				if(this.listeDallesAdjacent[5] != null)
-				{
-					voisin.rajoutDalleAdjacent(4, this.listeDallesAdjacent[5]);
-					this.listeDallesAdjacent[5].rajoutDalleAdjacent(1,voisin);
-				}
-			}
-			case 1 ->
-			{
-
-			}
-			case 2 ->
-			{
-
-			}
-			case 3 ->
-			{
-
-			}
-			case 4 ->
-			{
-
-			}
-			case 5 ->
-			{
-				
-			}
-		}*/
 
 		return true;
 	}
@@ -267,15 +236,35 @@ public class Dalle
 	}
 
 	public char getNom() { return this.nomDalle; }
-	public int  getX()   { return this.xDalle-33;   }
-	public int  getY()   { return this.yDalle-33;   }
+	public int  getX()   { return this.x-33;   }
+	public int  getY()   { return this.y-33;   }
 
-	public int getMilieuX() { return this.xDalle; }
-	public int getMilieuY() { return this.yDalle; }
+	public int getMilieuX() { return this.x; }
+	public int getMilieuY() { return this.y; }
 
 	public Dalle    getDalleAdjacent(int cote) { return this.listeDallesAdjacent[cote];}
 	public Pilier[] getSommets()            { return this.listeSommet;              }
 	public Dalle[]  getListeDallesAdjacent(){ return this.listeDallesAdjacent;      }
+
+	public void     setCoordonner(int x, int y)
+	{
+		this.x = x;
+		this.y = y;
+	}
+
+	public void     setAdjacent  (int cote, Dalle voisin)
+	{
+		this.listeDallesAdjacent[cote] = voisin;
+
+		for(int cpt = 0; cpt < 3; cpt++)
+		{
+			cote ++;
+			if( cote > 5)
+				cote = 0;
+		}
+		
+		voisin.setAdjacent(cote, this);
+	}
 
 
 	public String toString()
