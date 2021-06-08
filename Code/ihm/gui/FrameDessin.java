@@ -26,4 +26,10 @@ public class FrameDessin extends JFrame
 
 		this.setVisible(true);
 	}
+
+
+	public void miseAJourGrille()
+	{
+		this.panel.miseAJourGrille();
+	}
 }

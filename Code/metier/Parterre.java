@@ -22,17 +22,6 @@ public class Parterre
 		this.joueur2      = new Joueur(2, 'M');
 
 		this.initierPlateau();
-
-		while ( !(this.joueur1.getNbPilier() <= 0) && !(this.joueur2.getNbPilier() <= 0) )
-		{
-			for(int cpt = 0; cpt < 2; cpt++)
-			{
-				System.out.println("Tour joueur" + cpt);
-
-
-			}
-		}
-
 	}
 
 
