@@ -35,8 +35,11 @@ public class Controleur
 
 			this.ihm.miseAJourGrille();
 
+			Clavier.lireString();
+			System.out.println("Destruction du pillier");
+			dalle.detruirePillier(sommet);
 
-			System.out.println( new IhmCui(this.metier).getLiasonsPilier() );
+			this.ihm.miseAJourGrille();
 
 
 		}
