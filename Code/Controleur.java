@@ -4,6 +4,7 @@ import PilierDeLaTerre.ihm.gui.FrameDessin;
 import PilierDeLaTerre.ihm.cui.IhmCui;
 import PilierDeLaTerre.metier.Dalle;
 import PilierDeLaTerre.metier.Parterre;
+import PilierDeLaTerre.metier.Scenario;
 
 import iut.algo.Clavier;
 
@@ -21,12 +22,12 @@ public class Controleur
 
 	public Controleur()
 	{
-		this.metier = new Parterre();
+		this.metier = Scenario.getScenario(1);
 		this.ihm    = new FrameDessin(this);
 
 		while(true)
 		{
-			ArrayList<Dalle> plateau = this.metier.getDalles();
+			/*ArrayList<Dalle> plateau = this.metier.getDalles();
 
 			int nbAlea  = (int) (Math.random() * plateau.size() );
 			Dalle dalle = plateau.get(nbAlea);
@@ -37,14 +38,7 @@ public class Controleur
 			dalle.rajoutPillier('G', sommet);
 
 			this.ihm.miseAJourGrille();
-			this.Sauvegarde();
-			Clavier.lireString();
-			System.out.println("Destruction du pillier");
-			dalle.detruirePillier(sommet);
-
-			this.ihm.miseAJourGrille();
-			
-
+			this.Sauvegarde();*/
 		}
 		
 	}

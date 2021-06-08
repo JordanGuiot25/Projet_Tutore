@@ -8,6 +8,9 @@ import java.awt.event.*;
 import java.awt.Toolkit;
 
 
+import PilierDeLaTerre.metier.*;
+
+
 public class GuiJeu extends JFrame //implements ActionListener
 {
 	//private Controleur ctrl;

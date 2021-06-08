@@ -16,6 +16,16 @@ public class Parterre
 	private boolean victoireJ1;
 	private boolean victoireJ2;
 
+	private int     tour;
+
+	public Parterre(ArrayList<Dalle> grille, Joueur joueur1, Joueur joueur2, int tour)
+	{
+		this.grilleDalles = grille;
+		this.joueur1      = joueur1;
+		this.joueur2      = joueur2;
+		this.tour         = tour;
+	}
+
 	public Parterre()
 	{
 		this.grilleDalles = new ArrayList<Dalle>();
@@ -23,12 +33,12 @@ public class Parterre
 		this.joueur2      = new Joueur(2, 'M');
 
 		this.initierPlateau();
-	}		
+	}	
 
 	public String getSauvegarde()
     {
 		// Sauvegarde le plateau //
-        String sRep ="Plateau \n"+this.grilleDalles.get(0).getX() +'\t'+ this.grilleDalles.get(0).getY() +'\n';
+        String sRep ="//Plateau\n"+this.grilleDalles.get(0).getX() +'\t'+ this.grilleDalles.get(0).getY() +'\n';
 		ArrayList<Dalle> arrDalleDejaUtil = new ArrayList<Dalle>();
         for(Dalle dSource: this.grilleDalles)
         {
@@ -48,7 +58,7 @@ public class Parterre
         }
 
 		//Sauvegarde Les Pilliers//
-		sRep +="Pilier\n";
+		sRep +="//Pilier\n";
 		for(Dalle dTemp: this.grilleDalles)
         {
             if(dTemp != null)
@@ -66,13 +76,24 @@ public class Parterre
         }
 
 		//Sauvegarde les scores
-		//Jx\tnbDalle\tnbPilier\tnbPilierDetruit
-		sRep +="Score\n";
-		sRep += "J" + this.joueur1.getNumJoueur() + "\t"+ this.joueur1.getListeDalles().size() + "\t" + this.joueur1.getNbPilier() + "\t" +this.joueur1.getNbPilierDetruis()+'\n';
-		sRep += "J" + this.joueur2.getNumJoueur() + "\t"+ this.joueur2.getListeDalles().size() + "\t" + this.joueur2.getNbPilier() + "\t" +this.joueur2.getNbPilierDetruis()+'\n';
-		
+		//Jx\tnbPilier\tnbPilierDetruit
+		sRep +="//Score\n";
+		sRep += "J" + this.joueur1.getNumJoueur() + "\t" + this.joueur1.getNbPilier() + "\t" +this.joueur1.getNbPilierDetruis()+'\n';
+		for(Dalle dallePosseder : this.joueur1.getListeDalles())
+		{
+			if( dallePosseder != null )
+				sRep += "J1" + dallePosseder.getNom() + "\n";
+		}
+
+		sRep += "J" + this.joueur2.getNumJoueur() + "\t" + this.joueur2.getNbPilier() + "\t" +this.joueur2.getNbPilierDetruis()+'\n';
+		for(Dalle dallePosseder : this.joueur1.getListeDalles())
+		{
+			if( dallePosseder != null )
+				sRep += "J2" + dallePosseder.getNom() + "\n";
+		}
+
 		//Sauvegarde les tours
-		sRep +="Tour\n";
+		sRep +="//Tour\n";
 		sRep += ""+(24 - this.joueur1.getNbPilier());
 		
 		return sRep;
