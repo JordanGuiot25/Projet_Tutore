@@ -4,6 +4,7 @@ import java.awt.Image;
 
 public class Pilier
 {
+	private char couleur;
 	private Image imgPilier;
 	private int x;
 	private int y;
@@ -16,10 +17,12 @@ public class Pilier
 		if ( couleur == 'G' )
 		{
 			this.imgPilier = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/pilier_gris.png");
+			this.couleur   ='G';
 		}
 		if ( couleur == 'M')
 		{
 			this.imgPilier = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/pilier_marron.png");
+			this.couleur   ='M';
 		}
 		
 		this.x = x;
@@ -30,4 +33,5 @@ public class Pilier
 
 	public int   getX()     { return this.x; }
 	public int   getY()     { return this.y; }
+	public char  getCoul()  { return this.couleur;}
 }
