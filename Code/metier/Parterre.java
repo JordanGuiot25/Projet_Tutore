@@ -25,9 +25,8 @@ public class Parterre
 		this.joueur2      = new Joueur(2, 'M');
 
 		this.initierPlateau();
-	}
-
-
+	}		
+	
 	public String getSauvegarde()
     {
 		// Sauvegarde le plateau //
@@ -67,6 +66,17 @@ public class Parterre
 				}
             }
         }
+
+		//Sauvegarde les scores
+		//Jx->nbDalle->nbPilier->nbPilierDetruit
+		sRep +="Score\n";
+		sRep += 'J' + this.joueur1.getListeDalles().size()+ "->" + this.joueur1.getNumJoueur() + "->" + this.joueur1.getNbPilier() + "->" +this.joueur1.getNbPilierDetruis();
+		sRep += 'J' + this.joueur2.getListeDalles().size()+ "->" + this.joueur2.getNumJoueur() + "->" + this.joueur2.getNbPilier() + "->" +this.joueur2.getNbPilierDetruis();
+		
+		//Sauvegarde les tours
+		sRep +="Tour\n";
+		sRep += ""+(this.joueur1.getNbPilier() + this.joueur1.getNbPilierDetruis())
+		
 		return sRep;
     }
 
