@@ -21,6 +21,8 @@ public class Joueur
         this.coulJoueur      = coulJoueur;
         this.nbPilier        = 24;
         this.nbPilierDetruis = 0;
+        this.listeDalles = new ArrayList<Dalle> ();
+        this.listePilier = new ArrayList<Pilier>();
 
     }
 
