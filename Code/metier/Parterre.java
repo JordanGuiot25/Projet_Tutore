@@ -28,7 +28,7 @@ public class Parterre
 	public String getSauvegarde()
     {
 		// Sauvegarde le plateau //
-        String sRep =""+this.grilleDalles.get(0).getX() +'\t'+ this.grilleDalles.get(0).getY() +'\n';
+        String sRep ="Plateau \n"+this.grilleDalles.get(0).getX() +'\t'+ this.grilleDalles.get(0).getY() +'\n';
 		ArrayList<Dalle> arrDalleDejaUtil = new ArrayList<Dalle>();
         for(Dalle dSource: this.grilleDalles)
         {
@@ -39,9 +39,7 @@ public class Parterre
                 {
                     if(dDestination != null && arrDalleDejaUtil.indexOf(dDestination) ==-1)
                     {
-                       // System.out.println(dSource.getNom());
-						System.out.println(dDestination.getNom());
-						sRep += dSource.getNom() + dDestination.getNom() + cpt+"\n";
+						sRep += dSource.getNom() +""+ dDestination.getNom() + cpt+"\n";
                     }
                     cpt++;
                 }
@@ -60,7 +58,7 @@ public class Parterre
 				{
 					if(p != null)
 					{
-						sRep += dTemp.getNom() + p.getCoul() +cpt+'\n';
+						sRep += dTemp.getNom()+ "" + p.getCoul() +cpt+'\n';
 					}
 					cpt++;
 				}
@@ -70,14 +68,13 @@ public class Parterre
 		//Sauvegarde les scores
 		//Jx\tnbDalle\tnbPilier\tnbPilierDetruit
 		sRep +="Score\n";
-		sRep += 'J' + this.joueur1.getListeDalles().size()+ "\t" + this.joueur1.getNumJoueur() + "\t" + this.joueur1.getNbPilier() + "\t" +this.joueur1.getNbPilierDetruis()+'\n';
-		sRep += 'J' + this.joueur2.getListeDalles().size()+ "\t" + this.joueur2.getNumJoueur() + "\t" + this.joueur2.getNbPilier() + "\t" +this.joueur2.getNbPilierDetruis()+'\n';
+		sRep += "J" + this.joueur1.getNumJoueur() + "\t"+ this.joueur1.getListeDalles().size() + "\t" + this.joueur1.getNbPilier() + "\t" +this.joueur1.getNbPilierDetruis()+'\n';
+		sRep += "J" + this.joueur2.getNumJoueur() + "\t"+ this.joueur2.getListeDalles().size() + "\t" + this.joueur2.getNbPilier() + "\t" +this.joueur2.getNbPilierDetruis()+'\n';
 		
 		//Sauvegarde les tours
 		sRep +="Tour\n";
 		sRep += ""+(24 - this.joueur1.getNbPilier());
 		
-		System.out.println(sRep);
 		return sRep;
     }
 

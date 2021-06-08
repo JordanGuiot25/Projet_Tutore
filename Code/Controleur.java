@@ -37,13 +37,13 @@ public class Controleur
 			dalle.rajoutPillier('G', sommet);
 
 			this.ihm.miseAJourGrille();
-
+			this.Sauvegarde();
 			Clavier.lireString();
 			System.out.println("Destruction du pillier");
 			dalle.detruirePillier(sommet);
 
 			this.ihm.miseAJourGrille();
-			this.Sauvegarde();
+			
 
 		}
 		
