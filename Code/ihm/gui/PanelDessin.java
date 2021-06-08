@@ -1,3 +1,8 @@
+package PilierDeLaTerre.ihm.gui;
+
+import PilierDeLaTerre.Controleur;
+import PilierDeLaTerre.metier.Dalle;
+
 import javax.swing.JPanel;
 
 import java.awt.Graphics;
@@ -8,14 +13,12 @@ import java.util.ArrayList;
 
 public class PanelDessin extends JPanel
 {
-	private static final Image RESSOURCE_DALLE  = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/Images/Dalle.png");
-
+	private static final Image RESSOURCE_DALLE  = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/Dalle.png");
+ 
 	private Controleur  ctrl;
 
 	public PanelDessin(Controleur  ctrl)
 	{
-		this.setSize(500,500);
-
 		this.ctrl  = ctrl;
 	}
 

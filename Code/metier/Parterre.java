@@ -1,14 +1,35 @@
+package PilierDeLaTerre.metier;
+
+import PilierDeLaTerre.metier.Dalle;
+
 import java.util.ArrayList;
+import iut.algo.Clavier;
 
 public class Parterre
 {
 	private ArrayList<Dalle> grilleDalles;
 
+	private Joueur joueur1;
+	private Joueur joueur2;
+
 	public Parterre()
 	{
 		this.grilleDalles = new ArrayList<Dalle>();
+		this.joueur1      = new Joueur(1, 'G');
+		this.joueur2      = new Joueur(2, 'M');
 
 		this.initierPlateau();
+
+		while ( !(this.joueur1.getNbPilier() <= 0) && !(this.joueur2.getNbPilier() <= 0) )
+		{
+			for(int cpt = 0; cpt < 2; cpt++)
+			{
+				System.out.println("Tour joueur" + cpt);
+
+
+			}
+		}
+
 	}
 
 

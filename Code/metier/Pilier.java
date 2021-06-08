@@ -1,3 +1,5 @@
+package PilierDeLaTerre.metier;
+
 import java.awt.Image;
 
 public class Pilier
