@@ -42,6 +42,17 @@ public class Controleur
 		}
 		
 	}
+	
+	public void Sauvegarde()
+	{
+		try
+		{
+			PrintWriter pw = new PrintWriter( new FileOutputStream("../../Scenario/Sauvegarde") );
+			pw.println ( this.metier.getSauvegarde());
+			pw.close();
+		}
+		catch(Exception e){ e.printStackTrace(); }
+	}
 
 	public static void main (String[] a)
 	{
