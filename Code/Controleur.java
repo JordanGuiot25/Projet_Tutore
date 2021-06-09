@@ -109,6 +109,16 @@ public class Controleur
 		new Controleur();
 	}
 
+	public void LancerPartieRapide()
+	{
+		System.out.println("partieRapide");
+	}
+
+	public void LancerPartieCustom()
+	{
+		System.out.println("partieCustom");
+	}
+
 
 	public ArrayList<Dalle> getGrilleDalles() 
 	{
