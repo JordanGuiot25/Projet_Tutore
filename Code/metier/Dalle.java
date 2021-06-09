@@ -11,6 +11,8 @@ public class Dalle
 	private Pilier[]  listeSommet;
 	private int       x;
 	private int       y;
+	private boolean   estControler;
+	private Joueur	  joueurProprietaire;
 
 	private Dalle[]   listeDallesAdjacent;
 
@@ -38,6 +40,7 @@ public class Dalle
 		this.nomDalle             = nbDalle++;
 		this.listeSommet          = new Pilier[6];
 		this.listeDallesAdjacent  = new Dalle[6];
+		this.joueurProprietaire   = null;
 	}
 
 	public Dalle(int x, int y)
@@ -49,6 +52,9 @@ public class Dalle
 		this.y               = y;
 
 		this.listeDallesAdjacent  = new Dalle[6];
+
+		this.joueurProprietaire   = null;
+
 	}
 
 	public boolean rajoutDalleAdjacent (int cote, Dalle voisin)
@@ -269,6 +275,43 @@ public class Dalle
 		voisin.rajoutDalleAdjacent(cote, this);
 	}
 
+	public char verifierPropietaireDalle()
+	{
+		int pilierJ1 = 0;
+		int pilierJ2 = 0;
+
+		for (Pilier pilierTmp : listeSommet) 
+		{
+			if(pilierTmp.getCoul() == 'G')  {pilierJ1++;}	
+
+			if(pilierTmp.getCoul() == 'M')  {pilierJ2++;}
+
+			if(pilierJ1 >= 4){return 'G';}
+			if(pilierJ2 >= 4){return 'M';}
+
+		}
+
+		this.setProprietaire(null);
+		return 'N';
+
+		
+	}
+	public void setProprietaire(Joueur joueur)
+	{
+		this.joueurProprietaire = joueur;
+	}
+
+	
+	public Joueur getProprietaire() { return this.joueurProprietaire;}
+
+	//methode /!\	
+	public boolean estControler()
+	{
+		if(this.joueurProprietaire !=null) {return true;}
+		return false;
+	}
+	
+	
 
 	public String toString()
 	{
