@@ -42,7 +42,8 @@ public class PanelMenu extends JPanel implements ActionListener
         panelBouton.add(bouttonPartieCustom);
 
         /* activation des composants */
-        this.
+        this.bouttonPartieCustom.addActionListener(this);
+        this.bouttonPartieRapide.addActionListener(this);
         repaint();
 
     }
