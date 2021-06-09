@@ -26,6 +26,36 @@ public class Parterre
 		this.tour         = tour;
 	}
 
+	public void verifControle()
+	{
+		for(Dalle dalleTemp : this.grilleDalles)
+		{
+			/* code temporaire a abandonné
+			Joueur jTemp = dalleTemp.getProprietaire();
+			if(dalleTemp.estControler() && jTemp != dalleTemp.getProprietaire() )
+			{
+				dalleTemp.getProprietaire().ajouterDalleControler();
+			}
+			if(jTemp != null && dalleTemp.getProprietaire()==null)
+			{
+				dalleTemp.getProprietaire().retirerDalleControler();
+			}
+			*/
+			char cVerif = dalleTemp.verifierProprietaireDalle();
+			if(cVerif == joueur1.getCouleur())
+			{
+				dalleTemp.setProprietaire(joueur1);
+				joueur1.ajouterDalles(dalleTemp);
+			}
+			if(cVerif == joueur2.getCouleur())
+			{
+				dalleTemp.setProprietaire(joueur2);
+				joueur2.ajouterDalles(dalleTemp);
+			}
+
+		}
+	}
+
 	public Parterre()
 	{
 		this.grilleDalles = new ArrayList<Dalle>();
