@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.io.FileOutputStream;
 
 import PilierDeLaTerre.metier.Dalle;
+import PilierDeLaTerre.metier.Joueur;
 
 public class Controleur
 {
@@ -25,21 +26,52 @@ public class Controleur
 		this.metier = Scenario.getScenario(1);
 		this.ihm    = new FrameDessin(this);
 
-		while(true)
-		{
-			/*ArrayList<Dalle> plateau = this.metier.getDalles();
+		
 
-			int nbAlea  = (int) (Math.random() * plateau.size() );
-			Dalle dalle = plateau.get(nbAlea);
+		Joueur joueur = this.metier.getJoueur(1);
+		System.out.println("Joueur 1 :");
+		System.out.println("Nb Pilier: " + joueur.getNbPilier() );
+		System.out.println("Nb Pilier détruit: " + joueur.getNbPilierDetruis() );
+		System.out.println("Couleur: " + joueur.getCouleur() );
+		System.out.println("Liste des dalles du Joueur 1 :");
+		for( Dalle dalleDuJoueur : joueur.getListeDalles() )
+			System.out.println("\t" + dalleDuJoueur.getNom() );
 
-			System.out.println( dalle.getNom() + " quel sommet ? ");
-			int sommet = Clavier.lire_int();
+		joueur = this.metier.getJoueur(2);
+		System.out.println("Joueur 2 :");
+		System.out.println("Nb Pilier: " + joueur.getNbPilier() );
+		System.out.println("Nb Pilier détruit: " + joueur.getNbPilierDetruis() );
+		System.out.println("Couleur: " + joueur.getCouleur() );
+		System.out.println("Liste des dalles du Joueur 2 :");
+		for( Dalle dalleDuJoueur : joueur.getListeDalles() )
+			System.out.println("\t" + dalleDuJoueur.getNom() );
 
-			dalle.rajoutPillier('G', sommet);
+		Clavier.lireString();
 
-			this.ihm.miseAJourGrille();
-			this.Sauvegarde();*/
-		}
+		this.metier.posePilier(this.metier.getJoueur(2), 'O', 2);
+		this.metier.verifControle();
+		this.ihm.miseAJourGrille();
+
+		System.out.println("-------------------------------------------------");
+
+
+		joueur = this.metier.getJoueur(1);
+		System.out.println("Joueur 1 :");
+		System.out.println("Nb Pilier: " + joueur.getNbPilier() );
+		System.out.println("Nb Pilier détruit: " + joueur.getNbPilierDetruis() );
+		System.out.println("Couleur: " + joueur.getCouleur() );
+		System.out.println("Liste des dalles du Joueur 1 :");
+		for( Dalle dalleDuJoueur : joueur.getListeDalles() )
+			System.out.println("\t" + dalleDuJoueur.getNom() );
+
+		joueur = this.metier.getJoueur(2);
+		System.out.println("Joueur 2 :");
+		System.out.println("Nb Pilier: " + joueur.getNbPilier() );
+		System.out.println("Nb Pilier détruit: " + joueur.getNbPilierDetruis() );
+		System.out.println("Couleur: " + joueur.getCouleur() );
+		System.out.println("Liste des dalles du Joueur 2 :");
+		for( Dalle dalleDuJoueur : joueur.getListeDalles() )
+			System.out.println("\t" + dalleDuJoueur.getNom() );
 		
 	}
 	

@@ -38,7 +38,29 @@ public class Joueur
 
     public void ajouterDalles(Dalle dalle)
     {
-        this.listeDalles.add(dalle);
+        boolean estDejaAjouter = false;
+        for (Dalle dalleTmp : this.listeDalles )
+        {
+            if( dalleTmp == dalle )
+                estDejaAjouter = true;
+        }
+
+        if ( !estDejaAjouter )
+            this.listeDalles.add(dalle);
+    }
+    public void retirerDalle(Dalle dalle)
+    {
+        this.listeDalles.remove(dalle);
+    }
+
+
+    public void incrementationNbPilier(int incrementation)
+    {
+        this.nbPilier += incrementation;
+    }
+    public void incrementationNbPilierDetruis(int incrementation)
+    {
+        this.nbPilierDetruis += incrementation;
     }
 
     public void setNbPilier(int nbPilier)

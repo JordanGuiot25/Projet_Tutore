@@ -190,7 +190,6 @@ public class Dalle
 			{
 				if(this.listeDallesAdjacent[5] != null)
 				{
-					System.out.println(this.listeDallesAdjacent[5].getNom() + " " + sommetAdjacent);
 					this.listeDallesAdjacent[5].detruirePilier(sommetAdjacent);
 				}
 			}
@@ -199,7 +198,6 @@ public class Dalle
 				
 				if(this.listeDallesAdjacent[numSommet-1] != null)
 				{
-					System.out.println(this.listeDallesAdjacent[numSommet-1].getNom() + " " + sommetAdjacent);
 					this.listeDallesAdjacent[numSommet-1].detruirePilier(sommetAdjacent);
 				}
 			}
@@ -215,7 +213,6 @@ public class Dalle
 			
 			if(this.listeDallesAdjacent[numSommet] != null)
 			{
-				System.out.println(this.listeDallesAdjacent[numSommet].getNom() + " " + sommetAdjacent);
 				this.listeDallesAdjacent[numSommet].detruirePilier(sommetAdjacent);
 			}
 
@@ -275,27 +272,86 @@ public class Dalle
 		voisin.rajoutDalleAdjacent(cote, this);
 	}
 
-	public char verifierProprietaireDalle()
+	public Joueur verifierProprietaireDalle(Joueur joueur1, Joueur joueur2)
 	{
 		int pilierJ1 = 0;
 		int pilierJ2 = 0;
 
 		for (Pilier pilierTmp : listeSommet) 
 		{
-			if(pilierTmp.getCoul() == 'G')  {pilierJ1++;}	
+			if( pilierTmp != null )
+			{
+				if(pilierTmp.getCoul() == joueur1.getCouleur())  {pilierJ1++;}	
 
-			if(pilierTmp.getCoul() == 'M')  {pilierJ2++;}
-
-			if(pilierJ1 >= 4){return 'G';}
-			if(pilierJ2 >= 4){return 'M';}
-
+				if(pilierTmp.getCoul() == joueur2.getCouleur())  {pilierJ2++;}
+			}
 		}
 
-		this.setProprietaire(null);
-		return 'N';
+		if(pilierJ1 >= 4)
+		{
+			if ( this.getProprietaire() != joueur1 )
+			{
+				joueur1.incrementationNbPilierDetruis( this.destructionPilierJoueur(joueur1.getCouleur()) );
+				this.setProprietaire(joueur1);
 
+				for(Dalle dalleTmp: this.getListeDallesAdjacent())
+				{
+					if ( dalleTmp != null)
+						dalleTmp.verifierProprietaireDalle(joueur1, joueur2);
+				}
+
+				return joueur1;
+			}
+			else
+				return null;
+			
+		}
+
+		if(pilierJ2 >= 4)
+		{
+			if ( this.getProprietaire() != joueur2 )
+			{
+				joueur2.incrementationNbPilierDetruis( this.destructionPilierJoueur(joueur2.getCouleur()) );
+				this.setProprietaire(joueur2);
+
+				for(Dalle dalleTmp: this.getListeDallesAdjacent())
+				{
+					if ( dalleTmp != null)
+						dalleTmp.verifierProprietaireDalle(joueur1, joueur2);
+				}
+
+				return joueur2;
+			}
+			else
+				return null;
+			
+		}
+
+		if( this.joueurProprietaire != null )
+			this.joueurProprietaire.retirerDalle(this);
 		
+		this.setProprietaire(null);
+
+		return null;
 	}
+
+	private int destructionPilierJoueur(char couleurMajoriter )
+	{
+		int nbPilierDetruis=0;
+		for(int cpt = 0; cpt < this.listeSommet.length; cpt++ )
+		{
+			if( this.listeSommet[cpt] != null && this.listeSommet[cpt].getCoul() != couleurMajoriter )
+			{
+				this.detruirePillier(cpt);
+				nbPilierDetruis++;
+			}	
+		}
+
+		return nbPilierDetruis;
+	}
+
+
+
 	public void setProprietaire(Joueur joueur)
 	{
 		this.joueurProprietaire = joueur;
@@ -304,7 +360,6 @@ public class Dalle
 	
 	public Joueur getProprietaire() { return this.joueurProprietaire;}
 
-	//methode /!\	
 	public boolean estControler()
 	{
 		if(this.joueurProprietaire !=null) {return true;}
