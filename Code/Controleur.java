@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.io.FileOutputStream;
 
 import PilierDeLaTerre.metier.Dalle;
+import PilierDeLaTerre.metier.Joueur;
 
 public class Controleur
 {
@@ -25,20 +26,19 @@ public class Controleur
 		this.metier = Scenario.getScenario(1);
 		this.ihm    = new FrameDessin(this);
 
-		while(true)
+		
+
+		Joueur joueur = this.metier.getJoueur(1);
+
+		System.out.println("Joueur 1 :");
+		System.out.println("Nb Pilier: " + joueur.getNbPilier() );
+		System.out.println("Nb Pilier détruit: " + joueur.getNbPilierDetruis() );
+		System.out.println("Couleur: " + joueur.getCouleur() );
+
+		for( Dalle dalleDuJoueur : joueur.getListeDalles() )
 		{
-			/*ArrayList<Dalle> plateau = this.metier.getDalles();
-
-			int nbAlea  = (int) (Math.random() * plateau.size() );
-			Dalle dalle = plateau.get(nbAlea);
-
-			System.out.println( dalle.getNom() + " quel sommet ? ");
-			int sommet = Clavier.lire_int();
-
-			dalle.rajoutPillier('G', sommet);
-
-			this.ihm.miseAJourGrille();
-			this.Sauvegarde();*/
+			System.out.println("Liste des dalles du Joueur 1 :");
+			System.out.println("\t" + dalleDuJoueur.getNom() );
 		}
 		
 	}

@@ -14,8 +14,9 @@ import java.util.ArrayList;
 
 public class PanelDessin extends JPanel
 {
-	private static final Image RESSOURCE_DALLE  = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/Dalle.png");
-	private static final Image RESSOURCE_PILIER_MARON = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/pilier_maron.png");
+	private static final Image RESSOURCE_DALLE        = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/Dalle.png"       );
+	private static final Image RESSOURCE_ANNEAU_MARON = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/anneau_maron.png");
+	private static final Image RESSOURCE_ANNEAU_GRIS  = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/anneau_gris.png" );
 	private Controleur  ctrl;
 
 	public PanelDessin(Controleur  ctrl)
@@ -37,6 +38,19 @@ public class PanelDessin extends JPanel
 		{
 			g2.drawImage( RESSOURCE_DALLE, dalle.getX(), dalle.getY(), this);
 			g2.drawString( "" + dalle.getNom(), dalle.getMilieuX()-3, dalle.getMilieuY()+5);
+			if( dalle.estControler() )
+			{
+				if ( dalle.getProprietaire().getCouleur() == 'G' )
+				{
+					g2.drawImage( RESSOURCE_ANNEAU_GRIS, dalle.getX(), dalle.getY(), this);
+				}
+				else
+				{
+					g2.drawImage( RESSOURCE_ANNEAU_MARON, dalle.getX(), dalle.getY(), this);
+				}
+			}
+				
+			
 		}
 
 		for(Dalle dalle : listeDalle )

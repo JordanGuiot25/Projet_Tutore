@@ -333,5 +333,13 @@ public class Parterre
 	private boolean getVictoireJ1() {return this.victoireJ1;}
 	private boolean getVictoireJ2() {return this.victoireJ2;}
 
+	public  Joueur  getJoueur(int numJoueur)
+	{
+		if ( numJoueur == 1 )
+			return this.joueur1;
+		else
+			return this.joueur2;
+	}
+
 	public ArrayList<Dalle> getDalles() { return this.grilleDalles; }
 }

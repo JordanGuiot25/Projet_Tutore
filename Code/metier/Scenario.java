@@ -82,10 +82,10 @@ public class Scenario
             /*---------------------------------------*/
             /*   Recuperation de la partie Joueur    */
             while(!ligne.equals("//Tour"))
-            {;
-                if( ligne.substring(0, 1).equals("J1") )
+            {
+                if( ligne.substring(0, 2).equals("J1") )
                 {
-                    if(ligne.length() > 2)
+                    if(ligne.length() > 4)
                     {
                         dec = new Decomposeur(ligne);
                         joueur1.setNbPilier      (dec.getInt(1) );
@@ -93,16 +93,22 @@ public class Scenario
                     }
                     else
                     {
+                        
                         for(Dalle dalle : plateau)
                         {
                             if(dalle.getNom() == ligne.charAt(2) )
+                            {
                                 joueur1.ajouterDalles(dalle);
+                                dalle  .setProprietaire(joueur1);
+                            }
+                                
                         }
                     }
                 }
-                else if ( ligne.substring(0, 1).equals("J2") )
+                else if ( ligne.substring(0, 2).equals("J2") )
                 {
-                    if(ligne.length() > 2)
+                    
+                    if(ligne.length() > 4)
                     {
                         dec = new Decomposeur(ligne);
                         joueur2.setNbPilier      (dec.getInt(1) );
@@ -110,14 +116,17 @@ public class Scenario
                     }
                     else
                     {
+                        
                         for(Dalle dalle : plateau)
                         {
                             if(dalle.getNom() == ligne.charAt(2) )
-                                joueur2.ajouterDalles(dalle);
+                            {
+                                joueur2.ajouterDalles  (dalle);
+                                dalle  .setProprietaire(joueur2);
+                            }
                         }
                     }
                 }
-
                 ligne = sc.nextLine();
             }
 

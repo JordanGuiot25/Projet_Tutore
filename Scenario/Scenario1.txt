@@ -36,8 +36,23 @@ OP4
 //Pilier
 HG4
 AM4
+AM1
+AM0
+AM3
+IG1
+IG3
+IG4
+IG5
+PM5
+PM1
+PM3
+PM0
+PG2
 //Joueur
-J1	0	24	0
-J2	0	24	0
+J1	10	5
+J1A
+J1P
+J2	10	2
+J2I
 //Tour
 10
