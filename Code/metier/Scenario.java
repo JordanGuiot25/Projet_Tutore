@@ -131,8 +131,9 @@ public class Scenario
 
             /*---------------------------------------*/
             /*   Recuperation de la partie Tour      */
+
             ligne = sc.nextLine();
-            numeroTour = Integer.parseInt( ligne.substring(1) );
+            numeroTour = Integer.parseInt( ligne );
 
 			sc.close();
 		}

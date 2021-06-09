@@ -23,55 +23,38 @@ public class Controleur
 
 	public Controleur()
 	{
-		this.metier = Scenario.getScenario(1);
+		this.metier = Scenario.getScenario(0);
 		this.ihm    = new FrameDessin(this);
 
-		
+		while( this.metier.getGagnant() == null )
+		{
+			System.out.println("-------------------------------");
+			System.out.println("Tour " + this.metier.getTour() );
+			char nomDalle;
+			int  numSommet;
 
-		Joueur joueur = this.metier.getJoueur(1);
-		System.out.println("Joueur 1 :");
-		System.out.println("Nb Pilier: " + joueur.getNbPilier() );
-		System.out.println("Nb Pilier détruit: " + joueur.getNbPilierDetruis() );
-		System.out.println("Couleur: " + joueur.getCouleur() );
-		System.out.println("Liste des dalles du Joueur 1 :");
-		for( Dalle dalleDuJoueur : joueur.getListeDalles() )
-			System.out.println("\t" + dalleDuJoueur.getNom() );
+			System.out.println("Tour du joueur 1 (" + this.metier.getJoueur(1).getCouleur() + ") :");
+			System.out.print("\tChoissisez une dalle : ");
+			nomDalle = Clavier.lire_char();
+			System.out.print("\tQuel côte (0 à 5): ");
+			numSommet= Clavier.lire_int();
+			this.metier.poserPilier(1, nomDalle, numSommet);
 
-		joueur = this.metier.getJoueur(2);
-		System.out.println("Joueur 2 :");
-		System.out.println("Nb Pilier: " + joueur.getNbPilier() );
-		System.out.println("Nb Pilier détruit: " + joueur.getNbPilierDetruis() );
-		System.out.println("Couleur: " + joueur.getCouleur() );
-		System.out.println("Liste des dalles du Joueur 2 :");
-		for( Dalle dalleDuJoueur : joueur.getListeDalles() )
-			System.out.println("\t" + dalleDuJoueur.getNom() );
+			this.ihm.miseAJourGrille();
 
-		Clavier.lireString();
+			System.out.println("Tour du joueur 2 (" + this.metier.getJoueur(2).getCouleur() + ") :");
+			System.out.print("\tChoissisez une dalle : ");
+			nomDalle = Clavier.lire_char();
+			System.out.print("\tQuel côte (0 à 5): ");
+			numSommet= Clavier.lire_int();
+			this.metier.poserPilier(2, nomDalle, numSommet);
 
-		this.metier.posePilier(this.metier.getJoueur(2), 'O', 2);
-		this.metier.verifControle();
-		this.ihm.miseAJourGrille();
-
-		System.out.println("-------------------------------------------------");
-
-
-		joueur = this.metier.getJoueur(1);
-		System.out.println("Joueur 1 :");
-		System.out.println("Nb Pilier: " + joueur.getNbPilier() );
-		System.out.println("Nb Pilier détruit: " + joueur.getNbPilierDetruis() );
-		System.out.println("Couleur: " + joueur.getCouleur() );
-		System.out.println("Liste des dalles du Joueur 1 :");
-		for( Dalle dalleDuJoueur : joueur.getListeDalles() )
-			System.out.println("\t" + dalleDuJoueur.getNom() );
-
-		joueur = this.metier.getJoueur(2);
-		System.out.println("Joueur 2 :");
-		System.out.println("Nb Pilier: " + joueur.getNbPilier() );
-		System.out.println("Nb Pilier détruit: " + joueur.getNbPilierDetruis() );
-		System.out.println("Couleur: " + joueur.getCouleur() );
-		System.out.println("Liste des dalles du Joueur 2 :");
-		for( Dalle dalleDuJoueur : joueur.getListeDalles() )
-			System.out.println("\t" + dalleDuJoueur.getNom() );
+			this.ihm.miseAJourGrille();
+			this.metier.finDeTour();
+			this.ihm.miseAJourGrille();
+		}
+		System.out.println("FIN DE LA PARTIE");
+		System.out.println("Le gagnant est le joueur :" + this.metier.getGagnant().getNumJoueur() );
 		
 	}
 	
@@ -94,6 +77,6 @@ public class Controleur
 
 	public ArrayList<Dalle> getGrilleDalles() 
 	{
-		return this.metier.getDalles();
+		return this.metier.getGrilleDalles();
 	}
 }

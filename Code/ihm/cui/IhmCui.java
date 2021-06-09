@@ -25,8 +25,8 @@ public class IhmCui
 
     public IhmCui(Parterre part)
     {
-        this.nbDallePresente = part.getDalles().size();
-        this.dalles          = part.getDalles();
+        this.nbDallePresente = part.getGrilleDalles().size();
+        this.dalles          = part.getGrilleDalles();
     }
 
     public boolean ajouterDalle(Dalle d)

@@ -255,10 +255,10 @@ public class Dalle
 
 		switch(cote)
 		{
-			case 0 -> voisin.setCoordonner(this.x,    this.y-67);
+			case 0 -> voisin.setCoordonner(this.x,    this.y-68);
 			case 1 -> voisin.setCoordonner(this.x+49, this.y-33);
 			case 2 -> voisin.setCoordonner(this.x+49, this.y+33);
-			case 3 -> voisin.setCoordonner(this.x,    this.y+67);
+			case 3 -> voisin.setCoordonner(this.x,    this.y+68);
 			case 4 -> voisin.setCoordonner(this.x-49, this.y+33);
 			case 5 -> voisin.setCoordonner(this.x-49, this.y-33);
 		}
