@@ -1,5 +1,6 @@
 package PilierDeLaTerre;
 
+import PilierDeLaTerre.ihm.gui.FrameAide;
 import PilierDeLaTerre.ihm.gui.FrameDessin;
 import PilierDeLaTerre.ihm.cui.IhmCui;
 import PilierDeLaTerre.metier.Dalle;
@@ -10,6 +11,8 @@ import iut.algo.Clavier;
 
 import java.util.ArrayList;
 
+import java.awt.Point;
+
 import java.io.PrintWriter;
 import java.io.FileOutputStream;
 
@@ -18,13 +21,16 @@ import PilierDeLaTerre.metier.Joueur;
 
 public class Controleur
 {
-	private FrameDessin ihm;
-	private Parterre    metier;
+	private FrameDessin ihm    ;
+	private FrameAide   ihmAide;
+	private Parterre    metier ;
 
 	public Controleur()
 	{
 		this.metier = Scenario.getScenario(0);
+
 		this.ihm    = new FrameDessin(this);
+		this.ihmAide= new FrameAide  (this);
 
 		while( this.metier.getGagnant() == null )
 		{
@@ -103,6 +109,25 @@ public class Controleur
 		}
 		catch(Exception e){ e.printStackTrace(); }
 	}
+
+
+	public void moveFrame ( char orig )
+	{
+		Point p;
+
+		if ( orig == 'P' && this.ihm != null && this.ihmAide != null )
+		{
+			p = this.ihm.getLocation();
+			this.ihmAide.setLocation ( p.x,p.y + 400 );
+		}
+
+		if ( orig == 'J' && this.ihm != null && this.ihmAide != null )
+		{
+			p = this.ihmAide.getLocation();
+			this.ihm.setLocation ( p.x, p.y - 400 );
+		}
+	}
+
 
 	public static void main (String[] a)
 	{
