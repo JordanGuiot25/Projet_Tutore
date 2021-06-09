@@ -29,17 +29,49 @@ public class Controleur
 		
 
 		Joueur joueur = this.metier.getJoueur(1);
-
 		System.out.println("Joueur 1 :");
 		System.out.println("Nb Pilier: " + joueur.getNbPilier() );
 		System.out.println("Nb Pilier détruit: " + joueur.getNbPilierDetruis() );
 		System.out.println("Couleur: " + joueur.getCouleur() );
-
+		System.out.println("Liste des dalles du Joueur 1 :");
 		for( Dalle dalleDuJoueur : joueur.getListeDalles() )
-		{
-			System.out.println("Liste des dalles du Joueur 1 :");
 			System.out.println("\t" + dalleDuJoueur.getNom() );
-		}
+
+		joueur = this.metier.getJoueur(2);
+		System.out.println("Joueur 2 :");
+		System.out.println("Nb Pilier: " + joueur.getNbPilier() );
+		System.out.println("Nb Pilier détruit: " + joueur.getNbPilierDetruis() );
+		System.out.println("Couleur: " + joueur.getCouleur() );
+		System.out.println("Liste des dalles du Joueur 2 :");
+		for( Dalle dalleDuJoueur : joueur.getListeDalles() )
+			System.out.println("\t" + dalleDuJoueur.getNom() );
+
+		Clavier.lireString();
+
+		this.metier.posePilier(this.metier.getJoueur(2), 'O', 2);
+		this.metier.verifControle();
+		this.ihm.miseAJourGrille();
+
+		System.out.println("-------------------------------------------------");
+
+
+		joueur = this.metier.getJoueur(1);
+		System.out.println("Joueur 1 :");
+		System.out.println("Nb Pilier: " + joueur.getNbPilier() );
+		System.out.println("Nb Pilier détruit: " + joueur.getNbPilierDetruis() );
+		System.out.println("Couleur: " + joueur.getCouleur() );
+		System.out.println("Liste des dalles du Joueur 1 :");
+		for( Dalle dalleDuJoueur : joueur.getListeDalles() )
+			System.out.println("\t" + dalleDuJoueur.getNom() );
+
+		joueur = this.metier.getJoueur(2);
+		System.out.println("Joueur 2 :");
+		System.out.println("Nb Pilier: " + joueur.getNbPilier() );
+		System.out.println("Nb Pilier détruit: " + joueur.getNbPilierDetruis() );
+		System.out.println("Couleur: " + joueur.getCouleur() );
+		System.out.println("Liste des dalles du Joueur 2 :");
+		for( Dalle dalleDuJoueur : joueur.getListeDalles() )
+			System.out.println("\t" + dalleDuJoueur.getNom() );
 		
 	}
 	

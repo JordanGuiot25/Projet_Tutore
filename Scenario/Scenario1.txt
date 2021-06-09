@@ -48,10 +48,15 @@ PM1
 PM3
 PM0
 PG2
+MM0
+MM1
+MM2
+MM3
 //Joueur
 J1	10	5
 J1A
 J1P
+J1M
 J2	10	2
 J2I
 //Tour

@@ -26,36 +26,6 @@ public class Parterre
 		this.tour         = tour;
 	}
 
-	public void verifControle()
-	{
-		for(Dalle dalleTemp : this.grilleDalles)
-		{
-			/* code temporaire a abandonné
-			Joueur jTemp = dalleTemp.getProprietaire();
-			if(dalleTemp.estControler() && jTemp != dalleTemp.getProprietaire() )
-			{
-				dalleTemp.getProprietaire().ajouterDalleControler();
-			}
-			if(jTemp != null && dalleTemp.getProprietaire()==null)
-			{
-				dalleTemp.getProprietaire().retirerDalleControler();
-			}
-			*/
-			char cVerif = dalleTemp.verifierProprietaireDalle();
-			if(cVerif == joueur1.getCouleur())
-			{
-				dalleTemp.setProprietaire(joueur1);
-				joueur1.ajouterDalles(dalleTemp);
-			}
-			if(cVerif == joueur2.getCouleur())
-			{
-				dalleTemp.setProprietaire(joueur2);
-				joueur2.ajouterDalles(dalleTemp);
-			}
-
-		}
-	}
-
 	public Parterre()
 	{
 		this.grilleDalles = new ArrayList<Dalle>();
@@ -308,6 +278,20 @@ public class Parterre
 		/*   Dalle  P      */
 	}
 
+	public void verifControle()
+	{
+		for(Dalle dalle : this.grilleDalles)
+		{
+			if( dalle != null)
+			{
+				Joueur joueurProprietaire = dalle.verifierProprietaireDalle(this.joueur1, this.joueur2);
+				
+				if( joueurProprietaire != null )
+					joueurProprietaire.ajouterDalles(dalle);
+			}
+		}
+	}
+
 	public void victoire()
 	{
 		if(this.joueur1.getListeDalles().size() == 9) { this.victoireJ1 = true;}
@@ -324,10 +308,19 @@ public class Parterre
 		}
 	}
 
-	public boolean posePilier(int numJoueur, char nomDalle, int numSommet )
+	public boolean posePilier(Joueur joueur, char nomDalle, int numSommet )
 	{
-		
-		return true;
+		for(Dalle dalle : this.grilleDalles)
+		{
+			if ( dalle.getNom() == nomDalle )
+			{
+				dalle.rajoutPillier(joueur.getCouleur(), numSommet);
+				joueur.incrementationNbPilier(-1);
+			}
+		}
+
+
+		return false;
 	}
 
 	private boolean getVictoireJ1() {return this.victoireJ1;}

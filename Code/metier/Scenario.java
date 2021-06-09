@@ -116,7 +116,6 @@ public class Scenario
                     }
                     else
                     {
-                        
                         for(Dalle dalle : plateau)
                         {
                             if(dalle.getNom() == ligne.charAt(2) )
