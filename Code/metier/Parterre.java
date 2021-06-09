@@ -35,70 +35,6 @@ public class Parterre
 		this.initierPlateau();
 	}	
 
-	public String getSauvegarde()
-    {
-		// Sauvegarde le plateau //
-        String sRep ="//Plateau\n"+this.grilleDalles.get(0).getX() +'\t'+ this.grilleDalles.get(0).getY() +'\n';
-		ArrayList<Dalle> arrDalleDejaUtil = new ArrayList<Dalle>();
-        for(Dalle dSource: this.grilleDalles)
-        {
-            if(dSource != null)
-            {
-                int cpt =0;
-                for(Dalle dDestination : dSource.getListeDallesAdjacent())
-                {
-                    if(dDestination != null && arrDalleDejaUtil.indexOf(dDestination) ==-1)
-                    {
-						sRep += dSource.getNom() +""+ dDestination.getNom() + cpt+"\n";
-                    }
-                    cpt++;
-                }
-            }
-			arrDalleDejaUtil.add(dSource);
-        }
-
-		//Sauvegarde Les Pilliers//
-		sRep +="//Pilier\n";
-		for(Dalle dTemp: this.grilleDalles)
-        {
-            if(dTemp != null)
-            {
-				int cpt = 0;
-				for(Pilier p : dTemp.getSommets())
-				{
-					if(p != null)
-					{
-						sRep += dTemp.getNom()+ "" + p.getCoul() +cpt+'\n';
-					}
-					cpt++;
-				}
-            }
-        }
-
-		//Sauvegarde les scores
-		//Jx\tnbPilier\tnbPilierDetruit
-		sRep +="//Score\n";
-		sRep += "J" + this.joueur1.getNumJoueur() + "\t" + this.joueur1.getNbPilier() + "\t" +this.joueur1.getNbPilierDetruis()+'\n';
-		for(Dalle dallePosseder : this.joueur1.getListeDalles())
-		{
-			if( dallePosseder != null )
-				sRep += "J1" + dallePosseder.getNom() + "\n";
-		}
-
-		sRep += "J" + this.joueur2.getNumJoueur() + "\t" + this.joueur2.getNbPilier() + "\t" +this.joueur2.getNbPilierDetruis()+'\n';
-		for(Dalle dallePosseder : this.joueur1.getListeDalles())
-		{
-			if( dallePosseder != null )
-				sRep += "J2" + dallePosseder.getNom() + "\n";
-		}
-
-		//Sauvegarde les tours
-		sRep +="//Tour\n";
-		sRep += ""+(24 - this.joueur1.getNbPilier());
-		
-		return sRep;
-    }
-
 	public void initierPlateau()
 	{
 		int nbDalle = 1;
@@ -308,8 +244,22 @@ public class Parterre
 		}
 	}
 
-	public boolean posePilier(Joueur joueur, char nomDalle, int numSommet )
+	public void finDeTour()
 	{
+		this.verifControle();
+		this.victoire();
+		this.tour++;
+	}
+
+	public boolean poserPilier(int numJoueur, char nomDalle, int numSommet )
+	{
+		Joueur joueur = null;
+
+		if( numJoueur == 1 )
+			joueur = this.joueur1;
+		else
+			joueur = this.joueur2;
+
 		for(Dalle dalle : this.grilleDalles)
 		{
 			if ( dalle.getNom() == nomDalle )
@@ -323,8 +273,76 @@ public class Parterre
 		return false;
 	}
 
+	
+
 	private boolean getVictoireJ1() {return this.victoireJ1;}
 	private boolean getVictoireJ2() {return this.victoireJ2;}
+
+	public ArrayList<Dalle> getGrilleDalles() { return this.grilleDalles; }
+
+	public String getSauvegarde()
+    {
+		// Sauvegarde le plateau //
+        String sRep ="//Plateau\n"+this.grilleDalles.get(0).getX() +'\t'+ this.grilleDalles.get(0).getY() +'\n';
+		ArrayList<Dalle> arrDalleDejaUtil = new ArrayList<Dalle>();
+        for(Dalle dSource: this.grilleDalles)
+        {
+            if(dSource != null)
+            {
+                int cpt =0;
+                for(Dalle dDestination : dSource.getListeDallesAdjacent())
+                {
+                    if(dDestination != null && arrDalleDejaUtil.indexOf(dDestination) ==-1)
+                    {
+						sRep += dSource.getNom() +""+ dDestination.getNom() + cpt+"\n";
+                    }
+                    cpt++;
+                }
+            }
+			arrDalleDejaUtil.add(dSource);
+        }
+
+		//Sauvegarde Les Pilliers//
+		sRep +="//Pilier\n";
+		for(Dalle dTemp: this.grilleDalles)
+        {
+            if(dTemp != null)
+            {
+				int cpt = 0;
+				for(Pilier p : dTemp.getSommets())
+				{
+					if(p != null)
+					{
+						sRep += dTemp.getNom()+ "" + p.getCoul() +cpt+'\n';
+					}
+					cpt++;
+				}
+            }
+        }
+
+		//Sauvegarde les scores
+		//Jx\tnbPilier\tnbPilierDetruit
+		sRep +="//Score\n";
+		sRep += "J" + this.joueur1.getNumJoueur() + "\t" + this.joueur1.getNbPilier() + "\t" +this.joueur1.getNbPilierDetruis()+'\n';
+		for(Dalle dallePosseder : this.joueur1.getListeDalles())
+		{
+			if( dallePosseder != null )
+				sRep += "J1" + dallePosseder.getNom() + "\n";
+		}
+
+		sRep += "J" + this.joueur2.getNumJoueur() + "\t" + this.joueur2.getNbPilier() + "\t" +this.joueur2.getNbPilierDetruis()+'\n';
+		for(Dalle dallePosseder : this.joueur1.getListeDalles())
+		{
+			if( dallePosseder != null )
+				sRep += "J2" + dallePosseder.getNom() + "\n";
+		}
+
+		//Sauvegarde les tours
+		sRep +="//Tour\n";
+		sRep += ""+(24 - this.joueur1.getNbPilier());
+		
+		return sRep;
+    }
 
 	public  Joueur  getJoueur(int numJoueur)
 	{
@@ -334,5 +352,21 @@ public class Parterre
 			return this.joueur2;
 	}
 
-	public ArrayList<Dalle> getDalles() { return this.grilleDalles; }
+	public  Joueur getGagnant()
+	{
+		if( this.victoireJ1 )
+			return this.joueur1;
+		
+		if( this.victoireJ2 )
+			return this.joueur2;
+
+		return null;
+	}
+
+	public int getTour()
+	{
+		return this.tour;
+	}
+
+	
 }
