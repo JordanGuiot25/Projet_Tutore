@@ -1,30 +1,20 @@
 //Plateau
 300	300
 AP0
-AN1
 AO5
+AN1
 AB4
 AH2
-PO4
-PN2
-OB3
 BC3
-
 CD3
 DE2
 EL3
-EF1
 EK2
-LK1
-KF0
-KJ1
-JF5
-JI0
-IG5
-IM0
-MG4
-MH5
-HN0
+EF1
+FJ2
+FI1
+FG0
+GM1
 //Pilier
 //Joueur
 J1   24  0
