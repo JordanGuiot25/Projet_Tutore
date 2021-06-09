@@ -15,7 +15,7 @@ public class ParterrePersonalise
 	private final int SUD        = 3;
 	private final int SUD_OUEST  = 4;
 	private final int NORD_OUEST = 5;
-	char lastDalle ='A';
+	char lastDalle ='B';
 
 
 	
@@ -48,6 +48,7 @@ public class ParterrePersonalise
 	
 	public boolean ajouterDalle(Dalle dalle, int x, int y)
 	{
+		if(!(this.lastDalle < 'Q')){return false;}
 		if(this.parterrePersonalise[x][y]!=null) {return false;}
 		if(!aUneDalleAdjacente(x,y)){return false;}
 		

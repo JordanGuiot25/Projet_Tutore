@@ -94,7 +94,7 @@ public class PanelAffichage extends JPanel
 					g.drawString(s, (tabX[i][y]+37)-fontMetrics.stringWidth(s), tabY[i][y]+37);
 				}
 				//System.out.println(bEstAdjacent);
-				if(this.parterrePersonalise.getDalle(i,y)!=null&&this.parterrePersonalise.getLastDalle()<'P')
+				if(this.parterrePersonalise.getDalle(i,y)!=null&&this.parterrePersonalise.getLastDalle()!='Q')
 				{
 					if(bEstAdjacent){g.drawImage( imgDalle50, this.coordx ,this.coordy, null);}
 				}
@@ -133,6 +133,7 @@ public class PanelAffichage extends JPanel
 			for(int u = 0; u < this.lblDets.length; u ++)
 			{
 				JButton btn = new JButton(/*""+i+""+u*/);
+				//System.out.print(i + ":" + u + " ");
 				this.lblDets[i][u] = btn;
 				this.add(this.lblDets[i][u]);
 				this.lblDets[i][u].setLocation(x,y);
@@ -152,6 +153,7 @@ public class PanelAffichage extends JPanel
 				
 				
 			}
+			//System.out.println();
 			x = 0;
 			tmpy += 67 ;
 			y = tmpy;
@@ -166,20 +168,27 @@ public class PanelAffichage extends JPanel
 	{
 		public void mouseEntered (MouseEvent e)
 		{
+			//if(nbDalle==16){break;}
 			JButton btnTmp = (JButton) e.getComponent();
+			//System.out.println("l"+btnTmp.getText());
 				for(int i = 0 ; i < tabX.length ; i ++)
 				{
 					for(int y = 0 ; y < tabX.length ; y ++)
 					{
 						if(btnTmp.equals(PanelAffichage.this.lblDets[i][y]))
 						{
+							//System.out.println(ParterrePersonalise.aUneDalleAdjacente(i,y));
 							if(parterrePersonalise.aUneDalleAdjacente(i,y))
 							{
 								PanelAffichage.this.coordx =(int) e.getComponent().getLocation().x;
 								PanelAffichage.this.coordy =(int) e.getComponent().getLocation().y;
 								PanelAffichage.this.bEstAdjacent = true;
+								
+								
 							}
 							else{PanelAffichage.this.bEstAdjacent = false;}
+							/*System.out.println(i+" : "+ y);
+							System.out.println(bEstAdjacent);*/
 						}
 					}
 				}
@@ -188,43 +197,57 @@ public class PanelAffichage extends JPanel
 				repaint();
 		}
 		
-		public void mouseExited (MouseEvent e) { repaint(); }
+		public void mouseExited (MouseEvent e)
+		{
+
+			repaint();
+		}
 
 		public void mousePressed (MouseEvent e)
 		{
 			repaint();
+			
 			int i = 0 ;
 			int y = 0 ;		
 			JButton btnTmp = (JButton) e.getComponent();
-			for(JButton[] btnTab : PanelAffichage.this.lblDets)
-			{
-				for(JButton btn : btnTab)
+			
+				for(JButton[] btnTab : PanelAffichage.this.lblDets)
 				{
-					if(btnTmp.equals(btn))
+					for(JButton btn : btnTab)
 					{
-						if(parterrePersonalise.getLastDalle()<'P')
+						if(btnTmp.equals(btn))
 						{
-							if(parterrePersonalise.emplacementVide(i,y))
-							{
-								Dalle d = new Dalle();
-								if(parterrePersonalise.ajouterDalle(d,i,y))
+							
+							if(parterrePersonalise.getLastDalle()!='Q')
+								if(parterrePersonalise.emplacementVide(i,y))
 								{
-									tabX[i][y] = btn.getLocation().x;
-									tabY[i][y] = btn.getLocation().y;
+									Dalle d = new Dalle();
+									if(parterrePersonalise.ajouterDalle(d,i,y))
+									{
+										tabX[i][y] = btn.getLocation().x;
+										tabY[i][y] = btn.getLocation().y;
 
+									}
 								}
-							}
 						}
 						y++;
 					}
 					y = 0 ;
 					i++;
 				}
-			}
+
 			repaint();
 			
 		}
 
 		public void mouseReleased(MouseEvent e){ repaint(); }
+		
+				
+
 	}
+
+
+
+
+	
 }
