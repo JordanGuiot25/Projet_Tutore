@@ -7,5 +7,7 @@
 ./ihm/cui/IhmCui.java
 ./ihm/gui/FrameDessin.java
 ./ihm/gui/PanelDessin.java
+./ihm/gui/FrameMenu.java
+./ihm/gui/PanelMenu.java
 
 ./Controleur.java
