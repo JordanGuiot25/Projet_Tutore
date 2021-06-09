@@ -275,7 +275,7 @@ public class Dalle
 		voisin.rajoutDalleAdjacent(cote, this);
 	}
 
-	public char verifierPropietaireDalle()
+	public char verifierProprietaireDalle()
 	{
 		int pilierJ1 = 0;
 		int pilierJ2 = 0;
