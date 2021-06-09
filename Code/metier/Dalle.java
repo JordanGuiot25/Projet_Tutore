@@ -289,22 +289,49 @@ public class Dalle
 
 		if(pilierJ1 >= 4)
 		{
-			joueur1.incrementationNbPilierDetruis( this.destructionPilierJoueur(joueur1.getCouleur()) );
-			this.setProprietaire(joueur1);
-			return joueur1;
+			if ( this.getProprietaire() != joueur1 )
+			{
+				joueur1.incrementationNbPilierDetruis( this.destructionPilierJoueur(joueur1.getCouleur()) );
+				this.setProprietaire(joueur1);
+
+				for(Dalle dalleTmp: this.getListeDallesAdjacent())
+				{
+					if ( dalleTmp != null)
+						dalleTmp.verifierProprietaireDalle(joueur1, joueur2);
+				}
+
+				return joueur1;
+			}
+			else
+				return null;
+			
 		}
+
 		if(pilierJ2 >= 4)
 		{
-			joueur2.incrementationNbPilierDetruis( this.destructionPilierJoueur(joueur2.getCouleur()) );
-			this.setProprietaire(joueur2);
-			return joueur2;
+			if ( this.getProprietaire() != joueur2 )
+			{
+				joueur2.incrementationNbPilierDetruis( this.destructionPilierJoueur(joueur2.getCouleur()) );
+				this.setProprietaire(joueur2);
+
+				for(Dalle dalleTmp: this.getListeDallesAdjacent())
+				{
+					if ( dalleTmp != null)
+						dalleTmp.verifierProprietaireDalle(joueur1, joueur2);
+				}
+
+				return joueur2;
+			}
+			else
+				return null;
+			
 		}
 
 		if( this.joueurProprietaire != null )
-		{
 			this.joueurProprietaire.retirerDalle(this);
-		}
+		
 		this.setProprietaire(null);
+
 		return null;
 	}
 
