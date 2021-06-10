@@ -30,190 +30,16 @@ public class Parterre
 
 	public Parterre()
 	{
-		this.grilleDalles = new ArrayList<Dalle>();
-		this.joueur1      = new Joueur(1, 'G');
-		this.joueur2      = new Joueur(2, 'M');
-
-		this.initierPlateau();
+		Scenario.getScenario(0);
 	}	
 
-	public void initierPlateau()
+
+	public void finTourJoueur(char nomDalle, int numSommet, char coulJoueur)
 	{
-		int nbDalle = 1;
+		this.verifControle();
+		this.verifEnfermement(nomDalle, numSommet, coulJoueur);
 
-		int x = 200;
-		int y =  50;
-
-		for(int cpt1 = 0; cpt1 < 7; cpt1++ )
-		{
-			int xTmp = x;
-			for ( int cpt2 = 0; cpt2 < nbDalle; cpt2++)
-			{
-				this.grilleDalles.add( new Dalle(xTmp,y) );
-				xTmp = xTmp + 49 +49;
-			}
-
-			if ( cpt1 < 3)
-				x = x - 49;
-			else
-				x = x + 49;
-
-			y = y + 33; 
-
-
-			if ( cpt1 < 3)
-				nbDalle++;
-			else
-				nbDalle--;
-		}
-
-		/*   Dalle  A      */
-		Dalle dalle = this.grilleDalles.get(0);
-
-		dalle                   .rajoutDalleAdjacent(4, this.grilleDalles.get(1) );
-		this.grilleDalles.get(1).rajoutDalleAdjacent(1, dalle);
-
-		dalle                   .rajoutDalleAdjacent(2, this.grilleDalles.get(2) );
-		this.grilleDalles.get(2).rajoutDalleAdjacent(5, dalle);
-
-		dalle                   .rajoutDalleAdjacent(3, this.grilleDalles.get(4) );
-		this.grilleDalles.get(4).rajoutDalleAdjacent(0, dalle);
-
-		/*   Dalle  B      */
-		dalle = this.grilleDalles.get(1);
-
-		dalle                   .rajoutDalleAdjacent(4, this.grilleDalles.get(3) );
-		this.grilleDalles.get(3).rajoutDalleAdjacent(1, dalle);
-
-		dalle                   .rajoutDalleAdjacent(2, this.grilleDalles.get(4) );
-		this.grilleDalles.get(4).rajoutDalleAdjacent(5, dalle);
-
-		dalle                   .rajoutDalleAdjacent(3, this.grilleDalles.get(7) );
-		this.grilleDalles.get(7).rajoutDalleAdjacent(0, dalle);
-
-		/*   Dalle  C      */
-		dalle = this.grilleDalles.get(2);
-
-		dalle                   .rajoutDalleAdjacent(4, this.grilleDalles.get(4) );
-		this.grilleDalles.get(4).rajoutDalleAdjacent(1, dalle);
-
-		dalle                   .rajoutDalleAdjacent(2, this.grilleDalles.get(5) );
-		this.grilleDalles.get(5).rajoutDalleAdjacent(5, dalle);
-
-		dalle                   .rajoutDalleAdjacent(3, this.grilleDalles.get(8) );
-		this.grilleDalles.get(8).rajoutDalleAdjacent(0, dalle);
-		
-
-		/*   Dalle  D      */
-		dalle = this.grilleDalles.get(3);
-
-		dalle                   .rajoutDalleAdjacent(4, this.grilleDalles.get(6) );
-		this.grilleDalles.get(6).rajoutDalleAdjacent(1, dalle);
-
-		dalle                   .rajoutDalleAdjacent(2, this.grilleDalles.get(7) );
-		this.grilleDalles.get(7).rajoutDalleAdjacent(5, dalle);
-
-		dalle                    .rajoutDalleAdjacent(3, this.grilleDalles.get(10) );
-		this.grilleDalles.get(10).rajoutDalleAdjacent(0, dalle);
-
-		/*   Dalle  E      */
-		dalle = this.grilleDalles.get(4);
-
-		dalle                   .rajoutDalleAdjacent(4, this.grilleDalles.get(7) );
-		this.grilleDalles.get(7).rajoutDalleAdjacent(1, dalle);
-
-		dalle                   .rajoutDalleAdjacent(2, this.grilleDalles.get(8) );
-		this.grilleDalles.get(8).rajoutDalleAdjacent(5, dalle);
-
-		dalle                    .rajoutDalleAdjacent(3, this.grilleDalles.get(11) );
-		this.grilleDalles.get(11).rajoutDalleAdjacent(0, dalle);
-
-		/*   Dalle  F      */
-		dalle = this.grilleDalles.get(5);
-
-		dalle                   .rajoutDalleAdjacent(4, this.grilleDalles.get(8) );
-		this.grilleDalles.get(8).rajoutDalleAdjacent(1, dalle);
-
-		dalle                   .rajoutDalleAdjacent(2, this.grilleDalles.get(9) );
-		this.grilleDalles.get(9).rajoutDalleAdjacent(5, dalle);
-
-		dalle                    .rajoutDalleAdjacent(3, this.grilleDalles.get(12) );
-		this.grilleDalles.get(12).rajoutDalleAdjacent(0, dalle);
-
-		/*   Dalle  G      */
-		dalle = this.grilleDalles.get(6);
-
-		dalle                   .rajoutDalleAdjacent(2, this.grilleDalles.get(10) );
-		this.grilleDalles.get(10).rajoutDalleAdjacent(5, dalle);
-
-		/*   Dalle  H      */
-		dalle = this.grilleDalles.get(7);
-
-		dalle                   .rajoutDalleAdjacent(4, this.grilleDalles.get(10) );
-		this.grilleDalles.get(10).rajoutDalleAdjacent(1, dalle);
-
-		dalle                   .rajoutDalleAdjacent(2, this.grilleDalles.get(11) );
-		this.grilleDalles.get(11).rajoutDalleAdjacent(5, dalle);
-
-		dalle                    .rajoutDalleAdjacent(3, this.grilleDalles.get(13) );
-		this.grilleDalles.get(13).rajoutDalleAdjacent(0, dalle);
-
-		/*   Dalle  I      */
-		dalle = this.grilleDalles.get(8);
-
-		dalle                   .rajoutDalleAdjacent(4, this.grilleDalles.get(11) );
-		this.grilleDalles.get(11).rajoutDalleAdjacent(1, dalle);
-
-		dalle                   .rajoutDalleAdjacent(2, this.grilleDalles.get(12) );
-		this.grilleDalles.get(12).rajoutDalleAdjacent(5, dalle);
-
-		dalle                    .rajoutDalleAdjacent(3, this.grilleDalles.get(14) );
-		this.grilleDalles.get(14).rajoutDalleAdjacent(0, dalle);
-
-		/*   Dalle  J      */
-		dalle = this.grilleDalles.get(9);
-
-		dalle                   .rajoutDalleAdjacent(4, this.grilleDalles.get(12) );
-		this.grilleDalles.get(12).rajoutDalleAdjacent(1, dalle);
-
-		/*   Dalle  K      */
-		dalle = this.grilleDalles.get(10);
-
-		dalle                   .rajoutDalleAdjacent(2, this.grilleDalles.get(13) );
-		this.grilleDalles.get(13).rajoutDalleAdjacent(5, dalle);
-
-		/*   Dalle  L      */
-		dalle = this.grilleDalles.get(11);
-
-		dalle                   .rajoutDalleAdjacent(4, this.grilleDalles.get(13) );
-		this.grilleDalles.get(13).rajoutDalleAdjacent(1, dalle);
-
-		dalle                   .rajoutDalleAdjacent(2, this.grilleDalles.get(14) );
-		this.grilleDalles.get(14).rajoutDalleAdjacent(5, dalle);
-
-		dalle                    .rajoutDalleAdjacent(3, this.grilleDalles.get(15) );
-		this.grilleDalles.get(15).rajoutDalleAdjacent(0, dalle);
-
-		/*   Dalle  M      */
-		dalle = this.grilleDalles.get(12);
-
-		dalle                   .rajoutDalleAdjacent(4, this.grilleDalles.get(14) );
-		this.grilleDalles.get(14).rajoutDalleAdjacent(1, dalle);
-
-
-		/*   Dalle  N      */
-		dalle = this.grilleDalles.get(13);
-
-		dalle                   .rajoutDalleAdjacent(2, this.grilleDalles.get(15) );
-		this.grilleDalles.get(15).rajoutDalleAdjacent(5, dalle);
-
-		/*   Dalle  O      */
-		dalle = this.grilleDalles.get(14);
-
-		dalle                   .rajoutDalleAdjacent(4, this.grilleDalles.get(15) );
-		this.grilleDalles.get(15).rajoutDalleAdjacent(1, dalle);
-
-		/*   Dalle  P      */
+		this.victoire();
 	}
 
 	public void verifControle()
@@ -230,12 +56,45 @@ public class Parterre
 		}
 	}
 
-	public void verifEnfermement(char coulPilier)
+	public void verifEnfermement(char nomDalle, int numSommet, char coulPilier)
 	{
 		this.listeGroupePilier = new ArrayList<Pilier>();
 
-
 		for(Dalle dalle : this.grilleDalles)
+		{
+			Pilier[] tabSommets = dalle.getSommets();
+			if( dalle.getNom() == nomDalle)
+			{
+				Pilier[] tabPilierAdjacent  = this.getVoisin(dalle, numSommet);
+
+				for(int cpt = 0; cpt < tabPilierAdjacent.length; cpt++ )
+				{
+					if(tabPilierAdjacent[cpt] != null && tabPilierAdjacent[cpt].getCoul() == coulPilier )
+					{
+						if( !this.listeGroupePilier.contains(tabPilierAdjacent[cpt]) ) 
+						{
+							this.listeGroupePilier.add(tabPilierAdjacent[cpt]);
+							Pilier[] tabVoisin  = this.getVoisin(dalle, cpt);
+
+							if ( this.verifictionDesVoisins( tabVoisin, coulPilier) )
+							{
+								for(Pilier pilier : this.listeGroupePilier )
+								{
+									this.detruireLePilier(pilier);
+								}
+							}
+							else
+								this.listeGroupePilier.clear();
+						}
+					}
+				}
+			}
+		}
+	
+
+
+
+		/*for(Dalle dalle : this.grilleDalles)
 		{
 			Pilier[] tabSommets = dalle.getSommets();
 			for(int cpt = 0; cpt < tabSommets.length; cpt++ )
@@ -255,11 +114,13 @@ public class Parterre
 								this.detruireLePilier(pilier);
 							}
 						}
+						else
+							this.listeGroupePilier.clear();
 					}
 						
 				}
 			}
-		}
+		}*/
 	}
 
 	private boolean  verifictionDesVoisins(Pilier[] tabVoisin, char couleur)
@@ -398,18 +259,6 @@ public class Parterre
 		}
 	}
 
-	public void finDeTour()
-	{
-		this.verifControle();
-		System.out.println("-----------verif de M ------------");
-		this.verifEnfermement('M');
-		System.out.println("-----------verif de G ------------");
-		this.verifEnfermement('G');
-
-		this.victoire();
-		this.tour++;
-	}
-
 	public boolean poserPilier(int numJoueur, char nomDalle, int numSommet )
 	{
 		Joueur joueur = null;
@@ -423,11 +272,12 @@ public class Parterre
 		{
 			if ( dalle.getNom() == nomDalle )
 			{
-				if( dalle.rajoutPillier(joueur.getCouleur(), numSommet))
-				{	
+				if ( dalle.rajoutPillier(joueur.getCouleur(), numSommet) ) 
+				{
 					joueur.incrementationNbPilier(-1);
 					return true;
 				}
+				
 			}
 		}
 
@@ -435,7 +285,7 @@ public class Parterre
 		return false;
 	}
 
-	
+	public void     prochainTour() { this.tour++;}
 
 	private boolean getVictoireJ1() {return this.victoireJ1;}
 	private boolean getVictoireJ2() {return this.victoireJ2;}

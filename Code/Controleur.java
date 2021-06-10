@@ -29,7 +29,7 @@ public class Controleur
 
 	public Controleur()
 	{
-		this.metier = Scenario.getScenario(0);
+		this.metier = Scenario.getScenario(1);
 		this.ihmMenu= new FrameMenu(this);
 		this.ihm    = new FrameDessin(this);
 		this.ihmAide= new FrameAide  (this);
@@ -38,8 +38,8 @@ public class Controleur
 		{
 			System.out.println("-------------------------------");
 			System.out.println("Tour " + this.metier.getTour() );
-			char nomDalle;
-			int  numSommet;
+			char nomDalle = '.';
+			int  numSommet=  0;
 			boolean bOk = false;
 
 			
@@ -70,8 +70,10 @@ public class Controleur
 			}
 			
 
-			//On met à jour la Grille
+			//On met à jour la Grille ET on verifie les piliers
 	
+			this.ihm.miseAJourGrille();
+			this.metier.finTourJoueur(nomDalle, numSommet, this.metier.getJoueur(2).getCouleur());
 			this.ihm.miseAJourGrille();
 
 
@@ -103,8 +105,10 @@ public class Controleur
 			}	
 
 			this.ihm.miseAJourGrille();
-			this.metier.finDeTour();
+			this.metier.finTourJoueur(nomDalle, numSommet, this.metier.getJoueur(1).getCouleur());
 			this.ihm.miseAJourGrille();
+
+			this.metier.prochainTour();
 		}
 		System.out.println("FIN DE LA PARTIE");
 		System.out.println("Le gagnant est le joueur :" + this.metier.getGagnant().getNumJoueur() );
