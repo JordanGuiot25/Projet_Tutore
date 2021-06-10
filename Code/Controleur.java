@@ -131,22 +131,19 @@ public class Controleur
 
 
 	
-	public void DeplacerFrames(double posX, double posY, char frame)
+	public void majLocation(char Destination)
 	{
-		if(frame == 'd' && this.ihmAide != null && this.ihm != null)
+		if( Destination == 'P' && this.ihm != null & this.ihmAide != null)
 		{
-			ihmAide.setLocation((int) posX, (int) posY);
+			Point p = this.ihmAide.getLocation();
+			this.ihm.setLocation(p.x-1000, p.y);
 		}
-		if(frame == 'a' && this.ihmAide != null && this.ihm != null)
+
+		if( Destination == 'A' && this.ihm != null & this.ihmAide != null)
 		{
-			ihm.setLocation( (int) posX , (int) posY);
+			Point p = this.ihm.getLocation();
+			this.ihmAide.setLocation (p.x+1000, p.y);
 		}
-	}
-
-
-	public static void main (String[] a)
-	{
-		new Controleur();
 	}
 
 	public void LancerPartieRapide()
@@ -162,7 +159,7 @@ public class Controleur
 	{
 	}
 
-	public void Quitter()
+	public void quitter()
 	{
 		System.exit(0);
 	}
@@ -179,10 +176,13 @@ public class Controleur
 		//this.bDebutPartie = true;
 	}
 	
-
-
 	public ArrayList<Dalle> getGrilleDalles() 
 	{
 		return this.metier.getGrilleDalles();
+	}
+
+	public static void main (String[] a)
+	{
+		new Controleur();
 	}
 }

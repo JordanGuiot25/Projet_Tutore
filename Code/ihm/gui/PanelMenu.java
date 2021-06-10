@@ -56,25 +56,29 @@ public class PanelMenu extends JPanel implements ActionListener
         this.btnQuitter           = new JButton(new ImageIcon(imgQuitter));
 
         //taille
-        this.btnPartieRapide.setPreferredSize(new Dimension(50,50));
-        this.btnLancerScenar.setPreferredSize(new Dimension(50,50));
+        this.btnPartieRapide     .setPreferredSize(new Dimension(50,50));
+        this.btnLancerScenar     .setPreferredSize(new Dimension(50,50));
         this.btnChargerSauvegarde.setPreferredSize(new Dimension(50,50));
-        this.btnPartieCustom.setPreferredSize(new Dimension(50,50));
-        this.btnQuitter.setPreferredSize(new Dimension(50,50));
+        this.btnPartieCustom     .setPreferredSize(new Dimension(50,50));
+        this.btnQuitter          .setPreferredSize(new Dimension(50,50));
 
         //transparence
         this.btnPartieRapide.setOpaque(false);
         this.btnPartieRapide.setContentAreaFilled(false);
         this.btnPartieRapide.setBorderPainted(false);
+
         this.btnLancerScenar.setOpaque(false);
         this.btnLancerScenar.setContentAreaFilled(false);
         this.btnLancerScenar.setBorderPainted(false);
+
         this.btnChargerSauvegarde.setOpaque(false);
         this.btnChargerSauvegarde.setContentAreaFilled(false);
         this.btnChargerSauvegarde.setBorderPainted(false);
+
         this.btnPartieCustom.setOpaque(false);
         this.btnPartieCustom.setContentAreaFilled(false);
         this.btnPartieCustom.setBorderPainted(false);
+
         this.btnQuitter.setOpaque(false);
         this.btnQuitter.setContentAreaFilled(false);
         this.btnQuitter.setBorderPainted(false);
@@ -85,28 +89,32 @@ public class PanelMenu extends JPanel implements ActionListener
         this.add(new JLabel(""));
         this.add(new JLabel(""));
         this.add(this.btnPartieRapide);
+
         this.add(new JLabel(""));
         this.add(new JLabel(""));
         this.add(this.btnPartieCustom);
+
         this.add(new JLabel(""));
         this.add(new JLabel(""));
         this.add(this.btnLancerScenar);
+
         this.add(new JLabel(""));
         this.add(new JLabel(""));
         this.add(new JLabel(""));//this.add(this.btnChargerSauvegarde);
         this.add(new JLabel(""));
         this.add(new JLabel(""));
         this.add(this.btnQuitter);
+
         this.add(new JLabel(""));
         this.add(new JLabel(""));
 
 
         /* activation des composants */
-        this.btnPartieRapide.addActionListener(this);
-        this.btnLancerScenar.addActionListener(this);
+        this.btnPartieRapide     .addActionListener(this);
+        this.btnLancerScenar     .addActionListener(this);
         this.btnChargerSauvegarde.addActionListener(this);
-        this.btnPartieCustom.addActionListener(this);
-        this.btnQuitter.addActionListener(this);
+        this.btnPartieCustom     .addActionListener(this);
+        this.btnQuitter          .addActionListener(this);
         repaint();
 
     }
@@ -114,15 +122,15 @@ public class PanelMenu extends JPanel implements ActionListener
 	public void actionPerformed(ActionEvent e)
     {
         if(e.getSource() == this.btnPartieRapide)
-            ctrl.LancerPartieRapide();
-        else if(e.getSource() ==this.btnLancerScenar) 
-            ctrl.ouvrirScenar();
-        else if(e.getSource() == this.btnChargerSauvegarde)
-            ctrl.LancerSauv();
-        else if(e.getSource() ==this.btnPartieCustom)
-            ctrl.LancerEditeur();
+            this.ctrl.LancerPartieRapide();
+        //else if(e.getSource() ==this.btnLancerScenar) 
+            //this.ctrl.ouvrirScenar();
+        //else if(e.getSource() == this.btnChargerSauvegarde)
+            //this.ctrl.LancerSauv();
+        //else if(e.getSource() ==this.btnPartieCustom)
+            //this.ctrl.LancerEditeur();
         else if(e.getSource() ==this.btnQuitter)
-            ctrl.quitter();                
+            this.ctrl.quitter();                
     }
 
     public void paintComponent(Graphics g)

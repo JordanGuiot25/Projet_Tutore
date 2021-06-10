@@ -11,7 +11,7 @@ import javax.swing.*;
 
 import java.awt.event.*;
 
-public class FrameDessin extends JFrame implements ComponentListener
+public class FrameDessin extends JFrame
 {
 	private PanelDessin panel	 ;
 	private Controleur  ctrl	 ;
@@ -30,7 +30,7 @@ public class FrameDessin extends JFrame implements ComponentListener
 		this.panel   = new PanelDessin(this.ctrl);
 		
 		this.add( this.panel );
-		this.addComponentListener(this);
+		this.addComponentListener( new GereDeplacerFrame());
 
 
 		this.setVisible(false);
@@ -38,26 +38,13 @@ public class FrameDessin extends JFrame implements ComponentListener
 
 	}
 
-	public void componentMoved(ComponentEvent e) 
+	private class GereDeplacerFrame extends ComponentAdapter
 	{
-		Point p = this.getLocation(); 
-		ctrl.DeplacerFrames(p.getX()+POS_X  ,p.getY() , 'd');
+		public void componentMoved (ComponentEvent  e)
+		{
+			FrameDessin.this.ctrl.majLocation( 'A' );
+		}
 	}
-
-	public void componentHidden​(ComponentEvent e)
-	{
-		
-	}
-
-    public void componentShown(ComponentEvent e)
-    {
-
-    }
-
-    public void componentResized(ComponentEvent e)
-    {
-
-    }
 
 
 	public void miseAJourGrille()

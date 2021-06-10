@@ -16,7 +16,7 @@ import java.awt.event.*;
 
 import java.awt.Point;
 
-public class FrameAide extends JFrame implements ComponentListener
+public class FrameAide extends JFrame
 {
     public static final double POS_X = -400;
 	public static final double POS_Y = 0;
@@ -30,7 +30,7 @@ public class FrameAide extends JFrame implements ComponentListener
 		this.setTitle    ("Aide");
         this.setLayout( new BorderLayout());
         this.setSize     (400, 350    );
-        this.setLocation (400, 0    );
+        this.setLocation (1350, 350    );
 
 
 
@@ -38,35 +38,19 @@ public class FrameAide extends JFrame implements ComponentListener
 
         this.add(lb,BorderLayout.CENTER);
 
-        this.addComponentListener(this);
+        this.addComponentListener( new GereDeplacerFrame());
 
         this.setVisible(false);
         this.setResizable(false);
     }
 
 
-    public void componentMoved(ComponentEvent e) 
+    private class GereDeplacerFrame extends ComponentAdapter
 	{
-		Point p = this.getLocation(); 
-		
-
-		ctrl.DeplacerFrames(p.getX()+POS_X , p.getY() , 'a');
-
+		public void componentMoved (ComponentEvent  e)
+		{
+			FrameAide.this.ctrl.majLocation( 'P' );
+		}
 	}
-  
-    public void componentHidden​(ComponentEvent e)
-	{
-		
-	}
-
-    public void componentShown(ComponentEvent e)
-    {
-
-    }
-
-    public void componentResized(ComponentEvent e)
-    {
-
-    }
 
 }
