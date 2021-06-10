@@ -242,60 +242,121 @@ public class Parterre
 			{
 				if( tabSommets[cpt] != null && tabSommets[cpt].getCoul() == coulPilier)
 				{
-					this.listeGroupePilier.add(tabSommets[cpt]);
+					if( !this.listeGroupePilier.contains(tabSommets[cpt]) ) 
+					{
+						this.listeGroupePilier.add(tabSommets[cpt]);
+
+						Pilier[] tabVoisin  = this.getVoisin(dalle, cpt);
+					}
+						
 				}
 			}
 		}
 	}
 
-	/*public void verifEnfermement(char coulPilier)
+	private boolean  verifictionDesVoisins(Pillier[] tabVoisin, char couleur)
 	{
-		this.listeGroupePilier = new ArrayList<Pilier>();
-
-
-		for(Dalle dalle : this.grilleDalles)
+		for(Pilier voisin : tabVoisin )
 		{
-			Pilier[] tabSommets = dalle.getSommets();
-			for(int cpt = 0; cpt < tabSommets.length; cpt++ )
+			if( voisin == null )
+				return false;
+
+			if( voisin.getCoul() == couleur )
 			{
-				if( tabSommets[cpt] != null && tabSommets[cpt].getCoul() == coulPilier)
+				if( !this.listeGroupePilier.contains(voisin) )
 				{
-					this.listeGroupePilier.add(tabSommets[cpt]);
+					this.listeGroupePilier.add(voisin);
 
-					Pilier[] tabVoisin = this.getVoisin(dalle, cpt);
-
-					for(Pilier pilierTmp: tabVoisin )
+					if( !this.parcourVoisin(voisin, couleur) )
 					{
-						if ( pilierTmp == null )
-							this.listeGroupePilier.clear();
+						return false;
 					}
-
-					if( this.listeGroupePilier.size() > 0)
-					{	
-						if( this.verifeVoisin(tabVoisin, coulPilier) )
-						{
-							System.out.println("0:" + dalle.getNom()+ " "+ cpt);
-							System.out.println("\tGroupe enfermer");
-							System.out.println("\tListe pilier :");
-							for(Pilier p: this.listeGroupePilier)
-							{
-								System.out.println(p.getCoul() +"   "+ p.getX()+ ", " + p.getY());
-								this.detruireLePilier(p);
-							}
-							System.out.println("\tListe pilier APRES :");
-							for(Pilier p: this.listeGroupePilier)
-							{
-								System.out.println(p.getCoul() +"   "+ p.getX()+ ", " + p.getY());
-								this.detruireLePilier(p);
-							}
-						}
-					}
-					else
-							System.out.println("2:" + dalle.getNom()+ " "+ cpt);
 				}
 			}
 		}
-	}*/
+
+		return true;
+	}
+
+	private boolean parcourVoisin(Pilier voisin, char couleur)
+	{
+		Dalle dalleDuVoisin = null;
+		int   numDuVoisin   = 0;
+
+		// Trouve le pilier sur la grille
+		for(Dalle dalle : this.grilleDalles )
+		{
+			int tabSommets = this.grilleDalles.getSommets();
+			for(int cpt = 0; cpt < tabSommets.length; cpt++ )
+			{
+				if( tabSommets[cpt] == voisin )
+				{
+					dalleDuVoisin = dalle;
+					numDuVoisin   = cpt;
+				}
+			}
+		}
+
+		Pilier[] tabVoisin = this.getVoisin(dalleDuVoisin, numDuVoisin);
+
+		return this.verifictionDesVoisins(tabVoisin, couleur);
+	}
+
+	private Pilier[] getVoisin(Dalle dalle, int numSommet)
+	{
+		int nbVoisin = 0;
+		Pilier[] tabSommets = dalle.getSommets();
+
+		// Verification d'un troisième voisin
+		int numCoteAdjacentPrc = numSommet -1;
+		if ( numCoteAdjacentPrc < 0 )
+			numCoteAdjacentPrc = 5;
+
+		int numCoteAdjacent    = numSommet;
+
+		if ( dalle.getDalleAdjacent(numCoteAdjacentPrc) == null && dalle.getDalleAdjacent(numCoteAdjacent) == null)
+			nbVoisin = 2;
+		else
+			nbVoisin = 3;
+
+		// Création de la table voisin
+		Pilier[] voisin     = new Pilier[nbVoisin];
+		
+		voisin[0] = dalle.getPrecedent(tabSommets[numSommet]);
+		voisin[1] = dalle.getSuivant  (tabSommets[numSommet]);
+
+		// Si le tableau contient trois voisins
+		if( voisin.length == 3 )
+		{
+			if ( dalle.getDalleAdjacent( numCoteAdjacentPrc ) != null )
+			{
+				int numPilierVoisin = numSommet+1;
+				if( numPilierVoisin > 5 )
+					numPilierVoisin = 0;
+
+				voisin[2] = dalle.getDalleAdjacent(numCoteAdjacentPrc).getPilier(numPilierVoisin);
+			}
+			else if ( dalle.getDalleAdjacent( numCoteAdjacent ) != null )
+			{
+				int numPilierVoisin = numSommet-1;
+				if( numPilierVoisin < 0 )
+					numPilierVoisin = 5;
+				voisin[2] = dalle.getDalleAdjacent(numCoteAdjacent).getPilier(numPilierVoisin);
+			}
+		}
+
+		System.out.println("\t\t ListeVoisin de dalle " + dalle.getNom() + " " + numSommet +" :");
+		for(Pilier p : voisin )
+		{
+			if( p != null )
+				System.out.println("\t\t" + p.getCoul() );
+			else
+				System.out.println("\t\t null");
+		}
+		
+		return voisin;
+	}
+	
 
 	private void detruireLePilier(Pilier pilier)
 	{
@@ -312,192 +373,6 @@ public class Parterre
 		}
 	}
 
-	private boolean  verifeVoisin( Pilier[] tabVoisin, char couleur)
-	{
-		if( couleur == 'M')
-		{	
-			if( tabVoisin.length == 2 )
-			{
-				boolean[] etatVoisin = new boolean[2];
-				int     cpt        = 0;
-				for(Pilier pilierTmp : tabVoisin)
-				{
-					if( pilierTmp   ==        null) 
-						return false;
-					if( pilierTmp.getCoul() == 'G')
-						etatVoisin[cpt] = true;
-					if( pilierTmp.getCoul() == 'M')
-					{
-						etatVoisin[cpt] = this.parcourVoisin(pilierTmp,couleur);
-					}
-						
-					
-					cpt++;
-				}
-
-				return (etatVoisin[0] && etatVoisin[1]);
-			}
-			else
-			{
-				boolean[] etatVoisin = new boolean[3];
-				int     cpt        = 0;
-				for(Pilier pilierTmp : tabVoisin)
-				{
-					if( pilierTmp   ==        null)
-						return false; 
-					if( pilierTmp.getCoul() == 'G')
-						etatVoisin[cpt] = true;
-					if( pilierTmp.getCoul() == 'M')
-						etatVoisin[cpt] = this.parcourVoisin(pilierTmp,couleur);
-				
-					cpt++;
-				}
-			}
-		}
-		else
-		{
-			if( tabVoisin.length == 2 )
-			{
-				boolean[] etatVoisin = new boolean[2];
-				int     cpt        = 0;
-				for(Pilier pilierTmp : tabVoisin)
-				{
-					if( pilierTmp   ==        null) 
-						return false;
-					if( pilierTmp.getCoul() == 'M')
-						etatVoisin[cpt] = true;
-					if( pilierTmp.getCoul() == 'G')
-						etatVoisin[cpt] = this.parcourVoisin(pilierTmp,couleur);
-					
-					cpt++;
-				}
-
-				return (etatVoisin[0] && etatVoisin[1]);
-			}
-			else
-			{
-				boolean[] etatVoisin = new boolean[3];
-				int     cpt        = 0;
-				for(Pilier pilierTmp : tabVoisin)
-				{
-					if( pilierTmp   ==        null)
-						return false; 
-					if( pilierTmp.getCoul() == 'M')
-						etatVoisin[cpt] = true;
-					if( pilierTmp.getCoul() == 'G')
-						etatVoisin[cpt] = this.parcourVoisin(pilierTmp,couleur);
-				
-					cpt++;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	private boolean parcourVoisin(Pilier pilier, char couleur)
-	{
-		if( !this.listeGroupePilier.contains(pilier) )
-		{
-			this.listeGroupePilier.add(pilier);
-			for(Dalle dalleTmp : this.grilleDalles )
-			{
-				Pilier[] tabSommets = dalleTmp.getSommets();
-				for(int cpt = 0; cpt < tabSommets.length; cpt++)
-				{
-					if ( tabSommets[cpt] == pilier )
-					{
-						Pilier[] tabVoisin = this.getVoisin(dalleTmp, cpt);
-						if ( this.verifeVoisin(tabVoisin, couleur) )
-							return true;
-						else
-							return false;
-					}
-				}
-			}
-		}
-
-		return false;
-	}
-
-	private Pilier[] getVoisin(Dalle dalle, int numSommet)
-	{
-		int nbVoisin = 0;
-		Pilier[] tabSommets = dalle.getSommets();
-
-		// Verification d'un troisième voisin
-		if( numSommet == 0 )
-		{
-			if ( dalle.getDalleAdjacent(5) == null && dalle.getDalleAdjacent(numSommet) == null)
-				nbVoisin = 2;
-			else
-				nbVoisin = 3;
-		}
-		else
-		{
-			if ( dalle.getDalleAdjacent(numSommet-1) == null && dalle.getDalleAdjacent(numSommet) == null)
-				nbVoisin = 2;
-			else
-				nbVoisin = 3;
-		}
-
-		// Création de la table voisin
-		Pilier[] voisin     = new Pilier[nbVoisin];
-		
-
-		for(int cpt = 0; cpt < tabSommets.length; cpt++)
-		{
-			if( dalle.getPrecedent(tabSommets[cpt]) != null && dalle.getSuivant(tabSommets[cpt]) != null)
-			{
-				voisin[0] = dalle.getPrecedent(tabSommets[cpt]);
-				voisin[1] = dalle.getSuivant(tabSommets[cpt]);
-			}
-		}
-
-		// Si le tableau contient trois voisins
-		if( voisin.length == 3 )
-		{
-			if( numSommet == 0 )
-			{
-				if ( dalle.getDalleAdjacent( 5 ) != null )
-				{
-					voisin[2] = dalle.getDalleAdjacent(5).getPilier(1);
-				}
-				else if ( dalle.getDalleAdjacent( numSommet ) != null )
-				{
-					voisin[2] = dalle.getDalleAdjacent(0).getPilier(5);
-				}
-			}
-			else
-			{
-				if ( dalle.getDalleAdjacent( numSommet -1 ) != null )
-				{
-					voisin[2] = dalle.getDalleAdjacent(numSommet -1).getPilier(1);
-				}
-				else if ( dalle.getDalleAdjacent( numSommet ) != null )
-				{
-					if( numSommet == 5 )
-					{
-						voisin[2] = dalle.getDalleAdjacent(numSommet).getPilier(0);
-					}
-					else
-						voisin[2] = dalle.getDalleAdjacent(numSommet).getPilier(numSommet + 1);
-				}
-			}
-		}
-
-		System.out.println("\t\t ListeVoisin de dalle " + dalle.getNom() + " " + numSommet +" :");
-		for(Pilier p : voisin )
-		{
-			if( p != null )
-				System.out.println("\t\t" + p.getCoul() );
-			else
-				System.out.println("\t\t null");
-		}
-			
-
-		return voisin;
-	}
 
 	public void victoire()
 	{
