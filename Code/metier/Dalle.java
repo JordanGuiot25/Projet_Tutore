@@ -190,7 +190,7 @@ public class Dalle
 			{
 				if(this.listeDallesAdjacent[5] != null)
 				{
-					this.listeDallesAdjacent[5].detruirePilier(sommetAdjacent);
+					this.listeDallesAdjacent[5].destructionDuPilier(sommetAdjacent);
 				}
 			}
 			else
@@ -198,7 +198,7 @@ public class Dalle
 				
 				if(this.listeDallesAdjacent[numSommet-1] != null)
 				{
-					this.listeDallesAdjacent[numSommet-1].detruirePilier(sommetAdjacent);
+					this.listeDallesAdjacent[numSommet-1].destructionDuPilier(sommetAdjacent);
 				}
 			}
 				
@@ -213,7 +213,7 @@ public class Dalle
 			
 			if(this.listeDallesAdjacent[numSommet] != null)
 			{
-				this.listeDallesAdjacent[numSommet].detruirePilier(sommetAdjacent);
+				this.listeDallesAdjacent[numSommet].destructionDuPilier(sommetAdjacent);
 			}
 
 			return true;
@@ -227,7 +227,7 @@ public class Dalle
 		this.listeSommet[numSommet] =  pilier;
 	}
 
-	private void detruirePilier(int numSommet)
+	public void destructionDuPilier(int numSommet)
 	{
 		this.listeSommet[numSommet] =  null;
 	}
@@ -239,9 +239,41 @@ public class Dalle
 	public int getMilieuX() { return this.x; }
 	public int getMilieuY() { return this.y; }
 
+	public Pilier getPrecedent(Pilier pilier)
+	{
+		for(int cpt = 0; cpt < this.listeSommet.length; cpt ++)
+		{
+			if( this.listeSommet[cpt] == pilier )
+			{
+				if( cpt == 0 )
+					return this.listeSommet[5];
+				else
+					return this.listeSommet[cpt-1];
+			}
+		}
+
+		return null;
+	}
+	public Pilier getSuivant(Pilier pilier)
+	{
+		for(int cpt = 0; cpt < this.listeSommet.length; cpt ++)
+		{
+			if( this.listeSommet[cpt] == pilier )
+			{
+				if( cpt == 5 )
+					return this.listeSommet[0];
+				else
+					return this.listeSommet[cpt+1];
+			}
+		}
+
+		return null;
+	}
+
+	public Pilier   getPilier(int numPilier)   { return this.listeSommet[numPilier];   }
 	public Dalle    getDalleAdjacent(int cote) { return this.listeDallesAdjacent[cote];}
-	public Pilier[] getSommets()            { return this.listeSommet;              }
-	public Dalle[]  getListeDallesAdjacent(){ return this.listeDallesAdjacent;      }
+	public Pilier[] getSommets()               { return this.listeSommet;              }
+	public Dalle[]  getListeDallesAdjacent()   { return this.listeDallesAdjacent;      }
 
 	public void     setCoordonner(int x, int y)
 	{
