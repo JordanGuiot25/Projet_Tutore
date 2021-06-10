@@ -422,4 +422,10 @@ public class Dalle
 		
 		return sMessage;
 	}
+	
+	public void supprimerDalle()
+	{
+		this.nbDalle--;
+		for(Dalle d : this.listeDallesAdjacent){ d = null ; }
+	}
 }
