@@ -30,10 +30,15 @@ public class Controleur
 
 	public Controleur()
 	{
-		this.bDebutPartie = false;
-		this.ihmMenu= new FrameMenu(this);
+		this.ihmMenu= new FrameMenu  (this);
 		this.ihm    = new FrameDessin(this);
 		this.ihmAide= new FrameAide  (this);
+
+		this.bDebutPartie = false;
+		while( !this.bDebutPartie )
+		{
+			System.out.print("");
+		}
 
 		while( this.metier.getGagnant() == null )
 		{
@@ -115,8 +120,8 @@ public class Controleur
 		}
 		System.out.println("FIN DE LA PARTIE");
 		System.out.println("Le gagnant est le joueur :" + this.metier.getGagnant().getNumJoueur() );
-		
 	}
+
 	
 	public void Sauvegarde()
 	{
@@ -149,10 +154,15 @@ public class Controleur
 	public void LancerPartieRapide()
 	{
 		this.ihmMenu.setVisible(false);
+
 		this.metier = Scenario.getScenario(0);
-		this.ihm.setVisible(true);
+
+		this.ihm    .setVisible(true);
 		this.ihmAide.setVisible(true);
+
+		System.out.println("Partie go");
 		this.bDebutPartie = true;
+
 	}
 
 	public void LancerPartieCustom()
@@ -180,6 +190,8 @@ public class Controleur
 	{
 		return this.metier.getGrilleDalles();
 	}
+
+	private boolean getBDebutPartie() { return this.bDebutPartie;}
 
 	public static void main (String[] a)
 	{
