@@ -40,7 +40,8 @@ public class FrameAide extends JFrame implements ComponentListener
 
         this.addComponentListener(this);
 
-        this.setVisible(true);
+        this.setVisible(false);
+        this.setResizable(false);
     }
 
 
@@ -49,7 +50,7 @@ public class FrameAide extends JFrame implements ComponentListener
 		Point p = this.getLocation(); 
 		
 
-		ctrl.DeplacerFrames(p.getX() + POS_X, p.getY() + POS_Y, 'a');
+		ctrl.DeplacerFrames(p.getX()+POS_X , p.getY() , 'a');
 
 	}
   

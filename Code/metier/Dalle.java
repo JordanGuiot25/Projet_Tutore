@@ -271,6 +271,16 @@ public class Dalle
 	}
 
 	public Pilier   getPilier(int numPilier)   { return this.listeSommet[numPilier];   }
+	public int      getIndicePilier(Pilier pilier)
+	{
+		for(int cpt = 0; cpt < this.listeSommet.length; cpt++)
+		{
+			if ( this.listeSommet[cpt] == pilier)
+				return cpt;
+		}
+
+		return 0;
+	}
 	public Dalle    getDalleAdjacent(int cote) { return this.listeDallesAdjacent[cote];}
 	public Pilier[] getSommets()               { return this.listeSommet;              }
 	public Dalle[]  getListeDallesAdjacent()   { return this.listeDallesAdjacent;      }
@@ -421,11 +431,5 @@ public class Dalle
 		}
 		
 		return sMessage;
-	}
-	
-	public void supprimerDalle()
-	{
-		this.nbDalle--;
-		for(Dalle d : this.listeDallesAdjacent){ d = null ; }
 	}
 }

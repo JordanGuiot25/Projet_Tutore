@@ -24,8 +24,8 @@ public class FrameDessin extends JFrame implements ComponentListener
 
 
 		this.setTitle    ("Pilier de la terre");
-		this.setLocation (0, 0    );
-		this.setSize     (400, 350    );
+		this.setLocation (350, 350    );
+		this.setSize     (1000, 650    );
 
 		this.panel   = new PanelDessin(this.ctrl);
 		
@@ -33,13 +33,15 @@ public class FrameDessin extends JFrame implements ComponentListener
 		this.addComponentListener(this);
 
 
-		this.setVisible(true);
+		this.setVisible(false);
+		this.setResizable(false);
+
 	}
 
 	public void componentMoved(ComponentEvent e) 
 	{
 		Point p = this.getLocation(); 
-		ctrl.DeplacerFrames(p.getX() + POS_X ,p.getY() + POS_Y, 'd');
+		ctrl.DeplacerFrames(p.getX()+POS_X  ,p.getY() , 'd');
 	}
 
 	public void componentHidden​(ComponentEvent e)

@@ -60,67 +60,41 @@ public class Parterre
 	{
 		this.listeGroupePilier = new ArrayList<Pilier>();
 
-		for(Dalle dalle : this.grilleDalles)
+		Dalle dalle         = this.getDalleGrille(nomDalle);
+		Pilier[] tabVoisin  = this.getVoisin(dalle, numSommet);
+
+		for(int cpt = 0; cpt < tabVoisin.length; cpt++ )
 		{
-			Pilier[] tabSommets = dalle.getSommets();
-			if( dalle.getNom() == nomDalle)
+			this.listeGroupePilier.clear();
+			if( tabVoisin[cpt] != null && tabVoisin[cpt].getCoul() != coulPilier)
 			{
-				Pilier[] tabPilierAdjacent  = this.getVoisin(dalle, numSommet);
+				System.out.println("Pilier detecter : " + tabVoisin[cpt].getCoul()+ " tabVoisin: " + cpt);
 
-				for(int cpt = 0; cpt < tabPilierAdjacent.length; cpt++ )
+				System.out.println("Dalle " + dalle.getNom() );
+				System.out.println("Couleur " + tabVoisin[cpt].getCoul());
+				System.out.println("Emplacement sommet : " + dalle.getIndicePilier(tabVoisin[cpt]));
+				
+				this.listeGroupePilier.add(tabVoisin[cpt]);
+
+				Dalle dalleVoisin = this.getDallePilier(tabVoisin[cpt]);
+				if( dalleVoisin != null )
 				{
-					if(tabPilierAdjacent[cpt] != null && tabPilierAdjacent[cpt].getCoul() == coulPilier )
-					{
-						if( !this.listeGroupePilier.contains(tabPilierAdjacent[cpt]) ) 
-						{
-							this.listeGroupePilier.add(tabPilierAdjacent[cpt]);
-							Pilier[] tabVoisin  = this.getVoisin(dalle, cpt);
+					System.out.println("Dalle du pilier : " + dalleVoisin.getNom());
+					System.out.println("Au sommet       : " + dalleVoisin.getIndicePilier(tabVoisin[cpt]));
+				}
+				
 
-							if ( this.verifictionDesVoisins( tabVoisin, coulPilier) )
-							{
-								for(Pilier pilier : this.listeGroupePilier )
-								{
-									this.detruireLePilier(pilier);
-								}
-							}
-							else
-								this.listeGroupePilier.clear();
-						}
+				Pilier[] tabPilierDuVoisin = this.getVoisin(dalleVoisin, dalleVoisin.getIndicePilier(tabVoisin[cpt]));
+
+				if ( this.verifictionDesVoisins( tabPilierDuVoisin, tabVoisin[cpt].getCoul()) )
+				{
+					for(Pilier pilier : this.listeGroupePilier )
+					{
+						this.detruireLePilier(pilier);
 					}
 				}
 			}
 		}
-	
-
-
-
-		/*for(Dalle dalle : this.grilleDalles)
-		{
-			Pilier[] tabSommets = dalle.getSommets();
-			for(int cpt = 0; cpt < tabSommets.length; cpt++ )
-			{
-				if( tabSommets[cpt] != null && tabSommets[cpt].getCoul() == coulPilier)
-				{
-					if( !this.listeGroupePilier.contains(tabSommets[cpt]) ) 
-					{
-						this.listeGroupePilier.add(tabSommets[cpt]);
-
-						Pilier[] tabVoisin  = this.getVoisin(dalle, cpt);
-
-						if ( this.verifictionDesVoisins( tabVoisin, coulPilier) )
-						{
-							for(Pilier pilier : this.listeGroupePilier )
-							{
-								this.detruireLePilier(pilier);
-							}
-						}
-						else
-							this.listeGroupePilier.clear();
-					}
-						
-				}
-			}
-		}*/
 	}
 
 	private boolean  verifictionDesVoisins(Pilier[] tabVoisin, char couleur)
@@ -169,6 +143,33 @@ public class Parterre
 		Pilier[] tabVoisin = this.getVoisin(dalleDuVoisin, numDuVoisin);
 
 		return this.verifictionDesVoisins(tabVoisin, couleur);
+	}
+
+	private Dalle   getDalleGrille(char   nomDalle)
+	{
+		for(Dalle dalle : this.grilleDalles)
+		{
+			if ( dalle.getNom() == nomDalle )
+				return dalle;
+		}
+
+		return null;
+	}
+
+	private Dalle   getDallePilier(Pilier pilier)
+	{
+		for (Dalle dalle : this.grilleDalles )
+		{
+			for(int cpt = 0; cpt < 6; cpt++ )
+			{
+				Pilier pilierTmp = dalle.getPilier(cpt);
+
+				if( pilierTmp != null && pilierTmp == pilier )
+					return dalle;
+			}
+		}
+
+		return null;
 	}
 
 	private Pilier[] getVoisin(Dalle dalle, int numSommet)
