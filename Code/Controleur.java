@@ -46,7 +46,7 @@ public class Controleur
 			//Choix de jeux du Joueur 1
 
 			System.out.println("Tour du joueur 1 (" + this.metier.getJoueur(1).getCouleur() + ") :");
-			do
+			while(!bOk)
 			{
 				System.out.print("\tChoissisez une dalle : ");
 				nomDalle = Character.toUpperCase(Clavier.lire_char());
@@ -65,9 +65,10 @@ public class Controleur
 					System.out.print("\tQuel côte (0 à 5): ");
 					numSommet= Clavier.lire_int();
 				}
+
 				bOk = this.metier.poserPilier(1, nomDalle, numSommet);
 			}
-			while(!bOk);
+			
 
 			//On met à jour la Grille
 	
@@ -78,7 +79,8 @@ public class Controleur
 			//Choix de jeux du Joueur 2
 
 			System.out.println("Tour du joueur 2 (" + this.metier.getJoueur(2).getCouleur() + ") :");
-			do
+			bOk = false;
+			while(!bOk)
 			{	
 				System.out.print("\tChoissisez une dalle : ");
 				nomDalle = Character.toUpperCase(Clavier.lire_char());
@@ -98,8 +100,7 @@ public class Controleur
 					numSommet= Clavier.lire_int();
 				}
 				bOk = this.metier.poserPilier(2, nomDalle, numSommet);	
-			}
-			while(!bOk);	
+			}	
 
 			this.ihm.miseAJourGrille();
 			this.metier.finDeTour();
