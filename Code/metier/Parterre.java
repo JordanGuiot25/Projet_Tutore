@@ -247,6 +247,14 @@ public class Parterre
 						this.listeGroupePilier.add(tabSommets[cpt]);
 
 						Pilier[] tabVoisin  = this.getVoisin(dalle, cpt);
+
+						if ( this.verifictionDesVoisins( tabVoisin, coulPilier) )
+						{
+							for(Pilier pilier : this.listeGroupePilier )
+							{
+								this.detruireLePilier(pilier);
+							}
+						}
 					}
 						
 				}
@@ -254,7 +262,7 @@ public class Parterre
 		}
 	}
 
-	private boolean  verifictionDesVoisins(Pillier[] tabVoisin, char couleur)
+	private boolean  verifictionDesVoisins(Pilier[] tabVoisin, char couleur)
 	{
 		for(Pilier voisin : tabVoisin )
 		{
@@ -286,7 +294,7 @@ public class Parterre
 		// Trouve le pilier sur la grille
 		for(Dalle dalle : this.grilleDalles )
 		{
-			int tabSommets = this.grilleDalles.getSommets();
+			Pilier[] tabSommets = dalle.getSommets();
 			for(int cpt = 0; cpt < tabSommets.length; cpt++ )
 			{
 				if( tabSommets[cpt] == voisin )
