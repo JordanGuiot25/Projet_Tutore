@@ -38,29 +38,34 @@ public class Controleur
 			System.out.println("Tour " + this.metier.getTour() );
 			char nomDalle;
 			int  numSommet;
+			boolean bOk = false;
 
 			
 			//Choix de jeux du Joueur 1
 
 			System.out.println("Tour du joueur 1 (" + this.metier.getJoueur(1).getCouleur() + ") :");
-			System.out.print("\tChoissisez une dalle : ");
-			nomDalle = Character.toUpperCase(Clavier.lire_char());
-			while(!(nomDalle >= 'A' && nomDalle <= 'P'))
+			do
 			{
-				System.out.println("Erreur saisie dans la dalle");
 				System.out.print("\tChoissisez une dalle : ");
 				nomDalle = Character.toUpperCase(Clavier.lire_char());
-			}
-			
-			System.out.print("\tQuel côte (0 à 5): ");
-			numSommet= Clavier.lire_int();
-			while(numSommet < 0 || numSommet > 5)
-			{
-				System.out.println("Erreur dans la saisie du sommet");
+				while(!(nomDalle >= 'A' && nomDalle <= 'P'))
+				{
+					System.out.println("Erreur saisie dans la dalle");
+					System.out.print("\tChoissisez une dalle : ");
+					nomDalle = Character.toUpperCase(Clavier.lire_char());
+				}
+				
 				System.out.print("\tQuel côte (0 à 5): ");
 				numSommet= Clavier.lire_int();
+				while(numSommet < 0 || numSommet > 5)
+				{
+					System.out.println("Erreur dans la saisie du sommet");
+					System.out.print("\tQuel côte (0 à 5): ");
+					numSommet= Clavier.lire_int();
+				}
+				bOk = this.metier.poserPilier(1, nomDalle, numSommet);
 			}
-			this.metier.poserPilier(1, nomDalle, numSommet);
+			while(!bOk);
 
 			//On met à jour la Grille
 	
@@ -71,24 +76,28 @@ public class Controleur
 			//Choix de jeux du Joueur 2
 
 			System.out.println("Tour du joueur 2 (" + this.metier.getJoueur(2).getCouleur() + ") :");
-			System.out.print("\tChoissisez une dalle : ");
-			nomDalle = Character.toUpperCase(Clavier.lire_char());
-			while(!(nomDalle >= 'A' && nomDalle <= 'P'))
-			{
-				System.out.println("Erreur saisie dans la dalle");
+			do
+			{	
 				System.out.print("\tChoissisez une dalle : ");
 				nomDalle = Character.toUpperCase(Clavier.lire_char());
-			}
+				while(!(nomDalle >= 'A' && nomDalle <= 'P'))
+				{
+					System.out.println("Erreur saisie dans la dalle");
+					System.out.print("\tChoissisez une dalle : ");
+					nomDalle = Character.toUpperCase(Clavier.lire_char());
+				}
 
-			System.out.print("\tQuel côte (0 à 5): ");
-			numSommet= Clavier.lire_int();
-			while(numSommet < 0 || numSommet > 5)
-			{
-				System.out.println("Erreur dans la saisie du sommet");
 				System.out.print("\tQuel côte (0 à 5): ");
 				numSommet= Clavier.lire_int();
+				while(numSommet < 0 || numSommet > 5)
+				{
+					System.out.println("Erreur dans la saisie du sommet");
+					System.out.print("\tQuel côte (0 à 5): ");
+					numSommet= Clavier.lire_int();
+				}
+				bOk = this.metier.poserPilier(2, nomDalle, numSommet);	
 			}
-			this.metier.poserPilier(2, nomDalle, numSommet);		
+			while(!bOk);	
 
 			this.ihm.miseAJourGrille();
 			this.metier.finDeTour();

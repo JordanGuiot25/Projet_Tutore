@@ -415,8 +415,11 @@ public class Parterre
 		{
 			if ( dalle.getNom() == nomDalle )
 			{
-				dalle.rajoutPillier(joueur.getCouleur(), numSommet);
-				joueur.incrementationNbPilier(-1);
+				if( dalle.rajoutPillier(joueur.getCouleur(), numSommet))
+				{	
+					joueur.incrementationNbPilier(-1);
+					return true;
+				}
 			}
 		}
 
