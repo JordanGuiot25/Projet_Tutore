@@ -123,11 +123,11 @@ public class Controleur
 	
 	public void DeplacerFrames(double posX, double posY, char frame)
 	{
-		if(frame == 'd')
+		if(frame == 'd' && this.ihmAide != null && this.ihm != null)
 		{
 			ihmAide.setLocation((int) posX, (int) posY);
 		}
-		else
+		if(frame == 'a' && this.ihmAide != null && this.ihm != null)
 		{
 			ihm.setLocation( (int) posX , (int) posY);
 		}
