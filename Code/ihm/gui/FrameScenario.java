@@ -1,11 +1,8 @@
 package PilierDeLaTerre.ihm.gui;
 
 import PilierDeLaTerre.Controleur;
-import PilierDeLaTerre.metier.Dalle;
-import PilierDeLaTerre.metier.Pilier;
 
 import javax.swing.JPanel;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import javax.swing.JLabel;
@@ -14,27 +11,22 @@ import java.awt.BorderLayout;
 
 import java.awt.event.*;
 
-import java.awt.Point;
 
-public class FrameAide extends JFrame implements ComponentListener
+public class FrameScenario extends JFrame implements ActionListener
 {
-    public static final double POS_X = -400;
-	public static final double POS_Y = 0;
-
     private Controleur ctrl;
     
-    public FrameAide(Controleur ctrl)
+    public FrameScenario(Controleur ctrl)
     {
         this.ctrl = ctrl;
 
-		this.setTitle    ("Aide");
+		this.setTitle    ("Scenario");
         this.setLayout( new BorderLayout());
         this.setSize     (400, 350    );
         this.setLocation (400, 0    );
 
 
 
-        JLabel lb = new JLabel(new ImageIcon("../Ressources/Hexagone.png"));
 
         this.add(lb,BorderLayout.CENTER);
 

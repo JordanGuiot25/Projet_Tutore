@@ -26,10 +26,11 @@ public class Controleur
 	private FrameMenu   ihmMenu;
 	private FrameAide   ihmAide;
 	private Parterre    metier ;
+	private boolean 	bDebutPartie;
 
 	public Controleur()
 	{
-		this.metier = Scenario.getScenario(0);
+		this.bDebutPartie = false;
 		this.ihmMenu= new FrameMenu(this);
 		this.ihm    = new FrameDessin(this);
 		this.ihmAide= new FrameAide  (this);
@@ -38,8 +39,8 @@ public class Controleur
 		{
 			System.out.println("-------------------------------");
 			System.out.println("Tour " + this.metier.getTour() );
-			char nomDalle;
-			int  numSommet;
+			char nomDalle = '.';
+			int  numSommet=  0;
 			boolean bOk = false;
 
 			
@@ -68,43 +69,49 @@ public class Controleur
 
 				bOk = this.metier.poserPilier(1, nomDalle, numSommet);
 			}
+			System.out.println("-------------------");
 			
 
-			//On met à jour la Grille
+			//On met à jour la Grille ET on verifie les piliers
 	
+			this.ihm.miseAJourGrille();
+			this.metier.finTourJoueur(nomDalle, numSommet, this.metier.getJoueur(1).getCouleur());
 			this.ihm.miseAJourGrille();
 
 
 
 			//Choix de jeux du Joueur 2
-
-			System.out.println("Tour du joueur 2 (" + this.metier.getJoueur(2).getCouleur() + ") :");
+			System.out.println("-------------------");
+			System.out.println("| Tour du joueur 2 (" + this.metier.getJoueur(2).getCouleur() + ") :");
 			bOk = false;
 			while(!bOk)
 			{	
-				System.out.print("\tChoissisez une dalle : ");
+				System.out.print("|\tChoissisez une dalle : ");
 				nomDalle = Character.toUpperCase(Clavier.lire_char());
 				while(!(nomDalle >= 'A' && nomDalle <= 'P'))
 				{
 					System.out.println("Erreur saisie dans la dalle");
-					System.out.print("\tChoissisez une dalle : ");
+					System.out.print("|\tChoissisez une dalle : ");
 					nomDalle = Character.toUpperCase(Clavier.lire_char());
 				}
 
-				System.out.print("\tQuel côte (0 à 5): ");
+				System.out.print("|\tQuel côte (0 à 5): ");
 				numSommet= Clavier.lire_int();
 				while(numSommet < 0 || numSommet > 5)
 				{
 					System.out.println("Erreur dans la saisie du sommet");
-					System.out.print("\tQuel côte (0 à 5): ");
+					System.out.print("|\tQuel côte (0 à 5): ");
 					numSommet= Clavier.lire_int();
 				}
 				bOk = this.metier.poserPilier(2, nomDalle, numSommet);	
 			}	
+			System.out.println("-------------------");
 
 			this.ihm.miseAJourGrille();
-			this.metier.finDeTour();
+			this.metier.finTourJoueur(nomDalle, numSommet, this.metier.getJoueur(2).getCouleur());
 			this.ihm.miseAJourGrille();
+
+			this.metier.prochainTour();
 		}
 		System.out.println("FIN DE LA PARTIE");
 		System.out.println("Le gagnant est le joueur :" + this.metier.getGagnant().getNumJoueur() );
@@ -144,13 +151,34 @@ public class Controleur
 
 	public void LancerPartieRapide()
 	{
-		System.out.println("partieRapide");
+		this.ihmMenu.setVisible(false);
+		this.metier = Scenario.getScenario(0);
+		this.ihm.setVisible(true);
+		this.ihmAide.setVisible(true);
+		this.bDebutPartie = true;
 	}
 
 	public void LancerPartieCustom()
 	{
-		System.out.println("partieCustom");
 	}
+
+	public void Quitter()
+	{
+		System.exit(0);
+	}
+
+	public void lancerScenario()
+	{
+		
+		//this.ihmMenu.setVisible(false);
+		//this.ihmScenario.setVisible(true);
+		//int numScenario = this.ihmScenario.getScenario();
+		//this.metier = Scenario.getScenario(nomScenario);
+		//this.ihm.setVisible(true);
+		//this.ihmAide.setVisible(true);
+		//this.bDebutPartie = true;
+	}
+	
 
 
 	public ArrayList<Dalle> getGrilleDalles() 
