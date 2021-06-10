@@ -17,8 +17,8 @@ public class FrameMenu extends JFrame
         this.ctrl = ctrl;
         this.setTitle    ( "Les pilier de la terre" );
         this.setLocation (  10,  10 );
-        this.setSize     ( 400, 400 );
-
+        this.setSize     ( 550, 367 );
+        this.setResizable(false);
        
         this.panelMenu = new PanelMenu(ctrl);
         this.add ( this.panelMenu );

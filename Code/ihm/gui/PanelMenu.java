@@ -35,11 +35,12 @@ public class PanelMenu extends JPanel implements ActionListener
         this.bouttonPartieCustom = new JButton("Partie custom");
         this.bouttonPartieRapide = new JButton("Partie rapide");
         JPanel panelBouton = new JPanel(new GridLayout(1,2));
-        this.imgFond = getToolkit().getImage ( "../Ressources/Dalle.png" );
+        this.imgFond = getToolkit().getImage ( "../Ressources/fond.png" );
         /* placement des composants */
         this.add(panelBouton, BorderLayout.SOUTH);
         panelBouton.add(bouttonPartieRapide);
         panelBouton.add(bouttonPartieCustom);
+        panelBouton.setOpaque ( true );
 
         /* activation des composants */
         this.bouttonPartieCustom.addActionListener(this);
@@ -66,7 +67,7 @@ public class PanelMenu extends JPanel implements ActionListener
 
         Graphics2D g2 = (Graphics2D) g;
 
-        g2.drawImage ( this.imgFond, 100, 100, this );
+        g2.drawImage ( this.imgFond, 0, 0, this );
     }
 
 
