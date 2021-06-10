@@ -2,6 +2,7 @@ package PilierDeLaTerre;
 
 import PilierDeLaTerre.ihm.gui.FrameAide;
 import PilierDeLaTerre.ihm.gui.FrameDessin;
+import PilierDeLaTerre.ihm.gui.FrameMenu;
 import PilierDeLaTerre.ihm.cui.IhmCui;
 import PilierDeLaTerre.metier.Dalle;
 import PilierDeLaTerre.metier.Parterre;
@@ -22,13 +23,14 @@ import PilierDeLaTerre.metier.Joueur;
 public class Controleur
 {
 	private FrameDessin ihm    ;
+	private FrameMenu   ihmMenu;
 	private FrameAide   ihmAide;
 	private Parterre    metier ;
 
 	public Controleur()
 	{
 		this.metier = Scenario.getScenario(0);
-
+		this.ihmMenu= new FrameMenu(this);
 		this.ihm    = new FrameDessin(this);
 		this.ihmAide= new FrameAide  (this);
 
