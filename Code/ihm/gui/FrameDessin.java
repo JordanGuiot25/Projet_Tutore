@@ -15,6 +15,8 @@ public class FrameDessin extends JFrame implements ComponentListener
 {
 	private PanelDessin panel	 ;
 	private Controleur  ctrl	 ;
+	public static final double POS_X = 100;
+	public static final double POS_Y = 100;
 
 	public FrameDessin(Controleur  ctrl)
 	{
@@ -33,9 +35,10 @@ public class FrameDessin extends JFrame implements ComponentListener
 		this.setVisible(true);
 	}
 
-	public void componentMoved​(ComponentEvent e)
-    {
-			this.ctrl.moveFrame('P');
+	public void componentMoved(ComponentEvent e) 
+	{
+		Point p = this.getLocation(); 
+		ctrl.DeplacerFrames(p.getX() + POS_X ,p.getY() + POS_Y, 'p');
 	}
 
 	public void componentHidden​(ComponentEvent e)

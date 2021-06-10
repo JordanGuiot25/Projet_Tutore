@@ -111,20 +111,16 @@ public class Controleur
 	}
 
 
-	public void moveFrame ( char orig )
+	
+	public void DeplacerFrames(double posX, double posY, char frame)
 	{
-		Point p;
-
-		if ( orig == 'P' && this.ihm != null && this.ihmAide != null )
+		if(frame == 'p')
 		{
-			p = this.ihm.getLocation();
-			this.ihmAide.setLocation ( p.x,p.y + 400 );
+			ihmAide.setLocation((int) posX, (int) posY);
 		}
-
-		if ( orig == 'J' && this.ihm != null && this.ihmAide != null )
+		else
 		{
-			p = this.ihmAide.getLocation();
-			this.ihm.setLocation ( p.x, p.y - 400 );
+			ihm.setLocation( (int) posX , (int) posY);
 		}
 	}
 
@@ -132,6 +128,16 @@ public class Controleur
 	public static void main (String[] a)
 	{
 		new Controleur();
+	}
+
+	public void LancerPartieRapide()
+	{
+		System.out.println("partieRapide");
+	}
+
+	public void LancerPartieCustom()
+	{
+		System.out.println("partieCustom");
 	}
 
 

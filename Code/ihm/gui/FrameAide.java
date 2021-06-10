@@ -18,7 +18,8 @@ import java.awt.Point;
 
 public class FrameAide extends JFrame implements ComponentListener
 {
-    
+    public static final double POS_X = 100;
+	public static final double POS_Y = 150;
 
     private Controleur ctrl;
     
@@ -43,10 +44,14 @@ public class FrameAide extends JFrame implements ComponentListener
     }
 
 
-    public void componentMoved​(ComponentEvent e)
-    {
-        this.ctrl.moveFrame('J');
-    }
+    public void componentMoved(ComponentEvent e) 
+	{
+		Point p = this.getLocation(); 
+		
+
+		ctrl.DeplacerFrames(p.getX() + POS_X, p.getY() + POS_Y, 'a');
+
+	}
   
     public void componentHidden​(ComponentEvent e)
 	{

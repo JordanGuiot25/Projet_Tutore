@@ -8,11 +8,12 @@ import java.awt.Font;
 import java.awt.MediaTracker;
 import java.awt.event.*;
 import java.awt.Toolkit;
+import java.awt.FontMetrics;
 
 public class PanelAffichage extends JPanel
 {
 
-	private ParterrePersonalise ParterrePersonalise;
+	private ParterrePersonalise parterrePersonalise;
 	private Image imgDalle;
 	private Image imgDalle50;
 	private int coordx ;
@@ -29,9 +30,9 @@ public class PanelAffichage extends JPanel
 
 	
 	
-	public PanelAffichage(ParterrePersonalise ParterrePersonalise)
+	public PanelAffichage(ParterrePersonalise parterrePersonalise)
 	{
-		this.ParterrePersonalise = ParterrePersonalise;
+		this.parterrePersonalise = parterrePersonalise;
 		this.bEstAdjacent = false;
 		this.coordx = 0;
 		this.coordy = 33;
@@ -39,7 +40,7 @@ public class PanelAffichage extends JPanel
 		initPlateau();
 		initCoord();
 
-		this.setPreferredSize((new Dimension(this.resX,this.resY)));
+		this.setPreferredSize((new Dimension(this.resX+34,this.resY)));
 		this.setLayout(null);
 
 		this.setBackground(new Color(0,0,0,0));
@@ -85,12 +86,18 @@ public class PanelAffichage extends JPanel
 			{
 				if(!(tabX[i][y]==-1) &&!(tabY[i][y]==-1))
 				{
-					/*System.out.println(tabX[i][y]);
-					System.out.println(tabY[i][y]);*/
+					FontMetrics fontMetrics = g.getFontMetrics();
+
+					//System.out.println("coucou");
+					String s =""+this.parterrePersonalise.getDalle(i,y).getNom();
 					g.drawImage( imgDalle, tabX[i][y] ,tabY[i][y] , null);
-					
+					g.drawString(s, (tabX[i][y]+37)-fontMetrics.stringWidth(s), tabY[i][y]+37);
 				}
-				if(bEstAdjacent){g.drawImage( imgDalle50, this.coordx ,this.coordy, null);}
+				//System.out.println(bEstAdjacent);
+				if(this.parterrePersonalise.getDalle(i,y)!=null&&this.parterrePersonalise.getLastDalle()!='Q')
+				{
+					if(bEstAdjacent){g.drawImage( imgDalle50, this.coordx ,this.coordy, null);}
+				}
 				
 			}
 		}
@@ -125,7 +132,7 @@ public class PanelAffichage extends JPanel
 
 			for(int u = 0; u < this.lblDets.length; u ++)
 			{
-				JButton btn = new JButton(""+i+""+u);
+				JButton btn = new JButton(/*""+i+""+u*/);
 				//System.out.print(i + ":" + u + " ");
 				this.lblDets[i][u] = btn;
 				this.add(this.lblDets[i][u]);
@@ -161,7 +168,7 @@ public class PanelAffichage extends JPanel
 	{
 		public void mouseEntered (MouseEvent e)
 		{
-			
+			//if(nbDalle==16){break;}
 			JButton btnTmp = (JButton) e.getComponent();
 			//System.out.println("l"+btnTmp.getText());
 				for(int i = 0 ; i < tabX.length ; i ++)
@@ -171,12 +178,12 @@ public class PanelAffichage extends JPanel
 						if(btnTmp.equals(PanelAffichage.this.lblDets[i][y]))
 						{
 							//System.out.println(ParterrePersonalise.aUneDalleAdjacente(i,y));
-							if(ParterrePersonalise.aUneDalleAdjacente(i,y))
+							if(parterrePersonalise.aUneDalleAdjacente(i,y))
 							{
 								PanelAffichage.this.coordx =(int) e.getComponent().getLocation().x;
 								PanelAffichage.this.coordy =(int) e.getComponent().getLocation().y;
 								PanelAffichage.this.bEstAdjacent = true;
-								//System.out.println("coucou");
+								
 								
 							}
 							else{PanelAffichage.this.bEstAdjacent = false;}
@@ -199,7 +206,7 @@ public class PanelAffichage extends JPanel
 		public void mousePressed (MouseEvent e)
 		{
 			repaint();
-			Dalle d = new Dalle();
+			
 			int i = 0 ;
 			int y = 0 ;		
 			JButton btnTmp = (JButton) e.getComponent();
@@ -210,12 +217,18 @@ public class PanelAffichage extends JPanel
 					{
 						if(btnTmp.equals(btn))
 						{
-							if(ParterrePersonalise.ajouterDalle(d,i,y))
-							{
-								tabX[i][y] = btn.getLocation().x;
-								tabY[i][y] = btn.getLocation().y;
-								//System.out.println(btn.getLocation().x + " : " + btn.getLocation().y);
-							}
+							
+							if(parterrePersonalise.getLastDalle()!='Q')
+								if(parterrePersonalise.emplacementVide(i,y))
+								{
+									Dalle d = new Dalle();
+									if(parterrePersonalise.ajouterDalle(d,i,y))
+									{
+										tabX[i][y] = btn.getLocation().x;
+										tabY[i][y] = btn.getLocation().y;
+
+									}
+								}
 						}
 						y++;
 					}
