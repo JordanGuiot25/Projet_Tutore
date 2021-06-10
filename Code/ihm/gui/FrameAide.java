@@ -18,8 +18,8 @@ import java.awt.Point;
 
 public class FrameAide extends JFrame implements ComponentListener
 {
-    public static final double POS_X = 100;
-	public static final double POS_Y = 150;
+    public static final double POS_X = -400;
+	public static final double POS_Y = 0;
 
     private Controleur ctrl;
     
@@ -38,7 +38,7 @@ public class FrameAide extends JFrame implements ComponentListener
 
         this.add(lb,BorderLayout.CENTER);
 
-        
+        this.addComponentListener(this);
 
         this.setVisible(true);
     }

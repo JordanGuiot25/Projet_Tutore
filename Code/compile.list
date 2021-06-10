@@ -7,11 +7,11 @@
 ./ihm/cui/IhmCui.java
 ./ihm/gui/FrameDessin.java
 ./ihm/gui/PanelDessin.java
-<<<<<<< HEAD
+
 ./ihm/gui/FrameAide.java
-=======
+
 ./ihm/gui/FrameMenu.java
 ./ihm/gui/PanelMenu.java
->>>>>>> 0b636ab76e0050725a3553449c793ee5f4ecfc86
+
 
 ./Controleur.java
