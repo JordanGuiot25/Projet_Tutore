@@ -30,7 +30,7 @@ public class FrameAide extends JFrame
 		this.setTitle    ("Aide");
         this.setLayout( new BorderLayout());
         this.setSize     (400, 350    );
-        this.setLocation (1350, 350    );
+        this.setLocation (100, 0    );
 
 
 

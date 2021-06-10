@@ -50,7 +50,6 @@ public class Controleur
 
 			
 			//Choix de jeux du Joueur 1
-
 			System.out.println("Tour du joueur 1 (" + this.metier.getJoueur(1).getCouleur() + ") :");
 			while(!bOk)
 			{
@@ -122,7 +121,6 @@ public class Controleur
 		System.out.println("Le gagnant est le joueur :" + this.metier.getGagnant().getNumJoueur() );
 	}
 
-	
 	public void Sauvegarde()
 	{
 		try
@@ -134,8 +132,6 @@ public class Controleur
 		catch(Exception e){ e.printStackTrace(); }
 	}
 
-
-	
 	public void majLocation(char Destination)
 	{
 		if( Destination == 'P' && this.ihm != null & this.ihmAide != null)
@@ -155,7 +151,7 @@ public class Controleur
 	{
 		this.ihmMenu.setVisible(false);
 
-		this.metier = Scenario.getScenario(0);
+		this.metier = Scenario.getScenario(4);
 
 		this.ihm    .setVisible(true);
 		this.ihmAide.setVisible(true);

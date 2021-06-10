@@ -24,7 +24,7 @@ public class FrameDessin extends JFrame
 
 
 		this.setTitle    ("Pilier de la terre");
-		this.setLocation (350, 350    );
+		this.setLocation (0, 0    );
 		this.setSize     (1000, 650    );
 
 		this.panel   = new PanelDessin(this.ctrl);

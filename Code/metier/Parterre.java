@@ -36,8 +36,8 @@ public class Parterre
 
 	public void finTourJoueur(char nomDalle, int numSommet, char coulJoueur)
 	{
-		this.verifControle();
 		this.verifEnfermement(nomDalle, numSommet, coulJoueur);
+		this.verifControle();
 
 		this.victoire();
 	}
