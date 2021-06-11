@@ -70,6 +70,7 @@ public class FrameJoueur extends JFrame implements ActionListener
         this.panelScore.add(this.labelScore);
 
         /* actionement des composants */
+        this.txtSommet .addKeyListener   ( new GestionTouche() );
         this.btnValider.addActionListener(this);
         
 
@@ -127,6 +128,41 @@ public class FrameJoueur extends JFrame implements ActionListener
 		public void componentMoved (ComponentEvent  e)
 		{
 			FrameJoueur.this.ctrl.majLocation( 'P' );
+		}
+	}
+
+    private class GestionTouche extends KeyAdapter
+	{
+		public void keyPressed (KeyEvent  e)
+		{
+			if ( e.getKeyCode() == KeyEvent.VK_ENTER)
+            {
+                FrameJoueur.this.lblJoueur.setText("Joueur "+ FrameJoueur.this.joueur.getNumJoueur() );
+                if( FrameJoueur.this.txtNumDalle != null && FrameJoueur.this.txtNumDalle.getText().length() == 1 &&
+                    FrameJoueur.this.txtSommet   != null && FrameJoueur.this.txtSommet  .getText().length() == 1     )
+                {
+                    char nomDalle = Character.toUpperCase(FrameJoueur.this.txtNumDalle.getText().charAt(0));
+                    int  numPilier= Integer.parseInt(""+  FrameJoueur.this.txtSommet.getText().charAt(0));
+
+                    if( nomDalle >= 'A' && nomDalle <= 'P')
+                    {
+                        if(numPilier >= 0 && numPilier <= 5 )
+                        {
+                            if ( FrameJoueur.this.ctrl.poserPilier(FrameJoueur.this.joueur.getNumJoueur(),nomDalle, numPilier) )
+                                FrameJoueur.this.ctrl.changementJoueur( FrameJoueur.this.joueur );
+                            else
+                                FrameJoueur.this.lblJoueur.setText( FrameJoueur.this.lblJoueur.getText() + "   Erreur: Impossible de poser pilier."  );
+                        }
+                        else
+                            FrameJoueur.this.lblJoueur.setText( FrameJoueur.this.lblJoueur.getText() + "   Erreur: Sommet invalide."  );
+                    }
+                    else
+                        FrameJoueur.this.lblJoueur.setText( FrameJoueur.this.lblJoueur.getText() + "   Erreur: Dalle invalide."  );
+
+                }
+                else
+                            FrameJoueur.this.lblJoueur.setText( FrameJoueur.this.lblJoueur.getText() + "   Erreur: Saisie invalide."  );
+            }
 		}
 	}
 }
