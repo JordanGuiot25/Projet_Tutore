@@ -15,6 +15,7 @@
 ./ihm/gui/PanelMenu.java
 
 ./ihm/gui/FrameScenario.java
+./ihm/gui/PanelScenario.java
 
 
 ./Controleur.java
