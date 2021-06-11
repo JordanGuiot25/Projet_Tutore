@@ -34,18 +34,17 @@ public class FrameJoueur extends JFrame implements ActionListener
     private JTextField txtNumDalle;
     private JTextField txtSommet;
     private JButton    btnValider;
-    private JPanel     panelNbPilier;
-    private JLabel     labelNbPilier;
-    private JLabel     labelNbPilierDetruit;
+    private JPanel     panelScore;
+    private JLabel     labelScore;
 
-    public FrameJoueur(Controleur ctrl,Joueur j)
+    public FrameJoueur(Controleur ctrl)
     {
         this.ctrl = ctrl;
-        joueur = j;
+        joueur = null;
 
 		this.setTitle    ("Joueur1");
         this.setLayout( new BorderLayout());
-        this.setSize     (400, 350    );
+        this.setSize     (450, 650    );
         this.setLocation (1350, 350    );
 
         /*creation des composants*/
@@ -57,9 +56,7 @@ public class FrameJoueur extends JFrame implements ActionListener
         this.txtSommet = new JTextField();
         this.btnValider = new JButton("Valider");
         this.panelScore = new JPanel(new GridLayout(1,4));
-        this.labelNbPilier = new JLabel("24");
-        this.labelNbPilierDetruit = new JLabel("0");
-
+        this.labelScore = new JLabel("nombre de pilier restant: 24  nombre de pilier detruit: 0");
         /* positionement des composants */
         this.add(this.lbImg,BorderLayout.NORTH);
         this.add(this.panelJoueur,BorderLayout.CENTER);
@@ -70,10 +67,7 @@ public class FrameJoueur extends JFrame implements ActionListener
         this.panelJoueur.add(this.txtSommet);
         this.panelJoueur.add(this.btnValider);
         this.add(this.panelScore,BorderLayout.SOUTH);
-        this.panelJoueur.add(new JLabel("nd pilier"));
-        this.panelScore.add(this.labelNbPilier);
-        this.panelJoueur.add(new JLabel("nb pilier detruit"));
-        this.panelScore.add(this.labelNbPilierDetruit);
+        this.panelScore.add(this.labelScore);
 
         /* actionement des composants */
         this.btnValider.addActionListener(this);
@@ -85,28 +79,27 @@ public class FrameJoueur extends JFrame implements ActionListener
         this.setResizable(false);
     }
 
-    public void ChangerJoueur(Joueur j)
+    public void changerJoueur(Joueur j)
     {
         this.joueur = j;
-        this.setTitle("joueur"+j.getNom());
-        this.lblJoueur.setText("joueur"+j.getNom());
+        this.setTitle("joueur"+j.getNumJoueur());
+        this.lblJoueur.setText("joueur"+j.getNumJoueur());
         this.txtNumDalle.setText("");
         this.txtSommet.setText("");
-        this.labelNbPilier.setText(""+j.getNbPilier());
-        this.labelNbPilierDetruit.setText(""+j.getNbPilierDetruis());
+        this.labelScore.setText("nombre de pilier restant: "+j.getNbPilier()+"   nombre de pilier detruit: "+j.getNbPilierDetruis());
     }
 
     public void actionPerformed(ActionEvent e)
     {
-        char nomDalle = Character.toUpperCase(this.labelNbPilier.getText().charAt(0));
-        int  numPilier= Integer.parseInt(""+  this.labelNbPilier.getText().charAt(0));
+        char nomDalle = Character.toUpperCase(this.txtNumDalle.getText().charAt(0));
+        int  numPilier= Integer.parseInt(""+  this.txtSommet.getText().charAt(0));
         if(e.getSource() == this.btnValider)
         {
             if( nomDalle >= 'A' && nomDalle <= 'P')
             {
                 if(numPilier >= 1 && numPilier <= 5 )
                 {
-                    this.ctrl.poserPilier(this.joueur.getNom(),nomDalle,numPilier);
+                    this.ctrl.poserPilier(this.joueur.getCouleur(),nomDalle,numPilier);
                 }
             }
 
@@ -117,15 +110,7 @@ public class FrameJoueur extends JFrame implements ActionListener
 	{
 		public void componentMoved (ComponentEvent  e)
 		{
-			FrameAide.this.ctrl.majLocation( 'P' );
+			FrameJoueur.this.ctrl.majLocation( 'P' );
 		}
 	}
-
-
-
-    public static void main(String[] args)
-    {
-        new FrameJoueur();
-    }
-
 }
