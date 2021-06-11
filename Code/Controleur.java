@@ -134,6 +134,11 @@ public class Controleur
 		return(this.metier.poserPilier(numJoueur,nomDalle,numSommet));
 	}
 
+	public void maj()
+	{
+		this.ihm.miseAJourGrille();
+	}
+
 	public void Sauvegarde()
 	{
 		try
