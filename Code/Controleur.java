@@ -121,6 +121,11 @@ public class Controleur
 		System.out.println("Le gagnant est le joueur :" + this.metier.getGagnant().getNumJoueur() );
 	}
 
+	public boolean poserPilier(int numJoueur, char nomDalle, int numSommet )
+	{
+		return(this.metier.poserPilier(numJoueur,nomDalle,numSommet));
+	}
+
 	public void Sauvegarde()
 	{
 		try
