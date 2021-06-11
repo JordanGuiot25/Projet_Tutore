@@ -347,7 +347,15 @@ public class Dalle
 		return false;
 	}
 
-	public void setNumJoueur(int num ) { this.numJoueur = num; }
+	public void setNumJoueur(int num )
+	{
+		this.numJoueur = num;
+
+		if ( num == 2 )
+			this.tabPilierDetruitJ2 = new boolean[6];
+		if ( num == 1 )
+			this.tabPilierDetruitJ1 = new boolean[6];
+	}
 	public int  getNumJoueur()         { return this.numJoueur; }
 
 	public boolean   setPilierDetruit(int numSommet)

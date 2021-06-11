@@ -43,6 +43,7 @@ public class Controleur
 
 		while( this.metier.getGagnant() == null )
 		{
+			
 			this.ihmJoueur.changerJoueur(this.metier.getJoueur(1));
 			System.out.println("-------------------------------");
 			System.out.println("Tour " + this.metier.getTour() );
@@ -76,7 +77,7 @@ public class Controleur
 				bOk = this.metier.poserPilier(1, nomDalle, numSommet);
 			}
 			System.out.println("-------------------");
-			
+			this.metier.setNumJoueur(1);
 
 			//On met à jour la Grille ET on verifie les piliers
 	
@@ -85,7 +86,7 @@ public class Controleur
 			this.ihm.miseAJourGrille();
 
 
-
+			
 			//Choix de jeux du Joueur 2
 			System.out.println("-------------------");
 			System.out.println("| Tour du joueur 2 (" + this.metier.getJoueur(2).getCouleur() + ") :");
@@ -112,6 +113,7 @@ public class Controleur
 				bOk = this.metier.poserPilier(2, nomDalle, numSommet);	
 			}	
 			System.out.println("-------------------");
+			this.metier.setNumJoueur(2);
 
 			this.ihm.miseAJourGrille();
 			this.metier.finTourJoueur(nomDalle, numSommet, this.metier.getJoueur(2).getCouleur());
