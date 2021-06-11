@@ -64,11 +64,11 @@ public class IhmCui
     {
         /* affichage des liaison entre dalles*/
 
-        String sRep =   "          +-----------------------+\n"+
-                        "          |         Lié à         |\n"+
-                        "          +---+---+---+---+---+---+\n"+
-                        "          | 0 | 1 | 2 | 3 | 4 | 5 |\n"+
-                        "+---------+---+---+---+---+---+---+\n";
+        String sRep =   "          +-----------------------+-----------+\n"+
+                        "          |         Lié à         | coordonées|\n"+
+                        "          +---+---+---+---+---+---+-----------+\n"+
+                        "          | 0 | 1 | 2 | 3 | 4 | 5 |  x  |  y  |\n"+
+                        "+---------+---+---+---+---+---+---+-----+-----+\n";
         for(Dalle d: dalles)
         {
             if(d != null)
@@ -76,11 +76,16 @@ public class IhmCui
                 sRep   +="| Dalle " + d.getNom()  + " | "                       + this.DalleToChar(d.getDalleAdjacent(0)) +
                         " | "+ this.DalleToChar(d.getDalleAdjacent(1))  + " | " + this.DalleToChar(d.getDalleAdjacent(2)) +
                         " | "+ this.DalleToChar(d.getDalleAdjacent(3))  + " | " + this.DalleToChar(d.getDalleAdjacent(4)) +
-                        " | "+ this.DalleToChar(d.getDalleAdjacent(5))  + " |\n"+
-                        "+---------+---+---+---+---+---+---+\n";
+                        " | "+ this.DalleToChar(d.getDalleAdjacent(5))  + " |" + String.format("%5d",d.getX())+"|" +String.format("%5d",d.getY())+   "|\n"+
+                        "+---------+---+---+---+---+---+---+-----+-----+\n";
             }
         }
         return sRep;
+    }
+
+    public String toString()
+    {
+        return this.getLiasonsDalle() +"\n\n\n" + this.getLiasonsPilier();
     }
 
     public char DalleToChar(Dalle d)
