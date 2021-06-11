@@ -76,20 +76,11 @@ public class Parterre
 			this.listeGroupePilier.clear();
 			if( tabVoisin[cpt] != null && tabVoisin[cpt].getCoul() != coulPilier)
 			{
-				System.out.println("Pilier detecter : " + tabVoisin[cpt].getCoul()+ " tabVoisin: " + cpt);
 
-				System.out.println("Dalle " + dalle.getNom() );
-				System.out.println("Couleur " + tabVoisin[cpt].getCoul());
-				System.out.println("Emplacement sommet : " + dalle.getIndicePilier(tabVoisin[cpt]));
 				
 				this.listeGroupePilier.add(tabVoisin[cpt]);
 
 				Dalle dalleVoisin = this.getDallePilier(tabVoisin[cpt]);
-				if( dalleVoisin != null )
-				{
-					System.out.println("Dalle du pilier : " + dalleVoisin.getNom());
-					System.out.println("Au sommet       : " + dalleVoisin.getIndicePilier(tabVoisin[cpt]));
-				}
 				
 
 				Pilier[] tabPilierDuVoisin = this.getVoisin(dalleVoisin, dalleVoisin.getIndicePilier(tabVoisin[cpt]));
@@ -221,15 +212,6 @@ public class Parterre
 					numPilierVoisin = 5;
 				voisin[2] = dalle.getDalleAdjacent(numCoteAdjacent).getPilier(numPilierVoisin);
 			}
-		}
-
-		System.out.println("\t\t ListeVoisin de dalle " + dalle.getNom() + " " + numSommet +" :");
-		for(Pilier p : voisin )
-		{
-			if( p != null )
-				System.out.println("\t\t" + p.getCoul() );
-			else
-				System.out.println("\t\t null");
 		}
 		
 		return voisin;

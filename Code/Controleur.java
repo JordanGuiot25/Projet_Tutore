@@ -160,7 +160,7 @@ public class Controleur
 	{
 		this.ihmMenu.setVisible(false);
 
-		this.metier = Scenario.getScenario(4);
+		this.metier = Scenario.getScenario(0);
 
 		this.ihm    .setVisible(true);
 		this.ihmJoueur.setVisible(true);
