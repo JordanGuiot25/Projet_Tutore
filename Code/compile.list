@@ -3,11 +3,16 @@
 ./metier/Joueur.java
 ./metier/Parterre.java
 ./metier/Scenario.java
+./metier/EditeurParterre.java
 
 ./ihm/cui/IhmCui.java
 ./ihm/gui/FrameDessin.java
 ./ihm/gui/PanelDessin.java
 ./ihm/gui/FrameJoueur.java
+./ihm/gui/PanelEditeurControle.java
+./ihm/gui/PanelEdtieurAffichage.java
+./ihm/gui/FrameEditeurParterre.java
+./ihm/gui/FrameControleEditeur.java
 
 ./ihm/gui/FrameAide.java
 

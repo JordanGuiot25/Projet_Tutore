@@ -1,19 +1,26 @@
-import javax.swing.*;
+package PilierDeLaTerre.ihm.gui;
 
+import PilierDeLaTerre.metier.EditeurParterre;
+import PilierDeLaTerre.metier.Dalle;
+
+
+import javax.swing.*;
 import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.MediaTracker;
+import java.awt.Point;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.awt.Toolkit;
 import java.awt.FontMetrics;
 
-public class PanelAffichage extends JPanel
+public class PanelEdtieurAffichage extends JPanel
 {
 
-	private ParterrePersonalise parterrePersonalise;
+	private EditeurParterre editeurParterre;
 	private Image imgDalle;
 	private Image imgDalle50;
 	private int coordx ;
@@ -24,15 +31,16 @@ public class PanelAffichage extends JPanel
 	private int resY = (67*tabX.length)+33;
 	private JButton[][] lblDets = new JButton[31][31];
 	private boolean bEstAdjacent;
+
 	
 
 
 
 	
 	
-	public PanelAffichage(ParterrePersonalise parterrePersonalise)
+	public PanelEdtieurAffichage(EditeurParterre editeurParterre)
 	{
-		this.parterrePersonalise = parterrePersonalise;
+		this.editeurParterre = editeurParterre;
 		this.bEstAdjacent = false;
 		this.coordx = 0;
 		this.coordy = 33;
@@ -47,8 +55,8 @@ public class PanelAffichage extends JPanel
 
 
 
-		String dalle = "../img/Dalle.png";
-		String dalle50 = "../img/Dalle50.png";
+		String dalle = "../Ressources/Dalle.png";
+		String dalle50 = "../Ressources/Dalle50.png";
 
 		imgDalle = Toolkit.getDefaultToolkit().getImage( dalle );
 		imgDalle50 = Toolkit.getDefaultToolkit().getImage( dalle50 );
@@ -89,12 +97,12 @@ public class PanelAffichage extends JPanel
 					FontMetrics fontMetrics = g.getFontMetrics();
 
 					//System.out.println("coucou");
-					String s =""+this.parterrePersonalise.getDalle(i,y).getNom();
+					String s =""+this.editeurParterre.getDalle(i,y).getNom();
 					g.drawImage( imgDalle, tabX[i][y] ,tabY[i][y] , null);
 					g.drawString(s, (tabX[i][y]+37)-fontMetrics.stringWidth(s), tabY[i][y]+37);
 				}
 				//System.out.println(bEstAdjacent);
-				if(this.parterrePersonalise.getDalle(i,y)!=null&&this.parterrePersonalise.getLastDalle()!='Q')
+				if(this.editeurParterre.getDalle(i,y)!=null&&this.editeurParterre.getLastDalle()!='Q')
 				{
 					if(bEstAdjacent){g.drawImage( imgDalle50, this.coordx ,this.coordy, null);}
 				}
@@ -117,6 +125,8 @@ public class PanelAffichage extends JPanel
 		}
 		this.tabX[15][15]=this.lblDets[15][15].getLocation().x;
 		this.tabY[15][15]=this.lblDets[15][15].getLocation().y;
+		Point pA = new Point(15,15);
+		editeurParterre.setCoord(pA, this.tabX[15][15], this.tabY[15][15]);
 	}
 
 	public void initPlateau()
@@ -175,18 +185,18 @@ public class PanelAffichage extends JPanel
 				{
 					for(int y = 0 ; y < tabX.length ; y ++)
 					{
-						if(btnTmp.equals(PanelAffichage.this.lblDets[i][y]))
+						if(btnTmp.equals(PanelEdtieurAffichage.this.lblDets[i][y]))
 						{
 							//System.out.println(ParterrePersonalise.aUneDalleAdjacente(i,y));
-							if(parterrePersonalise.aUneDalleAdjacente(i,y))
+							if(editeurParterre.aUneDalleAdjacente(i,y))
 							{
-								PanelAffichage.this.coordx =(int) e.getComponent().getLocation().x;
-								PanelAffichage.this.coordy =(int) e.getComponent().getLocation().y;
-								PanelAffichage.this.bEstAdjacent = true;
+								PanelEdtieurAffichage.this.coordx =(int) e.getComponent().getLocation().x;
+								PanelEdtieurAffichage.this.coordy =(int) e.getComponent().getLocation().y;
+								PanelEdtieurAffichage.this.bEstAdjacent = true;
 								
 								
 							}
-							else{PanelAffichage.this.bEstAdjacent = false;}
+							else{PanelEdtieurAffichage.this.bEstAdjacent = false;}
 							/*System.out.println(i+" : "+ y);
 							System.out.println(bEstAdjacent);*/
 						}
@@ -205,29 +215,32 @@ public class PanelAffichage extends JPanel
 
 		public void mousePressed (MouseEvent e)
 		{
-			repaint();
-			
-			int i = 0 ;
-			int y = 0 ;		
-			JButton btnTmp = (JButton) e.getComponent();
-			
-				for(JButton[] btnTab : PanelAffichage.this.lblDets)
+			if(e.getButton()==MouseEvent.BUTTON1)
+			{
+				repaint();
+				int i = 0 ;
+				int y = 0 ;		
+				JButton btnTmp = (JButton) e.getComponent();
+				for(JButton[] btnTab : PanelEdtieurAffichage.this.lblDets)
 				{
 					for(JButton btn : btnTab)
 					{
 						if(btnTmp.equals(btn))
 						{
 							
-							if(parterrePersonalise.getLastDalle()!='Q')
-								if(parterrePersonalise.emplacementVide(i,y))
+							if(editeurParterre.getLastDalle()!='Q')
+								if(editeurParterre.emplacementVide(i,y))
 								{
 									Dalle d = new Dalle();
-									if(parterrePersonalise.ajouterDalle(d,i,y))
+									if(editeurParterre.ajouterDalle(d,i,y))
 									{
+										Point p = new Point(i,y);
+										editeurParterre.addCoord(p);
 										tabX[i][y] = btn.getLocation().x;
 										tabY[i][y] = btn.getLocation().y;
-
+										editeurParterre.setCoord(p,tabX[i][y], tabY[i][y]);
 									}
+									else{d.supprimerDalle();}
 								}
 						}
 						y++;
@@ -235,9 +248,19 @@ public class PanelAffichage extends JPanel
 					y = 0 ;
 					i++;
 				}
-
-			repaint();
-			
+				repaint();
+			}
+			else if(e.getButton()==MouseEvent.BUTTON3)
+			{
+				if(editeurParterre.getCoordSize()>1)
+				{
+					
+					Point p = new Point(editeurParterre.getLastCoord());
+					tabX[p.x][p.y]=-1;
+					tabY[p.x][p.y]=-1;
+					editeurParterre.supprimerDalle(p.x, p.y);
+				}
+			}
 		}
 
 		public void mouseReleased(MouseEvent e){ repaint(); }
@@ -245,6 +268,8 @@ public class PanelAffichage extends JPanel
 				
 
 	}
+
+	
 
 
 

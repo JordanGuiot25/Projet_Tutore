@@ -5,10 +5,13 @@ import PilierDeLaTerre.ihm.gui.FrameDessin;
 import PilierDeLaTerre.ihm.gui.FrameJoueur;
 import PilierDeLaTerre.ihm.gui.FrameMenu;
 import PilierDeLaTerre.ihm.gui.FrameScenario;
+import PilierDeLaTerre.ihm.gui.FrameControleEditeur;
+import PilierDeLaTerre.ihm.gui.FrameEditeurParterre;
 import PilierDeLaTerre.ihm.cui.IhmCui;
 import PilierDeLaTerre.metier.Dalle;
 import PilierDeLaTerre.metier.Parterre;
 import PilierDeLaTerre.metier.Scenario;
+import PilierDeLaTerre.metier.EditeurParterre;
 
 import iut.algo.Clavier;
 
@@ -32,6 +35,7 @@ public class Controleur
 	private Parterre    metier ;
 	private boolean 	bDebutPartie;
 	private int         numScenario;
+	private EditeurParterre editeurParterre;
 
 	public Controleur()
 	{
@@ -145,8 +149,25 @@ public class Controleur
 
 	}
 
-	public void LancerPartieCustom()
+	public void lancerPartieCustom(ArrayList<Dalle> custom)
 	{
+		this.metier = new Parterre(custom, new Joueur(1,'M'), new Joueur(2,'G'), 1);
+		this.ihm.setVisible(true);
+		this.ihmJoueur.setVisible(true);
+		this.bDebutPartie = true;
+		
+		
+	}
+
+	public void partieCustom()
+	{
+		this.ihmMenu.setVisible(false);
+		this.editeurParterre = new EditeurParterre(this);
+	}
+	
+	public void retour()
+	{
+		this.ihmMenu.setVisible(true);
 	}
 
 	public void quitter()
