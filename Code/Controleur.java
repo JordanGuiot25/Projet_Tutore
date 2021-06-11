@@ -35,103 +35,61 @@ public class Controleur
 		this.ihmMenu  = new FrameMenu   (this);
 		this.ihm      = new FrameDessin (this);
 		this.ihmJoueur= new FrameJoueur (this);
+		
 
 		this.bDebutPartie = false;
 		while( !this.bDebutPartie )
 		{
 			System.out.print("");
 		}
+		this.ihmJoueur.changerJoueur(this.metier.getJoueur(1));
+		this.ihmCui   = new IhmCui (this.metier);
 
-		while( this.metier.getGagnant() == null )
-		{
-			this.ihmCui   = new IhmCui (this.metier);
-			System.out.println(this.ihmCui.getLiasonsDalle());
-			System.out.println(this.ihmCui.getLiasonsPilier());
-			
-			this.ihmJoueur.changerJoueur(this.metier.getJoueur(1));
-			System.out.println("-------------------------------");
-			System.out.println("Tour " + this.metier.getTour() );
-			char nomDalle = '.';
-			int  numSommet=  0;
-			boolean bOk = false;
+	}
 
-			
-			//Choix de jeux du Joueur 1
-			System.out.println("Tour du joueur 1 (" + this.metier.getJoueur(1).getCouleur() + ") :");
-			while(!bOk)
-			{
-				System.out.print("\tChoissisez une dalle : ");
-				nomDalle = Character.toUpperCase(Clavier.lire_char());
-				while(!(nomDalle >= 'A' && nomDalle <= 'P'))
-				{
-					System.out.println("Erreur saisie dans la dalle");
-					System.out.print("\tChoissisez une dalle : ");
-					nomDalle = Character.toUpperCase(Clavier.lire_char());
-				}
-				
-				System.out.print("\tQuel côte (0 à 5): ");
-				numSommet= Clavier.lire_int();
-				while(numSommet < 0 || numSommet > 5)
-				{
-					System.out.println("Erreur dans la saisie du sommet");
-					System.out.print("\tQuel côte (0 à 5): ");
-					numSommet= Clavier.lire_int();
-				}
-
-				bOk = this.metier.poserPilier(1, nomDalle, numSommet);
-			}
-			System.out.println("-------------------");
-			this.metier.setNumJoueur(1);
-
-			//On met à jour la Grille ET on verifie les piliers
-	
-			this.ihm.miseAJourGrille();
-			this.metier.finTourJoueur(nomDalle, numSommet, this.metier.getJoueur(1).getCouleur());
-			this.ihm.miseAJourGrille();
-
-
-			
-			//Choix de jeux du Joueur 2
-			System.out.println("-------------------");
-			System.out.println("| Tour du joueur 2 (" + this.metier.getJoueur(2).getCouleur() + ") :");
-			bOk = false;
-			while(!bOk)
-			{	
-				System.out.print("|\tChoissisez une dalle : ");
-				nomDalle = Character.toUpperCase(Clavier.lire_char());
-				while(!(nomDalle >= 'A' && nomDalle <= 'P'))
-				{
-					System.out.println("Erreur saisie dans la dalle");
-					System.out.print("|\tChoissisez une dalle : ");
-					nomDalle = Character.toUpperCase(Clavier.lire_char());
-				}
-
-				System.out.print("|\tQuel côte (0 à 5): ");
-				numSommet= Clavier.lire_int();
-				while(numSommet < 0 || numSommet > 5)
-				{
-					System.out.println("Erreur dans la saisie du sommet");
-					System.out.print("|\tQuel côte (0 à 5): ");
-					numSommet= Clavier.lire_int();
-				}
-				bOk = this.metier.poserPilier(2, nomDalle, numSommet);	
-			}	
-			System.out.println("-------------------");
-			this.metier.setNumJoueur(2);
-
-			this.ihm.miseAJourGrille();
-			this.metier.finTourJoueur(nomDalle, numSommet, this.metier.getJoueur(2).getCouleur());
-			this.ihm.miseAJourGrille();
-
-			this.metier.prochainTour();
+	public void verificationVictoire()
+	{
+		if( this.metier.getGagnant() != null )
+		{	
+			System.out.println("FIN DE LA PARTIE");
+			System.out.println("Le gagnant est le joueur :" + this.metier.getGagnant().getNumJoueur() );
+			this.ihmJoueur.setVisible(false);
 		}
-		System.out.println("FIN DE LA PARTIE");
-		System.out.println("Le gagnant est le joueur :" + this.metier.getGagnant().getNumJoueur() );
 	}
 
 	public boolean poserPilier(int numJoueur, char nomDalle, int numSommet )
 	{
-		return(this.metier.poserPilier(numJoueur,nomDalle,numSommet));
+		if ( this.metier.poserPilier(numJoueur,nomDalle,numSommet) )
+		{
+
+			this.metier.setNumJoueur(numJoueur);
+
+			this.ihm.miseAJourGrille();
+			this.metier.finTourJoueur(nomDalle, numSommet, this.metier.getJoueur(numJoueur).getCouleur());
+			this.ihm.miseAJourGrille();
+
+			System.out.println(this.ihmCui);
+
+			this.verificationVictoire();
+
+			return true;
+		}
+
+		return false;
+	}
+
+	public void changementJoueur(Joueur joueurPrc )
+	{
+		if( joueurPrc == this.metier.getJoueur(1) )
+		{
+			this.ihmJoueur.changerJoueur( this.metier.getJoueur(2) );
+		}
+		else
+		{
+			this.ihmJoueur.changerJoueur( this.metier.getJoueur(1) );
+			this.metier.prochainTour();
+		}
+			
 	}
 
 	public void Sauvegarde()
@@ -143,6 +101,11 @@ public class Controleur
 			pw.close();
 		}
 		catch(Exception e){ e.printStackTrace(); }
+	}
+
+	public void MAJ()
+	{
+		this.ihm.miseAJourGrille();
 	}
 
 	public void majLocation(char Destination)
@@ -169,7 +132,6 @@ public class Controleur
 		this.ihm    .setVisible(true);
 		this.ihmJoueur.setVisible(true);
 
-		System.out.println("Partie go");
 		this.bDebutPartie = true;
 
 	}

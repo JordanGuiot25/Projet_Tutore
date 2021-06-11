@@ -51,7 +51,7 @@ public class FrameJoueur extends JFrame implements ActionListener
 
         this.lbImg = new JLabel(new ImageIcon("../Ressources/Hexagone.png"));
         this.panelJoueur = new JPanel(new GridLayout(6,1));
-        this.lblJoueur =new JLabel("Joueur1");
+        this.lblJoueur =new JLabel("Joueur 1");
         this.txtNumDalle = new JTextField();
         this.txtSommet = new JTextField();
         this.btnValider = new JButton("Valider");
@@ -82,8 +82,8 @@ public class FrameJoueur extends JFrame implements ActionListener
     public void changerJoueur(Joueur j)
     {
         this.joueur = j;
-        this.setTitle("joueur"+j.getNumJoueur());
-        this.lblJoueur.setText("joueur"+j.getNumJoueur());
+        this.setTitle("Joueur"+j.getNumJoueur());
+        this.lblJoueur.setText("Joueur "+j.getNumJoueur());
         this.txtNumDalle.setText("");
         this.txtSommet.setText("");
         this.labelScore.setText("nombre de pilier restant: "+j.getNbPilier()+"   nombre de pilier detruit: "+j.getNbPilierDetruis());
@@ -91,19 +91,35 @@ public class FrameJoueur extends JFrame implements ActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        char nomDalle = Character.toUpperCase(this.txtNumDalle.getText().charAt(0));
-        int  numPilier= Integer.parseInt(""+  this.txtSommet.getText().charAt(0));
-        if(e.getSource() == this.btnValider)
+        this.lblJoueur.setText("Joueur "+ this.joueur.getNumJoueur() );
+        if( this.txtNumDalle != null && this.txtNumDalle.getText().length() == 1 &&
+            this.txtSommet   != null && this.txtSommet  .getText().length() == 1     )
         {
-            if( nomDalle >= 'A' && nomDalle <= 'P')
-            {
-                if(numPilier >= 1 && numPilier <= 5 )
-                {
-                    this.ctrl.poserPilier(this.joueur.getCouleur(),nomDalle,numPilier);
-                }
-            }
+            char nomDalle = Character.toUpperCase(this.txtNumDalle.getText().charAt(0));
+            int  numPilier= Integer.parseInt(""+  this.txtSommet.getText().charAt(0));
 
+            if(e.getSource() == this.btnValider)
+            {
+                if( nomDalle >= 'A' && nomDalle <= 'P')
+                {
+                    if(numPilier >= 0 && numPilier <= 5 )
+                    {
+                        if ( this.ctrl.poserPilier(this.joueur.getNumJoueur(),nomDalle, numPilier) )
+                            this.ctrl.changementJoueur( this.joueur );
+                        else
+                            this.lblJoueur.setText( this.lblJoueur.getText() + "   Erreur: Impossible de poser pilier."  );
+                    }
+                    else
+                        this.lblJoueur.setText( this.lblJoueur.getText() + "   Erreur: Sommet invalide."  );
+                }
+                else
+                    this.lblJoueur.setText( this.lblJoueur.getText() + "   Erreur: Dalle invalide."  );
+
+            }
         }
+        else
+                    this.lblJoueur.setText( this.lblJoueur.getText() + "   Erreur: Saisie invalide."  );
+        
     }
 
     private class GereDeplacerFrame extends ComponentAdapter
