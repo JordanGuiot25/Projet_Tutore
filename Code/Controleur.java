@@ -26,6 +26,7 @@ public class Controleur
 	private FrameDessin ihm    ;
 	private FrameMenu   ihmMenu;
 	private FrameJoueur ihmJoueur;
+	private IhmCui      ihmCui;
 	private Parterre    metier ;
 	private boolean 	bDebutPartie;
 
@@ -43,6 +44,9 @@ public class Controleur
 
 		while( this.metier.getGagnant() == null )
 		{
+			this.ihmCui   = new IhmCui (this.metier);
+			System.out.println(this.ihmCui.getLiasonsDalle());
+			System.out.println(this.ihmCui.getLiasonsPilier());
 			
 			this.ihmJoueur.changerJoueur(this.metier.getJoueur(1));
 			System.out.println("-------------------------------");
