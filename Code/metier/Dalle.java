@@ -16,6 +16,11 @@ public class Dalle
 
 	private Dalle[]   listeDallesAdjacent;
 
+	private int       numJoueur;
+	private boolean[] tabPilierDetruitJ1;
+	private boolean[] tabPilierDetruitJ2;
+
+
 	/*Numero des sommets--|
 	|          0--1       |
 	|         /    \      |
@@ -41,6 +46,10 @@ public class Dalle
 		this.listeSommet          = new Pilier[6];
 		this.listeDallesAdjacent  = new Dalle[6];
 		this.joueurProprietaire   = null;
+
+		this.numJoueur            = 1;
+		this.tabPilierDetruitJ1   = new boolean[6];
+		this.tabPilierDetruitJ2   = new boolean[6];
 	}
 
 	public Dalle(int x, int y)
@@ -212,7 +221,8 @@ public class Dalle
 
 			Pilier pilierTmp = new Pilier(couleur,x,y);
 
-			this.listeSommet[numSommet] = pilierTmp;
+			if( !this.posePilier(pilierTmp, numSommet) )
+				return false;
 
 
 			/*  Rajout du pilier dans les autres dalles   */
@@ -265,14 +275,25 @@ public class Dalle
 		return false;
 	}
 
-	private void posePilier(Pilier pilier, int numSommet) { this.listeSommet[numSommet] =  pilier; }
+	private boolean posePilier(Pilier pilier, int numSommet) 
+	{
+		if( !this.getTabPilierDetruit()[numSommet] )
+		{
+			this.listeSommet[numSommet] =  pilier;
+
+			return true;
+		}
+
+		return false;
+			
+	}
 
 	public boolean detruirePillier(int numSommet)
 	{
 		if ( this.listeSommet[numSommet] != null )
 		{
 			this.listeSommet[numSommet] = null;
-
+			this.setPilierDetruit(numSommet);
 			/*  Supression du pilier dans les autres dalles   */
 
 			int sommetAdjacent = numSommet;
@@ -292,6 +313,7 @@ public class Dalle
 				if(this.listeDallesAdjacent[5] != null)
 				{
 					this.listeDallesAdjacent[5].destructionDuPilier(sommetAdjacent);
+					this.listeDallesAdjacent[5].setPilierDetruit(sommetAdjacent);
 				}
 			}
 			else
@@ -300,6 +322,7 @@ public class Dalle
 				if(this.listeDallesAdjacent[numSommet-1] != null)
 				{
 					this.listeDallesAdjacent[numSommet-1].destructionDuPilier(sommetAdjacent);
+					this.listeDallesAdjacent[numSommet-1].setPilierDetruit(sommetAdjacent);
 				}
 			}
 				
@@ -315,12 +338,44 @@ public class Dalle
 			if(this.listeDallesAdjacent[numSommet] != null)
 			{
 				this.listeDallesAdjacent[numSommet].destructionDuPilier(sommetAdjacent);
+				this.listeDallesAdjacent[numSommet].setPilierDetruit(sommetAdjacent);
 			}
 
 			return true;
 		}
 
 		return false;
+	}
+
+	public void setNumJoueur(int num ) { this.numJoueur = num; }
+	public int  getNumJoueur()         { return this.numJoueur; }
+
+	public boolean   setPilierDetruit(int numSommet)
+	{
+		if( this.numJoueur == 1 )
+		{
+			this.tabPilierDetruitJ1[numSommet] = true;
+
+			return true;
+		}
+		if(this.numJoueur  == 2 )
+		{
+			this.tabPilierDetruitJ2[numSommet] = true;
+
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean[] getTabPilierDetruit()
+	{
+		if( this.numJoueur == 1 )
+			return this.tabPilierDetruitJ1;
+		if(this.numJoueur  == 2 )
+			return this.tabPilierDetruitJ2;
+
+		return null;
 	}
 
 	public void destructionDuPilier(int numSommet)

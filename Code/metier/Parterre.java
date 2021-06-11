@@ -56,6 +56,14 @@ public class Parterre
 		}
 	}
 
+	public void setNumJoueur(int numJoueur )
+	{
+		for(Dalle dalle : this.grilleDalles )
+		{
+			dalle.setNumJoueur(numJoueur);
+		}
+	}
+
 	public void verifEnfermement(char nomDalle, int numSommet, char coulPilier)
 	{
 		this.listeGroupePilier = new ArrayList<Pilier>();
@@ -227,7 +235,6 @@ public class Parterre
 		return voisin;
 	}
 	
-
 	private void detruireLePilier(Pilier pilier)
 	{
 		for(Dalle dalleTmp : this.grilleDalles )
