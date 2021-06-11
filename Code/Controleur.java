@@ -2,6 +2,7 @@ package PilierDeLaTerre;
 
 import PilierDeLaTerre.ihm.gui.FrameAide;
 import PilierDeLaTerre.ihm.gui.FrameDessin;
+import PilierDeLaTerre.ihm.gui.FrameJoueur;
 import PilierDeLaTerre.ihm.gui.FrameMenu;
 import PilierDeLaTerre.ihm.cui.IhmCui;
 import PilierDeLaTerre.metier.Dalle;
@@ -24,15 +25,15 @@ public class Controleur
 {
 	private FrameDessin ihm    ;
 	private FrameMenu   ihmMenu;
-	private FrameAide   ihmAide;
+	private FrameJoueur ihmJoueur;
 	private Parterre    metier ;
 	private boolean 	bDebutPartie;
 
 	public Controleur()
 	{
-		this.ihmMenu= new FrameMenu  (this);
-		this.ihm    = new FrameDessin(this);
-		this.ihmAide= new FrameAide  (this);
+		this.ihmMenu  = new FrameMenu   (this);
+		this.ihm      = new FrameDessin (this);
+		this.ihmJoueur= new FrameJoueur (this);
 
 		this.bDebutPartie = false;
 		while( !this.bDebutPartie )
@@ -42,6 +43,7 @@ public class Controleur
 
 		while( this.metier.getGagnant() == null )
 		{
+			this.ihmJoueur.changerJoueur(this.metier.getJoueur(1));
 			System.out.println("-------------------------------");
 			System.out.println("Tour " + this.metier.getTour() );
 			char nomDalle = '.';
@@ -139,16 +141,16 @@ public class Controleur
 
 	public void majLocation(char Destination)
 	{
-		if( Destination == 'P' && this.ihm != null & this.ihmAide != null)
+		if( Destination == 'P' && this.ihm != null & this.ihmJoueur != null)
 		{
-			Point p = this.ihmAide.getLocation();
+			Point p = this.ihmJoueur.getLocation();
 			this.ihm.setLocation(p.x-1000, p.y);
 		}
 
-		if( Destination == 'A' && this.ihm != null & this.ihmAide != null)
+		if( Destination == 'A' && this.ihm != null & this.ihmJoueur != null)
 		{
 			Point p = this.ihm.getLocation();
-			this.ihmAide.setLocation (p.x+1000, p.y);
+			this.ihmJoueur.setLocation (p.x+1000, p.y);
 		}
 	}
 
@@ -159,7 +161,7 @@ public class Controleur
 		this.metier = Scenario.getScenario(4);
 
 		this.ihm    .setVisible(true);
-		this.ihmAide.setVisible(true);
+		this.ihmJoueur.setVisible(true);
 
 		System.out.println("Partie go");
 		this.bDebutPartie = true;
@@ -183,7 +185,7 @@ public class Controleur
 		//int numScenario = this.ihmScenario.getScenario();
 		//this.metier = Scenario.getScenario(nomScenario);
 		//this.ihm.setVisible(true);
-		//this.ihmAide.setVisible(true);
+		//this.ihmJoueur.setVisible(true);
 		//this.bDebutPartie = true;
 	}
 	
