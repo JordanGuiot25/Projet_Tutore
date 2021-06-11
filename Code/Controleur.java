@@ -4,11 +4,11 @@ import PilierDeLaTerre.ihm.gui.FrameAide;
 import PilierDeLaTerre.ihm.gui.FrameDessin;
 import PilierDeLaTerre.ihm.gui.FrameJoueur;
 import PilierDeLaTerre.ihm.gui.FrameMenu;
+import PilierDeLaTerre.ihm.gui.FrameScenario;
 import PilierDeLaTerre.ihm.cui.IhmCui;
 import PilierDeLaTerre.metier.Dalle;
 import PilierDeLaTerre.metier.Parterre;
 import PilierDeLaTerre.metier.Scenario;
-import PilierDeLaTerre.metier.EditeurParterre;
 
 import iut.algo.Clavier;
 
@@ -27,16 +27,18 @@ public class Controleur
 	private FrameDessin ihm    ;
 	private FrameMenu   ihmMenu;
 	private FrameJoueur ihmJoueur;
+	private FrameScenario ihmScenario;
 	private IhmCui      ihmCui;
 	private Parterre    metier ;
 	private boolean 	bDebutPartie;
-	private EditeurParterre editeurParterre;
+	private int         numScenario;
 
 	public Controleur()
 	{
 		this.ihmMenu  = new FrameMenu   (this);
 		this.ihm      = new FrameDessin (this);
 		this.ihmJoueur= new FrameJoueur (this);
+		this.ihmScenario = new FrameScenario(this);
 		
 
 		this.bDebutPartie = false;
@@ -143,12 +145,8 @@ public class Controleur
 
 	}
 
-	public void lancerPartieCustom(ArrayList<Dalle> custom)
+	public void LancerPartieCustom()
 	{
-		this.metier = new Parterre(custom, new Joueur(1,'M'), new Joueur(2,'G'), 1);
-		this.ihm    .setVisible(true);
-		this.ihmJoueur.setVisible(true);
-		this.bDebutPartie = true;		
 	}
 
 	public void quitter()
@@ -156,28 +154,26 @@ public class Controleur
 		System.exit(0);
 	}
 
+	public void setScenario(int num)
+	{
+		this.numScenario = num;
+	}
 	public void lancerScenario()
 	{
-		
-		//this.ihmMenu.setVisible(false);
-		//this.ihmScenario.setVisible(true);
-		//int numScenario = this.ihmScenario.getScenario();
-		//this.metier = Scenario.getScenario(nomScenario);
-		//this.ihm.setVisible(true);
-		//this.ihmJoueur.setVisible(true);
-		//this.bDebutPartie = true;
+		this.ihmScenario.setVisible(false);
+		this.metier = Scenario.getScenario(this.numScenario);
+		this.ihm    .setVisible(true);
+		this.ihmJoueur.setVisible(true);
+		this.bDebutPartie = true;
+
 	}
-	
-	public void partieCustom()
+
+	public void scenario()
 	{
 		this.ihmMenu.setVisible(false);
-		this.editeurParterre = new EditeurParterre(this);
+		this.ihmScenario.setVisible(true);
 	}
 	
-	public void retour()
-	{
-		this.ihmMenu.setVisible(true);
-	}
 	public ArrayList<Dalle> getGrilleDalles() 
 	{
 		return this.metier.getGrilleDalles();

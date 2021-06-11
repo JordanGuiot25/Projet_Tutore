@@ -3,10 +3,14 @@ package PilierDeLaTerre.ihm.gui;
 import PilierDeLaTerre.Controleur;
 
 import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+
 
 import java.awt.BorderLayout;
 
@@ -21,11 +25,16 @@ public class FrameScenario extends JFrame implements ActionListener
     private String[] tabString;
     private static int NB_SCENARIO = 6;
     private JButton btnJouer;
+    private JPanel panelBox;
+    private Image  imgFond;
 
     
     public FrameScenario(Controleur ctrl)
     {
         this.ctrl = ctrl;
+
+        this.imgFond              = getToolkit().getImage ( "../Ressources/imgScenario.jpg" );
+        this.repaint();
         this.tabString = new String [this.NB_SCENARIO];
 
         for(int i = 0 ; i < 6 ; i++)
@@ -39,11 +48,13 @@ public class FrameScenario extends JFrame implements ActionListener
         this.setLocation (400, 0    );
         this.cboxScenario = new JComboBox<String>(  this.tabString );
         this.btnJouer = new JButton("Jouer");
+        this.panelBox = new JPanel();
      
        
        
-        this.add(new JLabel("Scénario à lancer :"), BorderLayout.NORTH);
-        this.add(this.cboxScenario,BorderLayout.CENTER);
+        this.panelBox.add(new JLabel("Scénario à lancer :"), BorderLayout.NORTH);
+        this.panelBox.add(this.cboxScenario);
+        this.add(this.panelBox,BorderLayout.CENTER);
         this.add(this.btnJouer,BorderLayout.SOUTH);
 
         this.cboxScenario.addActionListener(this);
@@ -52,6 +63,8 @@ public class FrameScenario extends JFrame implements ActionListener
         
         this.setVisible(false);
         this.setResizable(false);
+
+        
     }
 
     public void actionPerformed(ActionEvent e)
@@ -64,6 +77,16 @@ public class FrameScenario extends JFrame implements ActionListener
 
             this.ctrl.lancerScenario();
         }
+    }
+    public void paint(Graphics g)
+    {
+        super.paint(g);
+
+        Graphics2D g2 = (Graphics2D) g;
+
+        g2.drawImage ( this.imgFond, 0, 0, this );
+
+        System.out.println("coucou");
     }
    
 
