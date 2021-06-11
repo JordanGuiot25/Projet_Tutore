@@ -57,6 +57,98 @@ public class Dalle
 
 	}
 
+	public char getNom() { return this.nomDalle; }
+	public int  getX()   { return this.x-33;   }
+	public int  getY()   { return this.y-33;   }
+
+	public int getMilieuX() { return this.x; }
+	public int getMilieuY() { return this.y; }
+	
+	public Dalle    getDalleAdjacent(int cote) { return this.listeDallesAdjacent[cote];}
+	public Pilier[] getSommets()               { return this.listeSommet;              }
+	public Dalle[]  getListeDallesAdjacent()   { return this.listeDallesAdjacent;      }
+
+	public Joueur getProprietaire() { return this.joueurProprietaire;}
+
+	public Pilier getPrecedent(Pilier pilier)
+	{
+		for(int cpt = 0; cpt < this.listeSommet.length; cpt ++)
+		{
+			if( this.listeSommet[cpt] == pilier )
+			{
+				if( cpt == 0 )
+					return this.listeSommet[5];
+				else
+					return this.listeSommet[cpt-1];
+			}
+		}
+
+		return null;
+	}
+
+	public Pilier getSuivant(Pilier pilier)
+	{
+		for(int cpt = 0; cpt < this.listeSommet.length; cpt ++)
+		{
+			if( this.listeSommet[cpt] == pilier )
+			{
+				if( cpt == 5 )
+					return this.listeSommet[0];
+				else
+					return this.listeSommet[cpt+1];
+			}
+		}
+
+		return null;
+	}
+
+	public void setProprietaire(Joueur joueur)
+	{
+		this.joueurProprietaire = joueur;
+	}
+
+	public Pilier   getPilier(int numPilier)   { return this.listeSommet[numPilier];   }
+
+	public int      getIndicePilier(Pilier pilier)
+	{
+		for(int cpt = 0; cpt < this.listeSommet.length; cpt++)
+		{
+			if ( this.listeSommet[cpt] == pilier)
+				return cpt;
+		}
+
+		return 0;
+	}
+
+	public void     setCoordonner(int x, int y)
+	{
+		this.x = x;
+		this.y = y;
+	}
+
+	public void     setAdjacent  (int cote, Dalle voisin)
+	{
+		this.listeDallesAdjacent[cote] = voisin;
+
+		switch(cote)
+		{
+			case 0 : voisin.setCoordonner(this.x,    this.y-68);break;
+			case 1 : voisin.setCoordonner(this.x+49, this.y-33);break;
+			case 2 : voisin.setCoordonner(this.x+49, this.y+33);break;
+			case 3 : voisin.setCoordonner(this.x,    this.y+68);break;
+			case 4 : voisin.setCoordonner(this.x-49, this.y+33);break;
+			case 5 : voisin.setCoordonner(this.x-49, this.y-33);break;
+		}
+
+		for(int cpt = 0; cpt < 3; cpt++)
+		{
+			cote ++;
+			if( cote > 5)
+				cote = 0;
+		}
+		voisin.rajoutDalleAdjacent(cote, this);
+	}
+
 	public boolean rajoutDalleAdjacent (int cote, Dalle voisin)
 	{
 		if ( voisin == null || cote > 5 && cote < 0 || this.listeDallesAdjacent[cote] != null )
@@ -75,39 +167,46 @@ public class Dalle
 		{
 			int x = 0; 
 			int y = 0;
+
 			switch( numSommet )
 			{
-				case 0 -> 
+				case 0 :
 				{
 					x = this.getMilieuX() -16-6;
 					y = this.getMilieuY() -33-6;
+					break;
 				}
-				case 1 ->
+				case 1 :
 				{
 					x = this.getMilieuX() +16-6;
 					y = this.getMilieuY() -33-6;
+					break;
 				}
-				case 2 ->
+				case 2 :
 				{
 					x = this.getMilieuX() +33-6;
 					y = this.getMilieuY()-6;
+					break;
 				}
 
-				case 3 ->
+				case 3 :
 				{
 					x = this.getMilieuX() +16-6;
 					y = this.getMilieuY() +33-6;
+					break;
 				}
 				
-				case 4 ->
+				case 4 :
 				{
 					x = this.getMilieuX() -16-6;
 					y = this.getMilieuY() +33-6;
+					break;
 				}
-				case 5 ->
+				case 5 :
 				{
 					x = this.getMilieuX() -33-6;
 					y = this.getMilieuY()-6;
+					break;
 				}
 			}
 
@@ -166,6 +265,8 @@ public class Dalle
 		return false;
 	}
 
+	private void posePilier(Pilier pilier, int numSommet) { this.listeSommet[numSommet] =  pilier; }
+
 	public boolean detruirePillier(int numSommet)
 	{
 		if ( this.listeSommet[numSommet] != null )
@@ -222,96 +323,9 @@ public class Dalle
 		return false;
 	}
 
-	private void posePilier(Pilier pilier, int numSommet)
-	{
-		this.listeSommet[numSommet] =  pilier;
-	}
-
 	public void destructionDuPilier(int numSommet)
 	{
 		this.listeSommet[numSommet] =  null;
-	}
-
-	public char getNom() { return this.nomDalle; }
-	public int  getX()   { return this.x-33;   }
-	public int  getY()   { return this.y-33;   }
-
-	public int getMilieuX() { return this.x; }
-	public int getMilieuY() { return this.y; }
-
-	public Pilier getPrecedent(Pilier pilier)
-	{
-		for(int cpt = 0; cpt < this.listeSommet.length; cpt ++)
-		{
-			if( this.listeSommet[cpt] == pilier )
-			{
-				if( cpt == 0 )
-					return this.listeSommet[5];
-				else
-					return this.listeSommet[cpt-1];
-			}
-		}
-
-		return null;
-	}
-	public Pilier getSuivant(Pilier pilier)
-	{
-		for(int cpt = 0; cpt < this.listeSommet.length; cpt ++)
-		{
-			if( this.listeSommet[cpt] == pilier )
-			{
-				if( cpt == 5 )
-					return this.listeSommet[0];
-				else
-					return this.listeSommet[cpt+1];
-			}
-		}
-
-		return null;
-	}
-
-	public Pilier   getPilier(int numPilier)   { return this.listeSommet[numPilier];   }
-	public int      getIndicePilier(Pilier pilier)
-	{
-		for(int cpt = 0; cpt < this.listeSommet.length; cpt++)
-		{
-			if ( this.listeSommet[cpt] == pilier)
-				return cpt;
-		}
-
-		return 0;
-	}
-	public Dalle    getDalleAdjacent(int cote) { return this.listeDallesAdjacent[cote];}
-	public Pilier[] getSommets()               { return this.listeSommet;              }
-	public Dalle[]  getListeDallesAdjacent()   { return this.listeDallesAdjacent;      }
-
-	public void     setCoordonner(int x, int y)
-	{
-		this.x = x;
-		this.y = y;
-	}
-
-	public void     setAdjacent  (int cote, Dalle voisin)
-	{
-		this.listeDallesAdjacent[cote] = voisin;
-
-		switch(cote)
-		{
-			case 0 -> voisin.setCoordonner(this.x,    this.y-68);
-			case 1 -> voisin.setCoordonner(this.x+49, this.y-33);
-			case 2 -> voisin.setCoordonner(this.x+49, this.y+33);
-			case 3 -> voisin.setCoordonner(this.x,    this.y+68);
-			case 4 -> voisin.setCoordonner(this.x-49, this.y+33);
-			case 5 -> voisin.setCoordonner(this.x-49, this.y-33);
-		}
-
-		for(int cpt = 0; cpt < 3; cpt++)
-		{
-			cote ++;
-			if( cote > 5)
-				cote = 0;
-		}
-		voisin.rajoutDalleAdjacent(cote, this);
 	}
 
 	public Joueur verifierProprietaireDalle(Joueur joueur1, Joueur joueur2)
@@ -391,16 +405,6 @@ public class Dalle
 
 		return nbPilierDetruis;
 	}
-
-
-
-	public void setProprietaire(Joueur joueur)
-	{
-		this.joueurProprietaire = joueur;
-	}
-
-	
-	public Joueur getProprietaire() { return this.joueurProprietaire;}
 
 	public boolean estControler()
 	{
