@@ -92,6 +92,11 @@ public class Controleur
 			
 	}
 
+	public void maj()
+	{
+		this.ihm.miseAJourGrille();
+	}
+
 	public void Sauvegarde()
 	{
 		try
