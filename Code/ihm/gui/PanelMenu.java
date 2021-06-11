@@ -110,6 +110,7 @@ public class PanelMenu extends JPanel implements ActionListener
 
 
         /* activation des composants */
+		/**/
         this.btnPartieRapide     .addActionListener(this);
         this.btnLancerScenar     .addActionListener(this);
         this.btnChargerSauvegarde.addActionListener(this);
