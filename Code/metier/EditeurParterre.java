@@ -360,38 +360,7 @@ public class EditeurParterre
 	public ArrayList<Dalle> getNiveau()	{ return this.lstDalle;	}
 	
 	
-	public String genererNiveau()
-	{
-		String sRet = "//Plateau\n200	200";
-		for(char id = 'A'; id < 'Q'; id++)
-		{
-			for(Dalle[] dalles : editeurParterre)
-			{
-				for(Dalle d : dalles)
-				{
-					if(d!=null&&d.getNom()==id)
-					{
-						for(int i = 0; i < 6; i++)
-						{
-							if(d.getDalleAdjacent(i)!=null)
-							{
-								sRet += "\n"+""+d.getNom() + ""+d.getDalleAdjacent(i).getNom() +""+i+"";
-							}
-						}
-					}
-				}
-			}
-		}
-		for(Point point:lstCoord)
-		{
-					this.lastDalle--;
-					suprimerAdjacents(this.editeurParterre[point.x][point.y],point.x,point.y);
-					this.editeurParterre[point.x][point.y].supprimerDalle();
-					this.editeurParterre[point.x][point.y] = null;
 	
-		}	
-		return sRet;
-	}
 
 
 	public void addCoord(Point point)

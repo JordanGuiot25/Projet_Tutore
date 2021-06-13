@@ -236,7 +236,7 @@ public class Controleur
 	public Point getLastCoord() {return this.editeurParterre.getLastCoord();}
 	public int getCoordSize() {return this.editeurParterre.getCoordSize();}
 	public void supprimerDalle( int x, int y) {this.editeurParterre.supprimerDalle(x, y);}
-	public void setMessage(int numJoueur) {this.frameControleEditeur.setMessage(numJoueur);}
+	public void setJoueur(boolean joueur) {this.frameControleEditeur.setJoueur(joueur);}
 	
 	
 	

@@ -38,9 +38,10 @@ public class PanelEditeurControle extends JPanel implements ActionListener
 
 	}
 	
-	public void setMessage(int numJoueur)
+	public void setJoueur(boolean joueur)
 	{
-		this.lblMessage.setText("Joueur "+numJoueur+", placez une dalle");
+		if(!joueur) { this.lblMessage.setText("Joueur 1, placez une dalle"); }
+		else{ this.lblMessage.setText("Joueur 2, placez une dalle");}
 	}
 
 

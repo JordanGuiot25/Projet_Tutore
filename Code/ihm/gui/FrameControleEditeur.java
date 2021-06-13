@@ -29,9 +29,9 @@ public class FrameControleEditeur extends JFrame implements ComponentListener
 		this.setVisible(true);
 	}
 	
-	public void setMessage(int numJoueur)
+	public void setJoueur(boolean joueur)
 	{
-		this.panelEditeurControle.setMessage(numJoueur);
+		this.panelEditeurControle.setJoueur(joueur);
 	}
 
 
