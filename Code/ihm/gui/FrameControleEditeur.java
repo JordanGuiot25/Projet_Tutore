@@ -1,4 +1,5 @@
 package PilierDeLaTerre.ihm.gui;
+import PilierDeLaTerre.Controleur;
 import PilierDeLaTerre.metier.EditeurParterre;
 
 import javax.swing.*;
@@ -14,25 +15,30 @@ import java.awt.Point;
 public class FrameControleEditeur extends JFrame implements ComponentListener
 {
 	private PanelEditeurControle panelEditeurControle;
-	private EditeurParterre editeurParterre;
+	private Controleur ctrl;
 
-	public FrameControleEditeur(EditeurParterre editeurParterre)
+	public FrameControleEditeur(Controleur ctrl)
 	{
-		this.editeurParterre = editeurParterre;
+		this.ctrl = ctrl;
 		this.setTitle	("EditeurParterre");
 		this.setSize	(800,100);
-		this.panelEditeurControle = new PanelEditeurControle(this.editeurParterre);
+		this.panelEditeurControle = new PanelEditeurControle(this.ctrl);
 		this.add(this.panelEditeurControle);
 		this.addComponentListener(this);
 		this.setResizable(false);
 		this.setVisible(true);
+	}
+	
+	public void setMessage(int numJoueur)
+	{
+		this.panelEditeurControle.setMessage(numJoueur);
 	}
 
 
 	public void componentMoved(ComponentEvent e) 
 	{
 		Point p = this.getLocation(); 
-		editeurParterre.DeplacerFrames(p.getX() , p.getY()-600.00 , 'c');
+		this.ctrl.DeplacerFrames(p.getX() , p.getY()-600.00 , 'c');
 	}
 
 	public void componentHidden(ComponentEvent e)

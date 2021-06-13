@@ -1,6 +1,7 @@
 package PilierDeLaTerre.ihm.gui;
 
-import PilierDeLaTerre.metier.EditeurParterre;
+
+import PilierDeLaTerre.Controleur;
 import PilierDeLaTerre.metier.Dalle;
 
 
@@ -13,14 +14,13 @@ import java.awt.Font;
 import java.awt.MediaTracker;
 import java.awt.Point;
 import java.awt.event.*;
-import java.util.ArrayList;
 import java.awt.Toolkit;
 import java.awt.FontMetrics;
 
 public class PanelEdtieurAffichage extends JPanel
 {
 
-	private EditeurParterre editeurParterre;
+	private Controleur ctrl;
 	private Image imgDalle;
 	private Image imgDalle50;
 	private int coordx ;
@@ -38,9 +38,9 @@ public class PanelEdtieurAffichage extends JPanel
 
 	
 	
-	public PanelEdtieurAffichage(EditeurParterre editeurParterre)
+	public PanelEdtieurAffichage(Controleur ctrl)
 	{
-		this.editeurParterre = editeurParterre;
+		this.ctrl = ctrl;
 		this.bEstAdjacent = false;
 		this.coordx = 0;
 		this.coordy = 33;
@@ -84,7 +84,6 @@ public class PanelEdtieurAffichage extends JPanel
 	public void paintComponent (Graphics g)
 	{
 		super.paintComponent(g);
-		//System.out.println(g);
 		g.clearRect(0,0,resX,resY);
 		
 		
@@ -96,13 +95,12 @@ public class PanelEdtieurAffichage extends JPanel
 				{
 					FontMetrics fontMetrics = g.getFontMetrics();
 
-					//System.out.println("coucou");
-					String s =""+this.editeurParterre.getDalle(i,y).getNom();
+					String s =""+this.ctrl.getDalle(i,y).getNom();
 					g.drawImage( imgDalle, tabX[i][y] ,tabY[i][y] , null);
 					g.drawString(s, (tabX[i][y]+37)-fontMetrics.stringWidth(s), tabY[i][y]+37);
 				}
-				//System.out.println(bEstAdjacent);
-				if(this.editeurParterre.getDalle(i,y)!=null&&this.editeurParterre.getLastDalle()!='Q')
+
+				if(this.ctrl.getDalle(i,y)!=null&&this.ctrl.getLastDalle()!='Q')
 				{
 					if(bEstAdjacent){g.drawImage( imgDalle50, this.coordx ,this.coordy, null);}
 				}
@@ -126,7 +124,7 @@ public class PanelEdtieurAffichage extends JPanel
 		this.tabX[15][15]=this.lblDets[15][15].getLocation().x;
 		this.tabY[15][15]=this.lblDets[15][15].getLocation().y;
 		Point pA = new Point(15,15);
-		editeurParterre.setCoord(pA, this.tabX[15][15], this.tabY[15][15]);
+		this.ctrl.setCoord(pA, this.tabX[15][15], this.tabY[15][15]);
 	}
 
 	public void initPlateau()
@@ -178,17 +176,14 @@ public class PanelEdtieurAffichage extends JPanel
 	{
 		public void mouseEntered (MouseEvent e)
 		{
-			//if(nbDalle==16){break;}
 			JButton btnTmp = (JButton) e.getComponent();
-			//System.out.println("l"+btnTmp.getText());
 				for(int i = 0 ; i < tabX.length ; i ++)
 				{
 					for(int y = 0 ; y < tabX.length ; y ++)
 					{
 						if(btnTmp.equals(PanelEdtieurAffichage.this.lblDets[i][y]))
 						{
-							//System.out.println(ParterrePersonalise.aUneDalleAdjacente(i,y));
-							if(editeurParterre.aUneDalleAdjacente(i,y))
+							if(ctrl.aUneDalleAdjacente(i,y))
 							{
 								PanelEdtieurAffichage.this.coordx =(int) e.getComponent().getLocation().x;
 								PanelEdtieurAffichage.this.coordy =(int) e.getComponent().getLocation().y;
@@ -197,8 +192,6 @@ public class PanelEdtieurAffichage extends JPanel
 								
 							}
 							else{PanelEdtieurAffichage.this.bEstAdjacent = false;}
-							/*System.out.println(i+" : "+ y);
-							System.out.println(bEstAdjacent);*/
 						}
 					}
 				}
@@ -228,17 +221,17 @@ public class PanelEdtieurAffichage extends JPanel
 						if(btnTmp.equals(btn))
 						{
 							
-							if(editeurParterre.getLastDalle()!='Q')
-								if(editeurParterre.emplacementVide(i,y))
+							if(ctrl.getLastDalle()!='Q')
+								if(ctrl.emplacementVide(i,y))
 								{
 									Dalle d = new Dalle();
-									if(editeurParterre.ajouterDalle(d,i,y))
+									if(ctrl.ajouterDalle(d,i,y))
 									{
 										Point p = new Point(i,y);
-										editeurParterre.addCoord(p);
+										ctrl.addCoord(p);
 										tabX[i][y] = btn.getLocation().x;
 										tabY[i][y] = btn.getLocation().y;
-										editeurParterre.setCoord(p,tabX[i][y], tabY[i][y]);
+										ctrl.setCoord(p,tabX[i][y], tabY[i][y]);
 									}
 									else{d.supprimerDalle();}
 								}
@@ -252,13 +245,13 @@ public class PanelEdtieurAffichage extends JPanel
 			}
 			else if(e.getButton()==MouseEvent.BUTTON3)
 			{
-				if(editeurParterre.getCoordSize()>1)
+				if(ctrl.getCoordSize()>1)
 				{
 					
-					Point p = new Point(editeurParterre.getLastCoord());
+					Point p = new Point(ctrl.getLastCoord());
 					tabX[p.x][p.y]=-1;
 					tabY[p.x][p.y]=-1;
-					editeurParterre.supprimerDalle(p.x, p.y);
+					ctrl.supprimerDalle(p.x, p.y);
 				}
 			}
 		}

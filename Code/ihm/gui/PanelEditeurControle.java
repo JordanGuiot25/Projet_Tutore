@@ -1,18 +1,14 @@
 package PilierDeLaTerre.ihm.gui;
-import PilierDeLaTerre.metier.EditeurParterre;
+import PilierDeLaTerre.Controleur;
+
 
 import javax.swing.*;
 import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.MediaTracker;
-import java.awt.Point;
 import java.awt.event.*;
-import java.util.ArrayList;
 import java.awt.Toolkit;
-import java.awt.FontMetrics;
 import java.awt.GridLayout;
 
 public class PanelEditeurControle extends JPanel implements ActionListener
@@ -20,11 +16,11 @@ public class PanelEditeurControle extends JPanel implements ActionListener
 	private JLabel lblMessage;
 	private JButton btnLancer;
 	private JButton btnRetour;
-	private EditeurParterre editeurParterre;
+	private Controleur ctrl;
 
-	public PanelEditeurControle(EditeurParterre editeurParterre)
+	public PanelEditeurControle(Controleur ctrl)
 	{
-		this.editeurParterre = editeurParterre;
+		this.ctrl = ctrl;
 		this.setLayout(new GridLayout(2,1));
 		JPanel panelSave = new JPanel(new GridLayout(1,2));
 		this.lblMessage = new JLabel("Joueur 1, placez une dalle",SwingConstants.CENTER);
@@ -40,10 +36,11 @@ public class PanelEditeurControle extends JPanel implements ActionListener
 		this.btnRetour.addActionListener(this);
 		this.btnLancer.addActionListener(this);
 
-
-		
-
-
+	}
+	
+	public void setMessage(int numJoueur)
+	{
+		this.lblMessage.setText("Joueur "+numJoueur+", placez une dalle");
 	}
 
 
@@ -51,12 +48,11 @@ public class PanelEditeurControle extends JPanel implements ActionListener
 	{
 		if(e.getSource().equals(this.btnRetour))
 		{
-			this.editeurParterre.retour();		
+			this.ctrl.retour();		
 		}
-		else if(e.getSource().equals(this.btnLancer)&&this.editeurParterre.getLastDalle()>='P')
+		else if(e.getSource().equals(this.btnLancer)&&this.ctrl.getLastDalle()>='P')
 		{
-			System.out.println("ojoij");
-			this.editeurParterre.lancerPartie();
+			this.ctrl.lancerPartieCustom();
 		}
 		
 	}

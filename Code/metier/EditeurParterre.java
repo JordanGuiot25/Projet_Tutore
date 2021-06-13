@@ -45,8 +45,6 @@ public class EditeurParterre
 	
 	private int nordX,sudX,nordOuestX,sudOuestX,nordEstX,sudEstX;
 	private int nordY,sudY,nordOuestY,sudOuestY,nordEstY,sudEstY;
-	private FrameEditeurParterre frameEditeurParterre;
-	private FrameControleEditeur frameControleEditeur;
 	private Controleur ctrl;
 	private ArrayList<Point> lstCoord = new ArrayList<Point>();
 	private ArrayList<Dalle> lstDalle = new ArrayList<Dalle>();
@@ -58,18 +56,13 @@ public class EditeurParterre
 	public EditeurParterre(Controleur ctrl)
 	{
 		this.ctrl = ctrl;
-		//System.out.println("centre " +CENTER);
 		this.editeurParterre = new Dalle[TAILLE][TAILLE];
 		Dalle dalleStart = new Dalle();
-		//dalleStart.setCoordonner(500, 250);
 		lstDalle.add(dalleStart);
 		this.editeurParterre[CENTER][CENTER] = dalleStart;
 		p = new Point(CENTER,CENTER);
 		lstCoord.add(p);
-		this.frameEditeurParterre = new FrameEditeurParterre(this);
-		this.frameEditeurParterre.setLocation(500, 100);
-		this.frameControleEditeur = new FrameControleEditeur(this);
-		this.frameControleEditeur.setLocation(500,100+this.frameEditeurParterre.getSize().height);
+		
 
 	}
 	
@@ -91,8 +84,7 @@ public class EditeurParterre
 	public void setCoord(Point p, int coordx, int coordy)
 	{
 		this.editeurParterre[p.x][p.y].setCoordonner(coordx-400, coordy-700);
-		/*System.out.println(coordx-500);
-		System.out.println(coordy-800);*/
+
 	}
 	
 	public boolean emplacementVide(int x,int y)
@@ -104,13 +96,6 @@ public class EditeurParterre
 	public boolean aUneDalleAdjacente(int x, int y)
 	{
 		outOfBoundCheck(x,y);
-		/*System.out.println("-----------------");
-		System.out.println("N  :" + this.nordEstX + " :" +this.nordY);
-		System.out.println("NE :" + this.nordEstX + " :" +this.nordEstY);
-		System.out.println("SE  :" + this.sudEstX + " :" +this.sudEstY);
-		System.out.println("S  :" + this.sudX + " :" +this.sudY);
-		System.out.println("SO  :" + this.sudOuestX + " :" +this.sudOuestY);
-		System.out.println("NO  :" + this.nordOuestX + " :" +this.nordOuestY);*/
 
 
 
@@ -135,60 +120,48 @@ public class EditeurParterre
 		{
 			if(!(this.editeurParterre[this.nordX]     [this.nordY]      == null)) 
 			{
-				//dalle.setAdjacent(NORD, this.editeurParterre[this.nordX]     [this.nordY]);
 				dalle.rajoutDalleAdjacent(NORD, this.editeurParterre[this.nordX][this.nordY]);
 				this.editeurParterre[this.nordX][this.nordY].rajoutDalleAdjacent(SUD, dalle);
-				//System.out.println("nord");
 			}
 		}
 		if(this.bNordEstOk)   
 		{
 			if(!(this.editeurParterre[this.nordEstX]  [this.nordEstY]   == null)) 
 			{
-				//dalle.setAdjacent(NORD_EST,this.editeurParterre[this.nordEstX]  [this.nordEstY]  );
 				dalle.rajoutDalleAdjacent(NORD_EST, this.editeurParterre[this.nordEstX][this.nordEstY]);
 				this.editeurParterre[this.nordEstX][this.nordEstY].rajoutDalleAdjacent(SUD_OUEST, dalle);
-				//System.out.println("nordest");
 			}
 		}
 		if(this.bsudEstOk)    
 		{
 			if(!(this.editeurParterre[this.sudEstX]   [this.sudEstY]    == null)) 
 			{
-				//dalle.setAdjacent(SUD_EST, this.editeurParterre[this.sudEstX]   [this.sudEstY] );
 				dalle.rajoutDalleAdjacent(SUD_EST, this.editeurParterre[this.sudEstX][this.sudEstY]   );
 				this.editeurParterre[this.sudEstX][this.sudEstY].rajoutDalleAdjacent(NORD_OUEST, dalle);
-				//System.out.println("sudest");
 			}
 		}
 		if(this.bSudOk)       
 		{
 			if(!(this.editeurParterre[this.sudX]      [this.sudY]       == null)) 
 			{
-				//dalle.setAdjacent(SUD,this.editeurParterre[this.sudX]      [this.sudY]  );
 				dalle.rajoutDalleAdjacent(SUD, this.editeurParterre[this.sudX][this.sudY] );
 				this.editeurParterre[this.sudX][this.sudY].rajoutDalleAdjacent(NORD, dalle);
-				//System.out.println("sud");
 			}
 		}
 		if(this.bsudOuestOk)  
 		{
 			if(!(this.editeurParterre[this.sudOuestX] [this.sudOuestY]  == null)) 
 			{
-				//dalle.setAdjacent(SUD_OUEST,this.editeurParterre[this.sudOuestX] [this.sudOuestY]  );
 				dalle.rajoutDalleAdjacent(SUD_OUEST, this.editeurParterre[this.sudOuestX][this.sudOuestY] );
 				this.editeurParterre[this.sudOuestX][this.sudOuestY].rajoutDalleAdjacent(NORD_EST,dalle);
-				//System.out.println("sudouest");
 			}
 		}
 		if(this.bnordOuestOk) 
 		{	
 			if(!(this.editeurParterre[this.nordOuestX][this.nordOuestY] == null)) 
 			{
-				//dalle.setAdjacent(NORD_OUEST, this.editeurParterre[this.nordOuestX][this.nordOuestY]);
 				dalle.rajoutDalleAdjacent(NORD_OUEST,this.editeurParterre[this.nordOuestX][this.nordOuestY]);
 				this.editeurParterre[this.nordOuestX][this.nordOuestY].rajoutDalleAdjacent(SUD_EST,dalle);
-				//System.out.println("nordouest");
 			}
 		}
 
@@ -203,84 +176,63 @@ public class EditeurParterre
 		boolean bOffset;
 		if(y%2==1){bOffset = true;}
 		else{bOffset = false;}
-		
-		//System.out.println(y%2);
-		/*this.bNordOk       = true;
-		this.bSudOk        = true;
-		this.bnordOuestOk  = true;
-		this.bNordEstOk    = true;
-		this.bsudEstOk     = true;
-		this.bsudOuestOk   = true;*/
+
 		
 		if(bOffset)
 		{
-			//System.out.println(x +" "+ y);
-			//System.out.println("-------------");
+			
 			this.nordX = x - 1 ;
 			this.nordY = y     ;
-			/*System.out.print("\n"+this.nordX);
-			System.out.println(" "+this.nordY + "n");*/
+
 
 			
 			this.nordEstX = x     ;
 			this.nordEstY = y + 1 ;
-			/*System.out.print("\n"+this.nordEstX);
-			System.out.println(" " +this.nordEstY + "ne");*/
+
 			
 			this.sudEstX = x +1  ;
 			this.sudEstY = y + 1 ;
-			/*System.out.print("\n"+this.sudEstX);
-			System.out.println(" "+this.sudEstY + "se");*/
+
 			
 			this.sudX = x + 1 ;
 			this.sudY = y     ;
-			/*System.out.print("\n"+this.sudX);
-			System.out.println(" "+this.sudY + "s");*/
+
 			
 			this.sudOuestX = x     ;
 			this.sudOuestY = y - 1 ;
-		/*	System.out.print("\n"+this.sudOuestX);
-			System.out.println(" "+this.sudOuestY + "so");*/
+
 			
 			this.nordOuestX = x + 1   ;
 			this.nordOuestY = y - 1 ;
-			/*System.out.print("\n"+this.nordOuestX);
-			System.out.println(" "+this.nordOuestY + "no");*/
+
 		}
 		else
 		{		
-			//System.out.println(x +" "+ y);
-			//System.out.println("-------------");
+
 			this.nordX = x - 1 ;
 			this.nordY = y     ;
-			/*System.out.print("\n"+this.nordX);
-			System.out.println(" "+this.nordY + "n");*/
+
 
 			
 			this.nordEstX = x - 1 ;
 			this.nordEstY = y + 1 ;
-			/*System.out.print("\n"+this.nordEstX);
-			System.out.println(" " +this.nordEstY + "ne");*/
+
 			
 			this.sudEstX = x     ;
 			this.sudEstY = y + 1 ;
-			/*System.out.print("\n"+this.sudEstX);
-			System.out.println(" "+this.sudEstY + "se");*/
+			
 			
 			this.sudX = x + 1 ;
 			this.sudY = y     ;
-			/*System.out.print("\n"+this.sudX);
-			System.out.println(" "+this.sudY + "s");*/
+
 			
 			this.sudOuestX = x     ;
 			this.sudOuestY = y - 1 ;
-			/*System.out.print("\n"+this.sudOuestX);
-			System.out.println(" "+this.sudOuestY + "so");*/
+
 			
 			this.nordOuestX = x - 1 ;
 			this.nordOuestY = y - 1 ;
-			/*System.out.print("\n"+this.nordOuestX);
-			System.out.println(" "+this.nordOuestY + "no");*/
+
 		}
 
 		
@@ -314,10 +266,6 @@ public class EditeurParterre
 		return this.lastDalle;
 	}
 	
-	/*public static void main(String[]agrs)
-	{
-		new EditeurParterre();
-	}*/
 	
 
 	public void supprimerDalle( int x, int y)
@@ -393,17 +341,6 @@ public class EditeurParterre
 
 	}
 	
-	public void DeplacerFrames(double posX, double posY, char frame)
-	{
-		if(frame == 'c' && this.frameEditeurParterre != null && this.frameControleEditeur != null)
-		{
-			frameEditeurParterre.setLocation((int) posX, (int) posY);
-		}
-		if(frame == 'e' && this.frameEditeurParterre != null && this.frameControleEditeur != null)
-		{
-			frameControleEditeur.setLocation( (int) posX , (int) posY);
-		}
-	}
 
 
 	public void retour()
@@ -414,21 +351,13 @@ public class EditeurParterre
 			Point pCoord = new Point(lstCoord.remove(lstCoord.size()-1));
 			supprimerDalle(pCoord.x,pCoord.y);
 		}
-			this.ctrl.retour();
-			this.frameControleEditeur.setVisible(false);
-			this.frameEditeurParterre.setVisible(false);
+
 		
 		bRetour = true;
 
 	}
 
-	public void lancerPartie()
-	{
-		this.ctrl.lancerPartieCustom(this.lstDalle);
-		this.frameControleEditeur.setVisible(false);
-		this.frameEditeurParterre.setVisible(false);
-
-	}
+	public ArrayList<Dalle> getNiveau()	{ return this.lstDalle;	}
 	
 	
 	public String genererNiveau()
@@ -479,5 +408,7 @@ public class EditeurParterre
 	{
 		return lstDalle.size();
 	}
+	
+	
 
 }

@@ -1,4 +1,5 @@
 package PilierDeLaTerre.ihm.gui;
+import PilierDeLaTerre.Controleur;
 import PilierDeLaTerre.metier.EditeurParterre;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ public class FrameEditeurParterre extends JFrame implements AdjustmentListener ,
 	//private Controleur ctrl;
 
 	private PanelEdtieurAffichage panelEdtieurAffichage;
-	private EditeurParterre editeurParterre;
+	private Controleur ctrl;
 	private JScrollPane scrollPane;
 	private JScrollBar horizontal;
 	private JScrollBar vertical;
@@ -27,13 +28,13 @@ public class FrameEditeurParterre extends JFrame implements AdjustmentListener ,
 		new EditeurParterre();
 	}*/
 
-	public FrameEditeurParterre(EditeurParterre editeurParterre)
+	public FrameEditeurParterre(Controleur ctrl)
 	{
 		
 		Point p = new Point(400,800);
 		//p.setLocation(400, 800);
-		panelEdtieurAffichage = new PanelEdtieurAffichage(editeurParterre);
-		this.editeurParterre = editeurParterre;
+		panelEdtieurAffichage = new PanelEdtieurAffichage(ctrl);
+		this.ctrl = ctrl;
 		//this.setContentPane(this.panelEdtieurAffichage);
 		this.setTitle	("EditeurParterre");
 		this.setSize	(800,600);
@@ -96,7 +97,7 @@ public class FrameEditeurParterre extends JFrame implements AdjustmentListener ,
 		Point p = this.getLocation(); 
 		
 
-		editeurParterre.DeplacerFrames(p.getX(), p.getY()+600.00, 'e');
+		ctrl.DeplacerFrames(p.getX(), p.getY()+600.00, 'e');
 
 	}
 
