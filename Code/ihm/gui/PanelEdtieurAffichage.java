@@ -1,7 +1,7 @@
-package PilierDeLaTerre.ihm.gui;
+package Equipe_22.ihm.gui;
 
-import PilierDeLaTerre.Controleur;
-import PilierDeLaTerre.metier.Dalle;
+import Equipe_22.Controleur;
+import Equipe_22.metier.Dalle;
 
 import javax.swing.*;
 import java.awt.Image;
@@ -212,7 +212,7 @@ public class PanelEdtieurAffichage extends JPanel
 				repaint();
 		}
 		
-		/**detect si la souris sort d'un bouton*/
+		/**detecte si la souris sort d'un bouton*/
 		public void mouseExited (MouseEvent e)
 		{
 

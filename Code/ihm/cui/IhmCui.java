@@ -1,50 +1,59 @@
-/**
- * @author Gaspard Gordien
- * 
- * 
- */
 
+package Equipe_22.ihm.cui;
 
-package PilierDeLaTerre.ihm.cui;
-
-import PilierDeLaTerre.metier.Dalle;
-import PilierDeLaTerre.metier.Parterre;
-import PilierDeLaTerre.metier.Pilier;
+import Equipe_22.metier.Dalle;
+import Equipe_22.metier.Parterre;
+import Equipe_22.metier.Pilier;
 
 import java.util.ArrayList;
+/**
+ * cette classe gere l'affichage du plateau sous forme de tableau dans la console
+ * @author Enguerrand Beltran, Raphael Lizot, Gaspard Gordien, Jordan Guiot
+ */
 
 public class IhmCui
 {
-    private int              nbDallePresente;
+    /**
+     * l'ensemble des dalles
+     */
     private ArrayList<Dalle> dalles         ;
 
+    /**Constructeur de la classe qui prend en parametre un Parterre
+	 * @param part {@link Parterre}*/
     public IhmCui(Parterre part)
     {
-        this.nbDallePresente = part.getGrilleDalles().size();
         this.dalles          = part.getGrilleDalles();
     }
 
-    /* renvois les deux tableaux */
+    /**écrit dans la console l'état du parterre
+     * @return {@link String}
+     */
     public String toString()
     {
         return this.getLiasonsDalle() +"\n\n\n" + this.getLiasonsPilier();
     }
 
-    /* empéche les erreur et renvois le nom de la dalle */
+    /** empéche les erreur et renvois le nom du pilier
+     * @return  {@link char  }
+	 * @param p {@link Pilier}*/
     private char PilierToChar(Pilier p)
     {
         if(p == null){return ' ';}
         return p.getCoul();
     }
     
-    /* empéche les erreur et renvois le nom du pilier */
+    /** empéche les erreur et renvois le nom de la dalle
+     * @return  {@link char  }
+	 * @param d {@link Dalle}*/
     private char DalleToChar(Dalle d)
     {
         if (d == null) {return ' ';}
         return d.getNom();
     }
 
-    /* Renvois un tableau qui montre les dalle, leurs coordonées et a quelles dalles elles sont reliées */
+    /** Renvois un tableau qui montre les dalle, leurs coordonées et a quelles dalles elles sont reliées
+     * @return sRep {@link String  }
+     */
     private String getLiasonsDalle()
     {
         String sRep =   "          +-----------------------+-----------+\n"+
@@ -66,7 +75,8 @@ public class IhmCui
         return sRep;
     }
 
-    /* Renvois un tableau qui montre les dalle et quels piliers sonts présents a quel endroit de la dalle */
+    /** Renvois un tableau qui montre les dalle et quels piliers sonts présents a quel endroit de la dalle
+     * @return sRep {@link String  } */
     private String getLiasonsPilier()
     {
         String sRep =   "\n\n          +-----------------------+\n"+
@@ -88,5 +98,4 @@ public class IhmCui
         }
         return sRep;
     }
-
 }
