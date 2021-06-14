@@ -1,3 +1,8 @@
+/**
+ * @author Gaspard Gordien
+ * 
+ * 
+ */
 package PilierDeLaTerre.ihm.gui;
 
 import PilierDeLaTerre.ihm.gui.PanelDessin;
@@ -25,14 +30,4 @@ public class FrameMenu extends JFrame
 
         this.setVisible ( true );
     }
-
-
-
-    public static void main(String[] args)
-    {
-        new FrameMenu(new Controleur());
-    }
 }
-
-
-
