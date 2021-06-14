@@ -1,6 +1,5 @@
 package Equipe_22;
 
-import Equipe_22.ihm.gui.FrameAide;
 import Equipe_22.ihm.gui.FrameDessin;
 import Equipe_22.ihm.gui.FrameJoueur;
 import Equipe_22.ihm.gui.FrameMenu;
