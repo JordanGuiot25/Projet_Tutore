@@ -166,13 +166,15 @@ public class Controleur
 	/**Méthode permettant de lancer une partie custom */
 	public void lancerPartieCustom()
 	{
-		this.metier = new Parterre(this.editeurParterre.getNiveau(), new Joueur(1,'M'), new Joueur(2,'G'), 1);
-		this.frameControleEditeur.setVisible(false);
-		this.frameEditeurParterre.setVisible(false);
-		this.ihm.setVisible(true);
-		this.ihmJoueur.setVisible(true);
-		this.bDebutPartie = true;	
-		
+		if(this.editeurParterre.getLastDalle()>'P')
+		{
+			this.metier = new Parterre(this.editeurParterre.getNiveau(), new Joueur(1,'M'), new Joueur(2,'G'), 1);
+			this.frameControleEditeur.setVisible(false);
+			this.frameEditeurParterre.setVisible(false);
+			this.ihm.setVisible(true);
+			this.ihmJoueur.setVisible(true);
+			this.bDebutPartie = true;
+		}
 	}
 	/**Méthode permettant d'initialiser la map de la partie custom avant son lancement */
 	public void partieCustom()
@@ -259,17 +261,62 @@ public class Controleur
 			frameControleEditeur.setLocation( (int) posX , (int) posY);
 		}
 	}
-	
+	/**retourne le nom de la dernière dalle posée
+	 * @return char
+	 */
 	public char getLastDalle() {return this.editeurParterre.getLastDalle();}
+	/**retourne la dalle aux coordonées x y
+	 * @param i int
+	 * @param y int
+	 * @return {@link Dalle}
+	 */
 	public Dalle getDalle(int i, int y) {return this.editeurParterre.getDalle(i, y);}
+	/**Attribue les coordonées a une Dalle
+	 * @param p {@link Point}
+	 * @param coordX int
+	 * @param coordY int
+	 */
 	public void setCoord(Point p, int coordx, int coordy) {this.editeurParterre.setCoord(p, coordx, coordy);}
+	/**verifie si il a une dalle adajcente autour des coordonées rentrées en parametre
+	 * @param p {@link Point}
+	 * @param x int
+	 * @param y int
+	 * @return boolean
+	 */
 	public boolean aUneDalleAdjacente(int x, int y) {return this.editeurParterre.aUneDalleAdjacente(x, y);}
+		/**verifie si l'emplacement des coordonées rentrées en parametre est vide
+	 * @param x int
+	 * @param y int
+	 * @return boolean
+	 */
 	public boolean emplacementVide(int x,int y) {return this.editeurParterre.emplacementVide(x, y);}
+	/** Ajoute les coordonées a la dalle aux indices contenu dans le Point
+	 * @param point {@link Point}
+	*/
 	public void addCoord(Point point) {this.editeurParterre.addCoord(point);}
+	/**Ajoute une Dalle aux coordonées entrées en parametre et renvoi si c'est possible ou non
+	 * @param dalle {@link Dalle}
+	 * @param x int
+	 * @param y int
+	 * @return boolean
+	 */
 	public boolean ajouterDalle(Dalle dalle, int x, int y) {return this.editeurParterre.ajouterDalle(dalle, x, y);}
+	/** retourne les dernière coordonées ajouté a la liste
+	 * @return {@link Point}
+	*/
 	public Point getLastCoord() {return this.editeurParterre.getLastCoord();}
+	/** retourne la Taille de la liste de coordonées
+	 * @return {@link Int}
+	*/
 	public int getCoordSize() {return this.editeurParterre.getCoordSize();}
+	/**supprime la Dalle aux indice x,y
+	 * @param x int
+	 * @param y int
+	 */
 	public void supprimerDalle( int x, int y) {this.editeurParterre.supprimerDalle(x, y);}
+	/**Indique a l'editeur quel joueur doit posé une dalle
+	 * @param joueur {@link boolean}
+	 */
 	public void setJoueur(boolean joueur) {this.frameControleEditeur.setJoueur(joueur);}
 	
 	
