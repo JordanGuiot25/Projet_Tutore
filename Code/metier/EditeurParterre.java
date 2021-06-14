@@ -83,7 +83,7 @@ public class EditeurParterre
 
 	public void setCoord(Point p, int coordx, int coordy)
 	{
-		this.editeurParterre[p.x][p.y].setCoordonner(coordx-400, coordy-700);
+		this.editeurParterre[p.x][p.y].setCoordonner(coordx, coordy);
 
 	}
 	
