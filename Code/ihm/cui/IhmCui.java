@@ -1,3 +1,10 @@
+/**
+ * @author Gaspard Gordien
+ * 
+ * 
+ */
+
+
 package PilierDeLaTerre.ihm.cui;
 
 import PilierDeLaTerre.metier.Dalle;
@@ -9,19 +16,7 @@ import java.util.ArrayList;
 public class IhmCui
 {
     private int              nbDallePresente;
-    private ArrayList<Dalle> dalles;
-
-    public IhmCui()
-    {
-        this.nbDallePresente = 0;
-        this.dalles          = new ArrayList<Dalle>();
-    }
-
-    public char PilierToChar(Pilier p)
-    {
-        if(p == null){return ' ';}
-        return p.getCoul();
-    }
+    private ArrayList<Dalle> dalles         ;
 
     public IhmCui(Parterre part)
     {
@@ -29,17 +24,51 @@ public class IhmCui
         this.dalles          = part.getGrilleDalles();
     }
 
-    public boolean ajouterDalle(Dalle d)
+    /* renvois les deux tableaux */
+    public String toString()
     {
-        if(nbDallePresente == 16){return false;}
-            dalles.add(d);
-        this.nbDallePresente++;
-        return true;
+        return this.getLiasonsDalle() +"\n\n\n" + this.getLiasonsPilier();
     }
 
-    public String getLiasonsPilier()
+    /* empéche les erreur et renvois le nom de la dalle */
+    private char PilierToChar(Pilier p)
     {
-         /*affichage des pillier*/
+        if(p == null){return ' ';}
+        return p.getCoul();
+    }
+    
+    /* empéche les erreur et renvois le nom du pilier */
+    private char DalleToChar(Dalle d)
+    {
+        if (d == null) {return ' ';}
+        return d.getNom();
+    }
+
+    /* Renvois un tableau qui montre les dalle, leurs coordonées et a quelles dalles elles sont reliées */
+    private String getLiasonsDalle()
+    {
+        String sRep =   "          +-----------------------+-----------+\n"+
+                        "          |         Lié à         | coordonées|\n"+
+                        "          +---+---+---+---+---+---+-----------+\n"+
+                        "          | 0 | 1 | 2 | 3 | 4 | 5 |  x  |  y  |\n"+
+                        "+---------+---+---+---+---+---+---+-----+-----+\n";
+        for(Dalle d: dalles)
+        {
+            if(d != null)
+            {
+                sRep   +="| Dalle " + d.getNom()  + " | "                       + this.DalleToChar(d.getDalleAdjacent(0)) +
+                        " | "+ this.DalleToChar(d.getDalleAdjacent(1))  + " | " + this.DalleToChar(d.getDalleAdjacent(2)) +
+                        " | "+ this.DalleToChar(d.getDalleAdjacent(3))  + " | " + this.DalleToChar(d.getDalleAdjacent(4)) +
+                        " | "+ this.DalleToChar(d.getDalleAdjacent(5))  + " |" + String.format("%5d",d.getX())+"|" +String.format("%5d",d.getY())+   "|\n"+
+                        "+---------+---+---+---+---+---+---+-----+-----+\n";
+            }
+        }
+        return sRep;
+    }
+
+    /* Renvois un tableau qui montre les dalle et quels piliers sonts présents a quel endroit de la dalle */
+    private String getLiasonsPilier()
+    {
         String sRep =   "\n\n          +-----------------------+\n"+
                             "          |   Pillier present     |\n"+
                             "          +---+---+---+---+---+---+\n"+
@@ -60,44 +89,4 @@ public class IhmCui
         return sRep;
     }
 
-    public String getLiasonsDalle()
-    {
-        /* affichage des liaison entre dalles*/
-
-        String sRep =   "          +-----------------------+-----------+\n"+
-                        "          |         Lié à         | coordonées|\n"+
-                        "          +---+---+---+---+---+---+-----------+\n"+
-                        "          | 0 | 1 | 2 | 3 | 4 | 5 |  x  |  y  |\n"+
-                        "+---------+---+---+---+---+---+---+-----+-----+\n";
-        for(Dalle d: dalles)
-        {
-            if(d != null)
-            {
-                sRep   +="| Dalle " + d.getNom()  + " | "                       + this.DalleToChar(d.getDalleAdjacent(0)) +
-                        " | "+ this.DalleToChar(d.getDalleAdjacent(1))  + " | " + this.DalleToChar(d.getDalleAdjacent(2)) +
-                        " | "+ this.DalleToChar(d.getDalleAdjacent(3))  + " | " + this.DalleToChar(d.getDalleAdjacent(4)) +
-                        " | "+ this.DalleToChar(d.getDalleAdjacent(5))  + " |" + String.format("%5d",d.getX())+"|" +String.format("%5d",d.getY())+   "|\n"+
-                        "+---------+---+---+---+---+---+---+-----+-----+\n";
-            }
-        }
-        return sRep;
-    }
-
-    public String toString()
-    {
-        return this.getLiasonsDalle() +"\n\n\n" + this.getLiasonsPilier();
-    }
-
-    public char DalleToChar(Dalle d)
-    {
-        if (d == null) {return ' ';}
-        return d.getNom();
-    }
-
-    public static void main(String[] args)
-    {
-        Parterre part = new Parterre();
-        IhmCui tab2 = new IhmCui(part);
-        System.out.println(tab2);
-    }
-    }
+}
