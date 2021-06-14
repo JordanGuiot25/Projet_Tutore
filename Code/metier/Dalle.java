@@ -2,6 +2,9 @@ package PilierDeLaTerre.metier;
 
 import iut.algo.Clavier;
 
+/** Classe Dalle 
+ * @author Raphaël Lizot, Jordan Guiot, Enguerrand Beltran, Gaspard Gordien
+ */
 public class Dalle
 {
 	private static final String IMAGE   = "../Ressources/Dalle.png";
@@ -40,6 +43,8 @@ public class Dalle
 	          3
 	---------------------*/
 
+	/** Initie Dalle par default
+	 */
 	public Dalle()
 	{
 		this.nomDalle             = nbDalle++;
@@ -52,7 +57,10 @@ public class Dalle
 		this.tabPilierDetruitJ2   = new boolean[6];
 	}
 
-	public Dalle(int x, int y)
+	/** Initie Dalle au coordonnée
+	 * @param x {@link int}, y {@link Int}
+	 */
+	public Dalle(int x, int y) 
 	{
 		this.nomDalle             = nbDalle++;
 		this.listeSommet          = new Pilier[6];
@@ -66,19 +74,57 @@ public class Dalle
 
 	}
 
+	/** Renvoie le nom de la dalle
+	 * @return nomDalle {@link Char}
+	 */
 	public char getNom() { return this.nomDalle; }
+
+	/** Renvoie le X de la dalle
+	 * @return x {@link Int}
+	 */
 	public int  getX()   { return this.x-33;   }
+
+	/** Renvoie le Y de la dalle
+	 * @return y {@link Int}
+	 */
 	public int  getY()   { return this.y-33;   }
 
+	/** Renvoie le milieu X de la dalle
+	 * @return x {@link Int}
+	 */
 	public int getMilieuX() { return this.x; }
+
+	/** Renvoie le milieu Y de la dalle
+	 * @return y {@link Int}
+	 */
 	public int getMilieuY() { return this.y; }
 	
+	/** Renvoie la dalle adjacent selon le numero du côté 
+	 * @param  cote {@link Int}
+	 * @return y {@link Int}
+	 */
 	public Dalle    getDalleAdjacent(int cote) { return this.listeDallesAdjacent[cote];}
+
+	/** Renvoie le tableau des piliers de la dalle
+	 * @return listeSommet {@link Pilier}
+	 */
 	public Pilier[] getSommets()               { return this.listeSommet;              }
+
+	/** Renvoie le tableau des dalles adjacent 
+	 * @return listeDallesAdjacent {@link Dalle}
+	 */
 	public Dalle[]  getListeDallesAdjacent()   { return this.listeDallesAdjacent;      }
 
+
+	/** Renvoie le proprietaire de la dalle
+	 * @return joueurProprietaire {@link Joueur}
+	 */
 	public Joueur getProprietaire() { return this.joueurProprietaire;}
 
+	/** Renvoie le pilier precedent en fonction du pilier donné
+	 * @param  pilier {@link Pilier}
+	 * @return precedent {@link Pilier}
+	 */
 	public Pilier getPrecedent(Pilier pilier)
 	{
 		for(int cpt = 0; cpt < this.listeSommet.length; cpt ++)
@@ -95,6 +141,10 @@ public class Dalle
 		return null;
 	}
 
+	/** Renvoie le pilier suivant en fonction du pilier donné
+	 * @param  pilier {@link Pilier}
+	 * @return suivant {@link Pilier}
+	 */
 	public Pilier getSuivant(Pilier pilier)
 	{
 		for(int cpt = 0; cpt < this.listeSommet.length; cpt ++)
@@ -111,13 +161,24 @@ public class Dalle
 		return null;
 	}
 
+	/** Defini le proprietaire de la dalle
+	 * @param  joueur {@link Joueur}
+	 */
 	public void setProprietaire(Joueur joueur)
 	{
 		this.joueurProprietaire = joueur;
 	}
 
+	/** Renvoie le pilier selon le numero donné
+	 * @param  numPilier {@link Int}
+	 * @return pilier    {@link Pilier}
+	 */
 	public Pilier   getPilier(int numPilier)   { return this.listeSommet[numPilier];   }
 
+	/** Renvoie l'indice du pilier
+	 * @param  pilier {@link Pilier}
+	 * @return indicePilier    {@link int}
+	 */
 	public int      getIndicePilier(Pilier pilier)
 	{
 		for(int cpt = 0; cpt < this.listeSommet.length; cpt++)
@@ -129,12 +190,18 @@ public class Dalle
 		return 0;
 	}
 
+	/** Définie les coordonnées de la dalle
+	 * @param  pilier {@link Pilier}
+	 */
 	public void     setCoordonner(int x, int y)
 	{
 		this.x = x;
 		this.y = y;
 	}
 
+	/** Définie une dalle adjacent à la dalle
+	 * @param  cote {@link Int}, voisin {@link Dalle}
+	 */
 	public void     setAdjacent  (int cote, Dalle voisin)
 	{
 		this.listeDallesAdjacent[cote] = voisin;
@@ -158,6 +225,10 @@ public class Dalle
 		voisin.rajoutDalleAdjacent(cote, this);
 	}
 
+	/** Définie une dalle adjacent à la dalle
+	 * @param  cote {@link Int}, voisin {@link Dalle}
+	 * @return validation {@link Boolean}
+	 */
 	public boolean rajoutDalleAdjacent (int cote, Dalle voisin)
 	{
 		if ( voisin == null || cote > 5 && cote < 0 || this.listeDallesAdjacent[cote] != null )
@@ -170,6 +241,10 @@ public class Dalle
 		return true;
 	}
 
+	/** Définie un pilier d'une certaine couleur sur un sommet de la dalle
+	 * @param  couleur {@link Char}, numSommet {@link Int}
+	 * @return validation {@link Boolean}
+	 */
 	public boolean rajoutPillier(char couleur, int numSommet)
 	{
 		if ( this.listeSommet[numSommet] == null )
@@ -275,6 +350,10 @@ public class Dalle
 		return false;
 	}
 
+	/** Définie un pilier sur un sommet de la dalle
+	 * @param  pilier {@link Pilier}, numSommet {@link Int}
+	 * @return validation {@link Boolean}
+	 */
 	private boolean posePilier(Pilier pilier, int numSommet) 
 	{
 		if( !this.getTabPilierDetruit()[numSommet] )
@@ -288,6 +367,10 @@ public class Dalle
 			
 	}
 
+	/** Detruis un pilier selon le numero
+	 * @param  numSommet {@link Int}
+	 * @return validation {@link Boolean}
+	 */
 	public boolean detruirePillier(int numSommet)
 	{
 		if ( this.listeSommet[numSommet] != null )
@@ -347,6 +430,9 @@ public class Dalle
 		return false;
 	}
 
+	/** Défini le numero du joueur
+	 * @param  num {@link Int}
+	 */
 	public void setNumJoueur(int num )
 	{
 		this.numJoueur = num;
@@ -356,8 +442,15 @@ public class Dalle
 		if ( num == 1 )
 			this.tabPilierDetruitJ1 = new boolean[6];
 	}
+	/** Renvoie le numero du joueur
+	 * @return  numJoueur {@link Int}
+	 */
 	public int  getNumJoueur()         { return this.numJoueur; }
 
+	/** Définie un pilierDetruit selon le numero du sommet
+	 * @param   numSommet  {@link Int}
+	 * @return  validation {@link Boolean}
+	 */
 	public boolean   setPilierDetruit(int numSommet)
 	{
 		if( this.numJoueur == 1 )
@@ -376,6 +469,9 @@ public class Dalle
 		return false;
 	}
 
+	/** Renvoie le tableau des piliers detruit
+	 * @return  tabPilierDetruit {@link Boolean}
+	 */
 	public boolean[] getTabPilierDetruit()
 	{
 		if( this.numJoueur == 1 )
@@ -386,11 +482,18 @@ public class Dalle
 		return null;
 	}
 
+	/** Met à null un pilier selon le numero
+	 * @param  numSommet {@link Int}
+	 */
 	public void destructionDuPilier(int numSommet)
 	{
 		this.listeSommet[numSommet] =  null;
 	}
 
+	/** Verifie le proprietaire de la Dalle
+	 * @param   joueur1 {@link Joueur}, joueur2 {@link Joueur}
+	 * @return  proprietaire {@link Joueur}
+	 */
 	public Joueur verifierProprietaireDalle(Joueur joueur1, Joueur joueur2)
 	{
 		int pilierJ1 = 0;
@@ -454,6 +557,10 @@ public class Dalle
 		return null;
 	}
 
+	/** Detruit les piliers qui n'ont pas la couleur mis en paramètre
+	 * @param   couleurMajoriter {@link Char}
+	 * @return  nbPilierDetruit {@link Int}
+	 */
 	private int destructionPilierJoueur(char couleurMajoriter )
 	{
 		int nbPilierDetruis=0;
@@ -469,6 +576,9 @@ public class Dalle
 		return nbPilierDetruis;
 	}
 
+	/** Informe si la dalle est contrôler
+	 * @return  estControler {@link Boolean}
+	 */
 	public boolean estControler()
 	{
 		if(this.joueurProprietaire !=null) {return true;}
@@ -476,7 +586,9 @@ public class Dalle
 	}
 	
 	
-
+	/** Renvoie les informations de la dalle
+	 * @return  sMessage {@link String}
+	 */
 	public String toString()
 	{
 		String sMessage = this.getNom() + " : ";
@@ -499,6 +611,9 @@ public class Dalle
 		
 		return sMessage;
 	}
+
+	/** Supprime une dalle
+	 */
 	public void supprimerDalle()
 	{
 		this.nbDalle--;
