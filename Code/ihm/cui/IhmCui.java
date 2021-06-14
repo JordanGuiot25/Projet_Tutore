@@ -25,13 +25,16 @@ public class IhmCui
         this.dalles          = part.getGrilleDalles();
     }
 
-    /**écrit dans la console l'état du parterre*/
+    /**écrit dans la console l'état du parterre
+     * @return {@link String}
+     */
     public String toString()
     {
         return this.getLiasonsDalle() +"\n\n\n" + this.getLiasonsPilier();
     }
 
     /** empéche les erreur et renvois le nom du pilier
+     * @return  {@link char  }
 	 * @param p {@link Pilier}*/
     private char PilierToChar(Pilier p)
     {
@@ -40,6 +43,7 @@ public class IhmCui
     }
     
     /** empéche les erreur et renvois le nom de la dalle
+     * @return  {@link char  }
 	 * @param d {@link Dalle}*/
     private char DalleToChar(Dalle d)
     {
@@ -47,7 +51,9 @@ public class IhmCui
         return d.getNom();
     }
 
-    /** Renvois un tableau qui montre les dalle, leurs coordonées et a quelles dalles elles sont reliées */
+    /** Renvois un tableau qui montre les dalle, leurs coordonées et a quelles dalles elles sont reliées
+     * @return sRep {@link String  }
+     */
     private String getLiasonsDalle()
     {
         String sRep =   "          +-----------------------+-----------+\n"+
@@ -69,7 +75,8 @@ public class IhmCui
         return sRep;
     }
 
-    /** Renvois un tableau qui montre les dalle et quels piliers sonts présents a quel endroit de la dalle */
+    /** Renvois un tableau qui montre les dalle et quels piliers sonts présents a quel endroit de la dalle
+     * @return sRep {@link String  } */
     private String getLiasonsPilier()
     {
         String sRep =   "\n\n          +-----------------------+\n"+
