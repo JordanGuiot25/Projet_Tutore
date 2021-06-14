@@ -1,7 +1,7 @@
-package PilierDeLaTerre.metier;
+package Equipe_22.metier;
 
-import PilierDeLaTerre.metier.Dalle;
-import PilierDeLaTerre.metier.Pilier;
+import Equipe_22.metier.Dalle;
+import Equipe_22.metier.Pilier;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,8 @@
-package PilierDeLaTerre.ihm.gui;
+package Equipe_22.ihm.gui;
 
-import PilierDeLaTerre.Controleur;
-import PilierDeLaTerre.metier.Dalle;
-import PilierDeLaTerre.metier.Pilier;
+import Equipe_22.Controleur;
+import Equipe_22.metier.Dalle;
+import Equipe_22.metier.Pilier;
 
 import javax.swing.JPanel;
 

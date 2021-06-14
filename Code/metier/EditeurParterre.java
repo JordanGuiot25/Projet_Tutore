@@ -1,11 +1,11 @@
-package PilierDeLaTerre.metier;
+package Equipe_22.metier;
 
-import PilierDeLaTerre.metier.Dalle;
-import PilierDeLaTerre.ihm.gui.FrameControleEditeur;
-import PilierDeLaTerre.ihm.gui.FrameEditeurParterre;
-import PilierDeLaTerre.ihm.gui.PanelEditeurControle;
-import PilierDeLaTerre.ihm.gui.PanelEdtieurAffichage;
-import PilierDeLaTerre.Controleur;
+import Equipe_22.metier.Dalle;
+import Equipe_22.ihm.gui.FrameControleEditeur;
+import Equipe_22.ihm.gui.FrameEditeurParterre;
+import Equipe_22.ihm.gui.PanelEditeurControle;
+import Equipe_22.ihm.gui.PanelEdtieurAffichage;
+import Equipe_22.Controleur;
 
 import iut.algo.Decomposeur;
 import java.io.FileInputStream;
@@ -315,16 +315,16 @@ public class EditeurParterre
 			this.nordEstX = x     ;
 			this.nordEstY = y + 1 ;
 			//coordonées au sud-est de la dalle
-			this.sudEstX = x +1  ;
+			this.sudEstX = x + 1 ;
 			this.sudEstY = y + 1 ;
 			//coordonées au sud de la dalle
 			this.sudX = x + 1 ;
 			this.sudY = y     ;
 			//coordonées au sud-ouest de la dalle
-			this.sudOuestX = x     ;
+			this.sudOuestX = x + 1 ;
 			this.sudOuestY = y - 1 ;
 			//coordonées au nord-ouest de la dalle
-			this.nordOuestX = x + 1   ;
+			this.nordOuestX = x     ;
 			this.nordOuestY = y - 1 ;
 		}
 		else

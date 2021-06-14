@@ -3,11 +3,11 @@
  * 
  * 
  */
-package PilierDeLaTerre.ihm.gui;
+package Equipe_22.ihm.gui;
 
-import PilierDeLaTerre.ihm.gui.PanelDessin;
+import Equipe_22.ihm.gui.PanelDessin;
 
-import PilierDeLaTerre.Controleur;
+import Equipe_22.Controleur;
 
 import javax.swing.*;
 

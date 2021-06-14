@@ -156,7 +156,7 @@ public class PanelEdtieurAffichage extends JPanel
 
 			for(int u = 0; u < this.btnDetecteurs.length; u ++)
 			{
-				JButton btn = new JButton();
+				JButton btn = new JButton(i+":"+u);
 				this.btnDetecteurs[i][u] = btn;
 				this.add(this.btnDetecteurs[i][u]);
 				this.btnDetecteurs[i][u].setLocation(x,y);

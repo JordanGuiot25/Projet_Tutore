@@ -1,4 +1,4 @@
-package PilierDeLaTerre.metier;
+package Equipe_22.metier;
 
 import java.awt.Image;
 

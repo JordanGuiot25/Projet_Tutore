@@ -1,12 +1,12 @@
-package PilierDeLaTerre.metier;
+package Equipe_22.metier;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileInputStream;
 
-import PilierDeLaTerre.metier.Joueur;
-import PilierDeLaTerre.metier.Dalle;
-import PilierDeLaTerre.metier.Parterre;
+import Equipe_22.metier.Joueur;
+import Equipe_22.metier.Dalle;
+import Equipe_22.metier.Parterre;
 
 import iut.algo.Decomposeur;
 

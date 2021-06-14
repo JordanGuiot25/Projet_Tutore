@@ -67,7 +67,7 @@ public class PanelScenario extends JPanel implements ActionListener
 		panelBox.setOpaque(true);																	
      
 	 	/**Positionnement des composants */
-		panelBox.add(this.btnRetour;
+		panelBox.add(this.btnRetour);
 		panelBox.add(new JLabel("Scénario à lancer :"));
 		panelBox.add(this.cboxScenario);
 		

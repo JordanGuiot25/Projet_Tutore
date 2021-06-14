@@ -1,17 +1,17 @@
-package PilierDeLaTerre;
+package Equipe_22;
 
-import PilierDeLaTerre.ihm.gui.FrameAide;
-import PilierDeLaTerre.ihm.gui.FrameDessin;
-import PilierDeLaTerre.ihm.gui.FrameJoueur;
-import PilierDeLaTerre.ihm.gui.FrameMenu;
-import PilierDeLaTerre.ihm.gui.FrameScenario;
-import PilierDeLaTerre.ihm.gui.FrameControleEditeur;
-import PilierDeLaTerre.ihm.gui.FrameEditeurParterre;
-import PilierDeLaTerre.ihm.cui.IhmCui;
-import PilierDeLaTerre.metier.Dalle;
-import PilierDeLaTerre.metier.Parterre;
-import PilierDeLaTerre.metier.Scenario;
-import PilierDeLaTerre.metier.EditeurParterre;
+import Equipe_22.ihm.gui.FrameAide;
+import Equipe_22.ihm.gui.FrameDessin;
+import Equipe_22.ihm.gui.FrameJoueur;
+import Equipe_22.ihm.gui.FrameMenu;
+import Equipe_22.ihm.gui.FrameScenario;
+import Equipe_22.ihm.gui.FrameControleEditeur;
+import Equipe_22.ihm.gui.FrameEditeurParterre;
+import Equipe_22.ihm.cui.IhmCui;
+import Equipe_22.metier.Dalle;
+import Equipe_22.metier.Parterre;
+import Equipe_22.metier.Scenario;
+import Equipe_22.metier.EditeurParterre;
 
 import iut.algo.Clavier;
 
@@ -22,8 +22,8 @@ import java.awt.Point;
 import java.io.PrintWriter;
 import java.io.FileOutputStream;
 
-import PilierDeLaTerre.metier.Dalle;
-import PilierDeLaTerre.metier.Joueur;
+import Equipe_22.metier.Dalle;
+import Equipe_22.metier.Joueur;
 
 public class Controleur
 {

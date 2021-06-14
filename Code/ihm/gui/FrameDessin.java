@@ -1,13 +1,13 @@
-package PilierDeLaTerre.ihm.gui;
+package Equipe_22.ihm.gui;
 
-import PilierDeLaTerre.ihm.gui.PanelDessin;
+import Equipe_22.ihm.gui.PanelDessin;
 
 import java.awt.Dimension;
 import java.awt.Point;
 
 
 
-import PilierDeLaTerre.Controleur;
+import Equipe_22.Controleur;
 
 import javax.swing.*;
 
