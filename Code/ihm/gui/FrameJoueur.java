@@ -1,14 +1,10 @@
-/**
- * @author Gaspard Gordien
- * 
- * 
- */
-package PilierDeLaTerre.ihm.gui;
 
-import PilierDeLaTerre.Controleur;
-import PilierDeLaTerre.metier.Dalle;
-import PilierDeLaTerre.metier.Pilier;
-import PilierDeLaTerre.metier.Joueur;
+package Equipe_22.ihm.gui;
+
+import Equipe_22.Controleur;
+import Equipe_22.metier.Dalle;
+import Equipe_22.metier.Pilier;
+import Equipe_22.metier.Joueur;
 
 import javax.swing.*;
 
@@ -17,20 +13,56 @@ import java.awt.GridLayout;
 
 import java.awt.event.*;
 
+/**
+ * Frame qui permet au joueur de jouer qui indique une aide sur l'emplacement des piliers et qui indique le nombre de piliers restants et le nombre de piliers détruit 
+ * @author Enguerrand Beltran, Raphael Lizot, Gaspard Gordien, Jordan Guiot
+ */
+
 public class FrameJoueur extends JFrame implements ActionListener
 {
-    private Controleur ctrl;        //relis le controleur a la frame
+    /**Le Controleur de l'appilcation de la frame
+	 * @see {@link Controleur} */
+    private Controleur ctrl;
+
+    /**Le joueur actuel
+	 * @see {@link Joueur} */
     private Joueur     joueur;      //le joueur en cours
     
-    private JLabel     lbImg;       //le label qui contient l'image d'aide
-    private JPanel     panelJoueur; //le panel qui contient ce que le joueur peut faire
-    private JLabel     lblJoueur;   //label qui affiche le joueur en cours
-    private JTextField txtNumDalle; //textField ou le joueur indique la dalle 
-    private JTextField txtSommet;   //textField ou le joueur indique l'emplacement ou il veut placer un pilier
-    private JButton    btnValider;  //bouton ou le joueur valide son choix
-    private JPanel     panelScore;  //le panel qui contient le score du joueur
-    private JLabel     labelScore;  //le label qui affiche le score
+    /**Le label qui contient l'image d'aide
+	 * @see {@link JLabel} */
+    private JLabel     lbImg;
 
+    /**Le panel qui contient les actions possibles du joueur
+	 * @see {@link JPanel} */
+    private JPanel     panelJoueur;
+
+    /**Le label qui indique quel joueur est en train de jouer
+	 * @see {@link JLabel} */
+    private JLabel     lblJoueur;
+
+    /**Le textField ou le joueur indique la dalle ou il veut placer son pilier
+	 * @see {@link JTextField} */
+    private JTextField txtNumDalle;
+
+    /**Le textField ou le joueur indique l'emplacement ou il veut placer son pilier
+	 * @see {@link JTextField} */
+    private JTextField txtSommet;
+
+    /**Le bouton ou le joueur valide son choix
+	 * @see {@link JButton} */
+    private JButton    btnValider;
+
+    /**Le panel qui contient le score du joueur
+	 * @see {@link JPanel} */
+    private JPanel     panelScore;
+
+    /**Le label qui contient le score du joueur
+	 * @see {@link JLabel} */
+    private JLabel     labelScore;
+
+    /**Constructeur de la frame prend un controleur en parametre 
+	 * @param ctrl {@link Controleur}
+	 * */
     public FrameJoueur(Controleur ctrl)
     {
         this.ctrl = ctrl;
@@ -40,6 +72,7 @@ public class FrameJoueur extends JFrame implements ActionListener
         this.setLayout( new BorderLayout());
         this.setSize     (450, 650    );
         this.setLocation (1350, 350    );
+        this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
         /*creation des composants*/
         this.lbImg       = new JLabel    (new ImageIcon("../Ressources/Hexagone.png"));
@@ -74,7 +107,9 @@ public class FrameJoueur extends JFrame implements ActionListener
         this.setResizable(false);
     }
 
-    /* gere le changement de joueur */
+    /** gere le changement de joueur 
+     * @param j {@link Joueur}
+     */
     public void changerJoueur(Joueur j)
     {
         this.joueur = j;
@@ -85,7 +120,9 @@ public class FrameJoueur extends JFrame implements ActionListener
         this.labelScore.setText("nombre de pilier restant: "+j.getNbPilier()+"   nombre de pilier detruit: "+j.getNbPilierDetruis());
     }
 
-    /* s'active quand le joueur clique sur le bouton */
+    /** s'active quand le joueur clique sur le bouton 
+     * @param e { @link ActionEvent} 
+     */
     public void actionPerformed(ActionEvent e)
     {
         this.lblJoueur.setText("Joueur "+ this.joueur.getNumJoueur() );
@@ -123,16 +160,19 @@ public class FrameJoueur extends JFrame implements ActionListener
         
     }
 
-    /* quand la frame se fait deplacer la frame jeux se déplace avec */
+    /** quand la frame se fait deplacer la frame jeux se déplace avec */
     private class GereDeplacerFrame extends ComponentAdapter
 	{
+        /**se déclenche quand la fenetre est bougé 
+         * @param e {componentEvent}
+        */
 		public void componentMoved (ComponentEvent  e)
 		{
 			FrameJoueur.this.ctrl.majLocation( 'P' );
 		}
 	}
 
-    /* quand le joueur appuis sur entrée dans le txtField pilier ça valide*/
+    /** classe qui gere les touches*/
     private class GestionTouche extends KeyAdapter
 	{
 		public void keyPressed (KeyEvent  e)
