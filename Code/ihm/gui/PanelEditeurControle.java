@@ -49,7 +49,7 @@ public class PanelEditeurControle extends JPanel implements ActionListener
 	{
 		if(e.getSource().equals(this.btnRetour))
 		{
-			this.ctrl.retour();		
+			this.ctrl.retour('e');		
 		}
 		else if(e.getSource().equals(this.btnLancer)&&this.ctrl.getLastDalle()>='P')
 		{
