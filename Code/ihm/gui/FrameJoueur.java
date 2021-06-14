@@ -188,7 +188,8 @@ public class FrameJoueur extends JFrame implements ActionListener
                 {
                     char charDalle = FrameJoueur.this.txtNumDalle .getText().charAt(0);
                     char charSommet= FrameJoueur.this.txtSommet  .getText().charAt(0);
-                    if( charDalle >= 'A' && charDalle <= 'P')
+                    if( charDalle >= 'A' && charDalle <= 'P' ||
+                        charDalle >= 'a' && charDalle <= 'p'     )
                     {
                         if( charSommet >= '0' && charSommet <= '5' )
                         {
