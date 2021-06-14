@@ -37,6 +37,8 @@ public class FrameControleEditeur extends JFrame implements ComponentListener
 		this.addComponentListener(this);
 		this.setResizable(false);
 		this.setVisible(true);
+
+		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 	}
 	
 	/**change change joueur d'etat pour alterner le numero du joueur
