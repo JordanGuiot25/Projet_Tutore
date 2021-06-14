@@ -174,11 +174,18 @@ public class Controleur
 		
 	}
 	
-	public void retour()
+	public void retour(char choixIhm)
 	{
-		this.editeurParterre.retour();
-		this.frameControleEditeur.setVisible(false);
-		this.frameEditeurParterre.setVisible(false);
+		if(choixIhm == 'e')
+		{	
+			this.editeurParterre.retour();
+			this.frameControleEditeur.setVisible(false);
+			this.frameEditeurParterre.setVisible(false);
+		}
+		else
+		{
+			this.ihmScenario.setVisible(false);
+		}
 		this.ihmMenu.setVisible(true);
 	}
 

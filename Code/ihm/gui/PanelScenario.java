@@ -28,6 +28,7 @@ public class PanelScenario extends JPanel implements ActionListener
 
 	private JComboBox<String> cboxScenario;
 	private JButton           btnJouer;
+	private JButton			  btnRetour;
 	private Image  imgFond;
 
 	public PanelScenario(Controleur ctrl)
@@ -46,10 +47,12 @@ public class PanelScenario extends JPanel implements ActionListener
 		//Creation des composants
 		this.cboxScenario = new JComboBox<String>(  tabString );
 		this.btnJouer     = new JButton("Jouer");
+		this.btnRetour	  = new JButton("Retour au menu ");
 		JPanel panelBox   = new JPanel();
 		panelBox.setOpaque(true);
      
 	 	//Positionnement des composants
+		panelBox.add(this.btnRetour);
 		panelBox.add(new JLabel("Scénario à lancer :"));
 		panelBox.add(this.cboxScenario);
 		
@@ -61,6 +64,7 @@ public class PanelScenario extends JPanel implements ActionListener
 		//Activation des compossants
 		this.cboxScenario.addActionListener(this);
 		this.btnJouer.addActionListener(this);
+		this.btnRetour.addActionListener(this);
 
 		repaint();
 	}
@@ -75,6 +79,10 @@ public class PanelScenario extends JPanel implements ActionListener
 			this.ctrl.setScenario(numTmp);
 
 			this.ctrl.lancerScenario();
+		}
+		if(e.getSource() == this.btnRetour)
+		{
+			this.ctrl.retour('s');
 		}
 	}
 
