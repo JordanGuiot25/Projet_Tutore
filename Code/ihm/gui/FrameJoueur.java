@@ -77,31 +77,30 @@ public class FrameJoueur extends JFrame implements ActionListener
         /*creation des composants*/
         this.lbImg       = new JLabel    (new ImageIcon("../Ressources/Hexagone.png"));
         this.panelJoueur = new JPanel    (new GridLayout(6,1));
-        this.lblJoueur   = new JLabel    ("Joueur 1");
+        this.lblJoueur   = new JLabel    ("Joueur ?");
         this.txtNumDalle = new JTextField();
         this.txtNumDalle.requestFocus();
         this.txtSommet   = new JTextField();
         this.btnValider  = new JButton   ("Valider");
         this.panelScore  = new JPanel    (new GridLayout(1,4));
-        this.labelScore  = new JLabel    ("nombre de pilier restant: 24  nombre de pilier detruit: 0");
+        this.labelScore  = new JLabel    ();
         
         /* positionement des composants */
         this            .add(this.lbImg,BorderLayout.NORTH);
         this            .add(this.panelJoueur,BorderLayout.CENTER);
+        this            .add(this.labelScore, BorderLayout.SOUTH);
         this.panelJoueur.add(this.lblJoueur);
         this.panelJoueur.add(new JLabel("Dalle"));
         this.panelJoueur.add(this.txtNumDalle);
         this.panelJoueur.add(new JLabel("Sommet"));
         this.panelJoueur.add(this.txtSommet);
         this.panelJoueur.add(this.btnValider);
-        this            .add(this.panelScore,BorderLayout.SOUTH);
-        this.panelScore .add(this.labelScore);
+        
 
         /* actionement des composants */
         this.txtNumDalle.addKeyListener   ( new GestionTouche() );
         this.txtSommet  .addKeyListener   ( new GestionTouche() );
         this.btnValider .addActionListener(this);
-        
 
         this.addComponentListener( new GereDeplacerFrame());
 
@@ -117,10 +116,10 @@ public class FrameJoueur extends JFrame implements ActionListener
     {
         this.joueur = j;
         this.setTitle("Joueur"+j.getNumJoueur());
-        this.lblJoueur.setText("Joueur "+j.getNumJoueur());
+        this.lblJoueur  .setText("Joueur "+j.getNumJoueur());
         this.txtNumDalle.setText("");
-        this.txtSommet.setText("");
-        this.labelScore.setText("nombre de pilier restant: "+j.getNbPilier()+"   nombre de pilier detruit: "+j.getNbPilierDetruis());
+        this.txtSommet  .setText("");
+        this.labelScore .setText("nombre de pilier restant: "+j.getNbPilier()+"   nombre de pilier detruit: "+j.getNbPilierDetruis());
     }
 
     /** s'active quand le joueur clique sur le bouton 
