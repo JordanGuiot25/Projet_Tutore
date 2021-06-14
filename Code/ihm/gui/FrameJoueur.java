@@ -92,15 +92,19 @@ public class FrameJoueur extends JFrame implements ActionListener
         if( this.txtNumDalle != null && this.txtNumDalle.getText().length() == 1 &&
             this.txtSommet   != null && this.txtSommet  .getText().length() == 1     )
         {
-            char nomDalle = Character.toUpperCase(this.txtNumDalle.getText().charAt(0));
-            int  numPilier= Integer.parseInt(""+  this.txtSommet.getText().charAt(0));
+            
 
             if(e.getSource() == this.btnValider)
             {
-                if( nomDalle >= 'A' && nomDalle <= 'P')
+                char charDalle = this.txtNumDalle .getText().charAt(0);
+                char charSommet= this.txtSommet  .getText().charAt(0);
+                if( charDalle >= 'A' && charDalle <= 'P')
                 {
-                    if(numPilier >= 0 && numPilier <= 5 )
+                    if(charSommet >= '0' && charSommet <= '5' )
                     {
+                        char nomDalle = Character.toUpperCase(this.txtNumDalle.getText().charAt(0));
+                        int  numPilier= Integer.parseInt(""+  this.txtSommet.getText().charAt(0));
+                        
                         if ( this.ctrl.poserPilier(this.joueur.getNumJoueur(),nomDalle, numPilier) )
                             this.ctrl.changementJoueur( this.joueur );
                         else
@@ -136,16 +140,19 @@ public class FrameJoueur extends JFrame implements ActionListener
 			if ( e.getKeyCode() == KeyEvent.VK_ENTER)
             {
                 FrameJoueur.this.lblJoueur.setText("Joueur "+ FrameJoueur.this.joueur.getNumJoueur() );
-                if( FrameJoueur.this.txtNumDalle != null && FrameJoueur.this.txtNumDalle.getText().length() == 1 &&
-                    FrameJoueur.this.txtSommet   != null && FrameJoueur.this.txtSommet  .getText().length() == 1     )
-                {
-                    char nomDalle = Character.toUpperCase(FrameJoueur.this.txtNumDalle.getText().charAt(0));
-                    int  numPilier= Integer.parseInt(""+  FrameJoueur.this.txtSommet.getText().charAt(0));
 
-                    if( nomDalle >= 'A' && nomDalle <= 'P')
+                if( FrameJoueur.this.txtNumDalle  != null && FrameJoueur.this.txtNumDalle.getText().length() == 1 &&
+                    FrameJoueur.this.txtSommet != null && FrameJoueur.this.txtSommet  .getText().length() == 1     )
+                {
+                    char charDalle = FrameJoueur.this.txtNumDalle .getText().charAt(0);
+                    char charSommet= FrameJoueur.this.txtSommet  .getText().charAt(0);
+                    if( charDalle >= 'A' && charDalle <= 'P')
                     {
-                        if(numPilier >= 0 && numPilier <= 5 )
+                        if( charSommet >= '0' && charSommet <= '5' )
                         {
+                            char nomDalle = Character.toUpperCase(     charDalle  );
+                            int  numPilier= Integer  .parseInt   (""+  charSommet );
+
                             if ( FrameJoueur.this.ctrl.poserPilier(FrameJoueur.this.joueur.getNumJoueur(),nomDalle, numPilier) )
                                 FrameJoueur.this.ctrl.changementJoueur( FrameJoueur.this.joueur );
                             else
