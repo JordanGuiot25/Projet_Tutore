@@ -86,7 +86,6 @@ public class PanelMenu extends JPanel implements ActionListener
         //taille
         this.btnPartieRapide     .setPreferredSize(new Dimension(50,50));
         this.btnLancerScenar     .setPreferredSize(new Dimension(50,50));
-        this.btnChargerSauvegarde.setPreferredSize(new Dimension(50,50));
         this.btnPartieCustom     .setPreferredSize(new Dimension(50,50));
         this.btnQuitter          .setPreferredSize(new Dimension(50,50));
 
