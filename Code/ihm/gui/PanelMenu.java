@@ -125,8 +125,8 @@ public class PanelMenu extends JPanel implements ActionListener
     {
         if(e.getSource() == this.btnPartieRapide)
             this.ctrl.LancerPartieRapide();
-        //else if(e.getSource() ==this.btnLancerScenar) 
-            //this.ctrl.ouvrirScenar();
+        else if(e.getSource() ==this.btnLancerScenar) 
+            this.ctrl.scenario();
         //else if(e.getSource() == this.btnChargerSauvegarde)
             //this.ctrl.LancerSauv();
         else if(e.getSource() ==this.btnPartieCustom)
