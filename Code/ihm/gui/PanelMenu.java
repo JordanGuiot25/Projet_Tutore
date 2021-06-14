@@ -46,19 +46,19 @@ public class PanelMenu extends JPanel implements ActionListener
 	 * @see {@link Image} */
     private Image   imgFond             ;
     
-    /**L'image du boutton partie rapide
+    /**L'image du bouton partie rapide
 	 * @see {@link Image} */
     private Image   imgPartieRapide     ;
     
-    /**L'image du boutton lancer scenario
+    /**L'image du bouton lancer scenario
 	 * @see {@link Image} */
     private Image   imgLancerScenario   ;
     
-    /**L'image du boutton editeur
+    /**L'image du bouton editeur
 	 * @see {@link Image} */
     private Image   imgPartieCustom     ;
     
-    /**L'image du boutton quitter
+    /**L'image du bouton quitter
 	 * @see {@link Image} */
     private Image   imgQuitter          ;
 
@@ -142,7 +142,7 @@ public class PanelMenu extends JPanel implements ActionListener
 
     }
 
-    /** s'active quand on appuis sur un boutton  
+    /** s'active quand on appuis sur un bouton  
      * @param e {@link ActionEvent}
     */
 	public void actionPerformed(ActionEvent e)
