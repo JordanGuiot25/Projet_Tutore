@@ -52,10 +52,6 @@ public class FrameJoueur extends JFrame implements ActionListener
 	 * @see {@link JButton} */
     private JButton    btnValider;
 
-    /**Le panel qui contient le score du joueur
-	 * @see {@link JPanel} */
-    private JPanel     panelScore;
-
     /**Le label qui contient le score du joueur
 	 * @see {@link JLabel} */
     private JLabel     labelScore;
@@ -77,29 +73,29 @@ public class FrameJoueur extends JFrame implements ActionListener
         /*creation des composants*/
         this.lbImg       = new JLabel    (new ImageIcon("../Ressources/Hexagone.png"));
         this.panelJoueur = new JPanel    (new GridLayout(6,1));
-        this.lblJoueur   = new JLabel    ("Joueur 1");
+        this.lblJoueur   = new JLabel    ("Joueur ?");
         this.txtNumDalle = new JTextField();
+        this.txtNumDalle.requestFocus();
         this.txtSommet   = new JTextField();
         this.btnValider  = new JButton   ("Valider");
-        this.panelScore  = new JPanel    (new GridLayout(1,4));
-        this.labelScore  = new JLabel    ("nombre de pilier restant: 24  nombre de pilier detruit: 0");
+        this.labelScore  = new JLabel    ();
         
         /* positionement des composants */
         this            .add(this.lbImg,BorderLayout.NORTH);
         this            .add(this.panelJoueur,BorderLayout.CENTER);
+        this            .add(this.labelScore, BorderLayout.SOUTH);
         this.panelJoueur.add(this.lblJoueur);
         this.panelJoueur.add(new JLabel("Dalle"));
         this.panelJoueur.add(this.txtNumDalle);
         this.panelJoueur.add(new JLabel("Sommet"));
         this.panelJoueur.add(this.txtSommet);
         this.panelJoueur.add(this.btnValider);
-        this            .add(this.panelScore,BorderLayout.SOUTH);
-        this.panelScore .add(this.labelScore);
+        
 
         /* actionement des composants */
-        this.txtSommet .addKeyListener   ( new GestionTouche() );
-        this.btnValider.addActionListener(this);
-        
+        this.txtNumDalle.addKeyListener   ( new GestionTouche() );
+        this.txtSommet  .addKeyListener   ( new GestionTouche() );
+        this.btnValider .addActionListener(this);
 
         this.addComponentListener( new GereDeplacerFrame());
 
@@ -115,10 +111,10 @@ public class FrameJoueur extends JFrame implements ActionListener
     {
         this.joueur = j;
         this.setTitle("Joueur"+j.getNumJoueur());
-        this.lblJoueur.setText("Joueur "+j.getNumJoueur());
+        this.lblJoueur  .setText("Joueur "+j.getNumJoueur());
         this.txtNumDalle.setText("");
-        this.txtSommet.setText("");
-        this.labelScore.setText("nombre de pilier restant: "+j.getNbPilier()+"   nombre de pilier detruit: "+j.getNbPilierDetruis());
+        this.txtSommet  .setText("");
+        this.labelScore .setText("nombre de pilier restant: "+j.getNbPilier()+"   nombre de pilier detruit: "+j.getNbPilierDetruis());
     }
 
     /** s'active quand le joueur clique sur le bouton 
@@ -126,39 +122,12 @@ public class FrameJoueur extends JFrame implements ActionListener
      */
     public void actionPerformed(ActionEvent e)
     {
-        this.lblJoueur.setText("Joueur "+ this.joueur.getNumJoueur() );
-        if( this.txtNumDalle != null && this.txtNumDalle.getText().length() == 1 &&
-            this.txtSommet   != null && this.txtSommet  .getText().length() == 1     )
+        
+        if(e.getSource() == this.btnValider)
         {
-            
-
-            if(e.getSource() == this.btnValider)
-            {
-                char charDalle = this.txtNumDalle .getText().charAt(0);
-                char charSommet= this.txtSommet  .getText().charAt(0);
-                if( charDalle >= 'A' && charDalle <= 'P' ||
-                    charDalle >= 'a' && charDalle <= 'p'     )
-                {
-                    if(charSommet >= '0' && charSommet <= '5' )
-                    {
-                        char nomDalle = Character.toUpperCase(this.txtNumDalle.getText().charAt(0));
-                        int  numPilier= Integer.parseInt(""+  this.txtSommet.getText().charAt(0));
-                        
-                        if ( this.ctrl.poserPilier(this.joueur.getNumJoueur(),nomDalle, numPilier) )
-                            this.ctrl.changementJoueur( this.joueur );
-                        else
-                            this.lblJoueur.setText( this.lblJoueur.getText() + "   Erreur: Impossible de poser pilier."  );
-                    }
-                    else
-                        this.lblJoueur.setText( this.lblJoueur.getText() + "   Erreur: Sommet invalide."  );
-                }
-                else
-                    this.lblJoueur.setText( this.lblJoueur.getText() + "   Erreur: Dalle invalide."  );
-
-            }
+            this.creationPilier();
         }
-        else
-                    this.lblJoueur.setText( this.lblJoueur.getText() + "   Erreur: Saisie invalide."  );
+        
         
     }
 
@@ -174,43 +143,75 @@ public class FrameJoueur extends JFrame implements ActionListener
 		}
 	}
 
+    private void creationPilier()
+    {
+        this.lblJoueur.setText("Joueur "+ this.joueur.getNumJoueur() );
+
+        if( this.txtNumDalle != null && this.txtNumDalle.getText().length() == 1 &&
+            this.txtSommet   != null && this.txtSommet  .getText().length() == 1     )
+        {
+            char charDalle = this.txtNumDalle .getText().charAt(0);
+            char charSommet= this.txtSommet  .getText().charAt(0);
+
+            if( charDalle >= 'A' && charDalle <= 'P' ||
+                charDalle >= 'a' && charDalle <= 'p'     )
+            {
+                if(charSommet >= '0' && charSommet <= '5' )
+                {
+                    char nomDalle = Character.toUpperCase(this.txtNumDalle.getText().charAt(0));
+                    int  numPilier= Integer.parseInt(""+  this.txtSommet.getText().charAt(0));
+                    
+                    if ( this.ctrl.poserPilier(this.joueur.getNumJoueur(),nomDalle, numPilier) )
+                    {
+                        this.ctrl.changementJoueur( this.joueur );
+                        this.txtNumDalle.requestFocus();
+                    }
+                        
+                    else
+                    {
+                        this.lblJoueur.setText( this.lblJoueur.getText() + "   Erreur: Impossible de poser pilier."  );
+                        this.txtNumDalle.requestFocus();
+                    }
+                        
+                }
+                else
+                {
+                    this.lblJoueur.setText( this.lblJoueur.getText() + "   Erreur: Sommet invalide."  );
+                    this.txtSommet.requestFocus();
+                }
+                    
+            }
+            else
+            {
+                this.lblJoueur.setText( this.lblJoueur.getText() + "   Erreur: Dalle invalide."  );
+                this.txtNumDalle.requestFocus();
+            }
+                
+
+        }
+        else
+        {
+            this.lblJoueur.setText( this.lblJoueur.getText() + "   Erreur: Saisie invalide."  );
+            this.txtNumDalle.requestFocus();
+        }
+    }
+
     /** classe qui gere les touches*/
     private class GestionTouche extends KeyAdapter
 	{
 		public void keyPressed (KeyEvent  e)
 		{
+            
 			if ( e.getKeyCode() == KeyEvent.VK_ENTER)
             {
-                FrameJoueur.this.lblJoueur.setText("Joueur "+ FrameJoueur.this.joueur.getNumJoueur() );
-
-                if( FrameJoueur.this.txtNumDalle  != null && FrameJoueur.this.txtNumDalle.getText().length() == 1 &&
-                    FrameJoueur.this.txtSommet != null && FrameJoueur.this.txtSommet  .getText().length() == 1     )
+                if ( e.getSource() == FrameJoueur.this.txtNumDalle)
                 {
-                    char charDalle = FrameJoueur.this.txtNumDalle .getText().charAt(0);
-                    char charSommet= FrameJoueur.this.txtSommet  .getText().charAt(0);
-                    if( charDalle >= 'A' && charDalle <= 'P' ||
-                        charDalle >= 'a' && charDalle <= 'p'     )
-                    {
-                        if( charSommet >= '0' && charSommet <= '5' )
-                        {
-                            char nomDalle = Character.toUpperCase(     charDalle  );
-                            int  numPilier= Integer  .parseInt   (""+  charSommet );
-
-                            if ( FrameJoueur.this.ctrl.poserPilier(FrameJoueur.this.joueur.getNumJoueur(),nomDalle, numPilier) )
-                                FrameJoueur.this.ctrl.changementJoueur( FrameJoueur.this.joueur );
-                            else
-                                FrameJoueur.this.lblJoueur.setText( FrameJoueur.this.lblJoueur.getText() + "   Erreur: Impossible de poser pilier."  );
-                        }
-                        else
-                            FrameJoueur.this.lblJoueur.setText( FrameJoueur.this.lblJoueur.getText() + "   Erreur: Sommet invalide."  );
-                    }
-                    else
-                        FrameJoueur.this.lblJoueur.setText( FrameJoueur.this.lblJoueur.getText() + "   Erreur: Dalle invalide."  );
-
+                    FrameJoueur.this.txtSommet.requestFocus();
                 }
+                    
                 else
-                            FrameJoueur.this.lblJoueur.setText( FrameJoueur.this.lblJoueur.getText() + "   Erreur: Saisie invalide."  );
+                    FrameJoueur.this.creationPilier();
             }
-		}
+        }
 	}
 }
