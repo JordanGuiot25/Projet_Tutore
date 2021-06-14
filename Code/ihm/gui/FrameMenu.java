@@ -30,7 +30,7 @@ public class FrameMenu extends JFrame
         this.setLocation (  10,  10 );
         this.setSize     ( 560, 885 );
         this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-        //this.setResizable(false);
+        this.setResizable(false);
        
         this.panelMenu = new PanelMenu(ctrl);
         this.add ( this.panelMenu );
