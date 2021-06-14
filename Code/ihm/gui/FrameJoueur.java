@@ -105,6 +105,7 @@ public class FrameJoueur extends JFrame implements ActionListener
 
         this.setVisible  (false);
         this.setResizable(false);
+        this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     }
 
     /** gere le changement de joueur 
@@ -135,7 +136,8 @@ public class FrameJoueur extends JFrame implements ActionListener
             {
                 char charDalle = this.txtNumDalle .getText().charAt(0);
                 char charSommet= this.txtSommet  .getText().charAt(0);
-                if( charDalle >= 'A' && charDalle <= 'P')
+                if( charDalle >= 'A' && charDalle <= 'P' ||
+                    charDalle >= 'a' && charDalle <= 'p'     )
                 {
                     if(charSommet >= '0' && charSommet <= '5' )
                     {

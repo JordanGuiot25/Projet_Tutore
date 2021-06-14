@@ -55,6 +55,7 @@ public class FrameDessin extends JFrame implements AdjustmentListener
 
 		this.setVisible(false);
 		this.setResizable(false);
+		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
 	}
 
