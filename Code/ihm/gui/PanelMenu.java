@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-=======
-/**
- * @author Gaspard Gordien
- * 
- * 
- */
->>>>>>> 3cdc1f7f1e9f90b9c4104430df5bb0736fcd9fa4
 package Equipe_22.ihm.gui;
 
 import Equipe_22.Controleur;
@@ -54,19 +46,19 @@ public class PanelMenu extends JPanel implements ActionListener
 	 * @see {@link Image} */
     private Image   imgFond             ;
     
-    /**L'image du boutton partie rapide
+    /**L'image du bouton partie rapide
 	 * @see {@link Image} */
     private Image   imgPartieRapide     ;
     
-    /**L'image du boutton lancer scenario
+    /**L'image du bouton lancer scenario
 	 * @see {@link Image} */
     private Image   imgLancerScenario   ;
     
-    /**L'image du boutton editeur
+    /**L'image du bouton editeur
 	 * @see {@link Image} */
     private Image   imgPartieCustom     ;
     
-    /**L'image du boutton quitter
+    /**L'image du bouton quitter
 	 * @see {@link Image} */
     private Image   imgQuitter          ;
 
@@ -82,21 +74,18 @@ public class PanelMenu extends JPanel implements ActionListener
         this.imgFond              = getToolkit().getImage ( "../Ressources/fond.png" );
         this.imgPartieRapide      = getToolkit().getImage ( "../Ressources/PartieRapide.png" );
         this.imgLancerScenario    = getToolkit().getImage ( "../Ressources/LancerScenario.png" );
-        this.imgChargerSave       = getToolkit().getImage ( "../Ressources/ChargerSauvegarde.png" );
         this.imgPartieCustom      = getToolkit().getImage ( "../Ressources/PartieCustom.png" );
         this.imgQuitter           = getToolkit().getImage ( "../Ressources/Quitter.png" );
         
         /*boutons*/
         this.btnPartieRapide      = new JButton(new ImageIcon(imgPartieRapide));
         this.btnLancerScenar      = new JButton(new ImageIcon(imgLancerScenario));
-        this.btnChargerSauvegarde = new JButton(new ImageIcon(imgChargerSave));
         this.btnPartieCustom      = new JButton(new ImageIcon(imgPartieCustom));
         this.btnQuitter           = new JButton(new ImageIcon(imgQuitter));
 
         //taille
         this.btnPartieRapide     .setPreferredSize(new Dimension(50,50));
         this.btnLancerScenar     .setPreferredSize(new Dimension(50,50));
-        this.btnChargerSauvegarde.setPreferredSize(new Dimension(50,50));
         this.btnPartieCustom     .setPreferredSize(new Dimension(50,50));
         this.btnQuitter          .setPreferredSize(new Dimension(50,50));
 
@@ -108,10 +97,6 @@ public class PanelMenu extends JPanel implements ActionListener
         this.btnLancerScenar.setOpaque(false);
         this.btnLancerScenar.setContentAreaFilled(false);
         this.btnLancerScenar.setBorderPainted(false);
-
-        this.btnChargerSauvegarde.setOpaque(false);
-        this.btnChargerSauvegarde.setContentAreaFilled(false);
-        this.btnChargerSauvegarde.setBorderPainted(false);
 
         this.btnPartieCustom.setOpaque(false);
         this.btnPartieCustom.setContentAreaFilled(false);
@@ -138,7 +123,7 @@ public class PanelMenu extends JPanel implements ActionListener
 
         this.add(new JLabel(""));
         this.add(new JLabel(""));
-        this.add(new JLabel(""));//this.add(this.btnChargerSauvegarde);
+        this.add(new JLabel(""));
         this.add(new JLabel(""));
         this.add(new JLabel(""));
         this.add(this.btnQuitter);
@@ -151,14 +136,13 @@ public class PanelMenu extends JPanel implements ActionListener
 		
         this.btnPartieRapide     .addActionListener(this);
         this.btnLancerScenar     .addActionListener(this);
-        this.btnChargerSauvegarde.addActionListener(this);
         this.btnPartieCustom     .addActionListener(this);
         this.btnQuitter          .addActionListener(this);
         repaint();
 
     }
 
-    /** s'active quand on appuis sur un boutton  
+    /** s'active quand on appuis sur un bouton  
      * @param e {@link ActionEvent}
     */
 	public void actionPerformed(ActionEvent e)
