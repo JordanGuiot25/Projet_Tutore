@@ -1,3 +1,7 @@
+package PilierDeLaTerre.ihm.gui;
+import PilierDeLaTerre.Controleur;
+import PilierDeLaTerre.metier.EditeurParterre;
+
 import javax.swing.*;
 import java.awt.Image;
 import java.awt.Graphics;
@@ -9,34 +13,35 @@ import java.awt.Toolkit;
 import java.awt.Point;
 
 
-public class GuiJeu extends JFrame implements AdjustmentListener
+public class FrameEditeurParterre extends JFrame implements AdjustmentListener , ComponentListener
 {
 	//private Controleur ctrl;
 
-	private PanelAffichage panelAffichage;
-	private ParterrePersonalise patr;
+	private PanelEdtieurAffichage panelEdtieurAffichage;
+	private Controleur ctrl;
 	private JScrollPane scrollPane;
 	private JScrollBar horizontal;
 	private JScrollBar vertical;
 
 	/*public static void main(String[]agrs)
 	{
-		new GuiJeu();
+		new EditeurParterre();
 	}*/
 
-	public GuiJeu(ParterrePersonalise patr)
+	public FrameEditeurParterre(Controleur ctrl)
 	{
 		
 		Point p = new Point(400,800);
 		//p.setLocation(400, 800);
-		panelAffichage = new PanelAffichage(patr);
-		this.patr = patr;
-		//this.setContentPane(this.panelAffichage);
-		this.setTitle	("GuiJeu");
-		this.setLocation(500,500);
+		panelEdtieurAffichage = new PanelEdtieurAffichage(ctrl);
+		this.ctrl = ctrl;
+		//this.setContentPane(this.panelEdtieurAffichage);
+		this.setTitle	("EditeurParterre");
 		this.setSize	(800,600);
+		this.setResizable(false);
+		this.addComponentListener(this);
 		
-		this.scrollPane = new JScrollPane(this.panelAffichage, 
+		this.scrollPane = new JScrollPane(this.panelEdtieurAffichage, 
 		JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 		JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		this.scrollPane.setPreferredSize(new Dimension(800,500));
@@ -48,11 +53,11 @@ public class GuiJeu extends JFrame implements AdjustmentListener
 		this.scrollPane.getVerticalScrollBar().addAdjustmentListener(this);
 		this.scrollPane.getHorizontalScrollBar().addAdjustmentListener(this);
 		this.scrollPane.getViewport().setScrollMode(JViewport.SIMPLE_SCROLL_MODE);
-		//this.add(this.panelAffichage);
+		//this.add(this.panelEdtieurAffichage);
 		this.scrollPane.getViewport().setViewPosition(p);
 		this.add(this.scrollPane);
 		
-		/*this.layerPanel.add(this.panelAffichage);
+		/*this.layerPanel.add(this.panelEdtieurAffichage);
 		this.add(this.layerPanel);*/
 
 				
@@ -80,11 +85,36 @@ public class GuiJeu extends JFrame implements AdjustmentListener
 		if(e.getSource().equals(this.scrollPane.getHorizontalScrollBar())|| e.getSource().equals(this.scrollPane.getVerticalScrollBar()))
 		{
 			//System.out.println(this.scrollPane.getHorizontalScrollBar());
-			panelAffichage.revalidate();
-			panelAffichage.repaint();
+			panelEdtieurAffichage.revalidate();
+			panelEdtieurAffichage.repaint();
 
 		}
 	}
+
+
+	public void componentMoved(ComponentEvent e) 
+	{
+		Point p = this.getLocation(); 
+		
+
+		ctrl.DeplacerFrames(p.getX(), p.getY()+600.00, 'e');
+
+	}
+
+	public void componentHidden(ComponentEvent e)
+	{
+		
+	}
+
+    public void componentShown(ComponentEvent e)
+    {
+
+    }
+
+    public void componentResized(ComponentEvent e)
+    {
+
+    }
 
 	
 }

@@ -111,6 +111,7 @@ public class PanelMenu extends JPanel implements ActionListener
 
 
         /* activation des composants */
+		
         this.btnPartieRapide     .addActionListener(this);
         this.btnLancerScenar     .addActionListener(this);
         this.btnChargerSauvegarde.addActionListener(this);
@@ -128,8 +129,8 @@ public class PanelMenu extends JPanel implements ActionListener
             //this.ctrl.ouvrirScenar();
         //else if(e.getSource() == this.btnChargerSauvegarde)
             //this.ctrl.LancerSauv();
-        //else if(e.getSource() ==this.btnPartieCustom)
-            //this.ctrl.partieCustom();
+        else if(e.getSource() ==this.btnPartieCustom)
+            this.ctrl.partieCustom();
         else if(e.getSource() ==this.btnQuitter)
             this.ctrl.quitter();                
     }

@@ -4,6 +4,9 @@ import PilierDeLaTerre.ihm.gui.FrameAide;
 import PilierDeLaTerre.ihm.gui.FrameDessin;
 import PilierDeLaTerre.ihm.gui.FrameJoueur;
 import PilierDeLaTerre.ihm.gui.FrameMenu;
+import PilierDeLaTerre.ihm.gui.FrameScenario;
+import PilierDeLaTerre.ihm.gui.FrameControleEditeur;
+import PilierDeLaTerre.ihm.gui.FrameEditeurParterre;
 import PilierDeLaTerre.ihm.cui.IhmCui;
 import PilierDeLaTerre.metier.Dalle;
 import PilierDeLaTerre.metier.Parterre;
@@ -27,16 +30,21 @@ public class Controleur
 	private FrameDessin ihm    ;
 	private FrameMenu   ihmMenu;
 	private FrameJoueur ihmJoueur;
+	private FrameScenario ihmScenario;
 	private IhmCui      ihmCui;
 	private Parterre    metier ;
 	private boolean 	bDebutPartie;
+	private int         numScenario;
 	private EditeurParterre editeurParterre;
+	private FrameEditeurParterre frameEditeurParterre;
+	private FrameControleEditeur frameControleEditeur;
 
 	public Controleur()
 	{
 		this.ihmMenu  = new FrameMenu   (this);
 		this.ihm      = new FrameDessin (this);
 		this.ihmJoueur= new FrameJoueur (this);
+		this.ihmScenario = new FrameScenario(this);
 		
 
 		this.bDebutPartie = false;
@@ -143,12 +151,35 @@ public class Controleur
 
 	}
 
-	public void lancerPartieCustom(ArrayList<Dalle> custom)
+	public void lancerPartieCustom()
 	{
-		this.metier = new Parterre(custom, new Joueur(1,'M'), new Joueur(2,'G'), 1);
-		this.ihm    .setVisible(true);
+		this.metier = new Parterre(this.editeurParterre.getNiveau(), new Joueur(1,'M'), new Joueur(2,'G'), 1);
+		this.frameControleEditeur.setVisible(false);
+		this.frameEditeurParterre.setVisible(false);
+		this.ihm.setVisible(true);
 		this.ihmJoueur.setVisible(true);
-		this.bDebutPartie = true;		
+		this.bDebutPartie = true;	
+		
+	}
+
+	public void partieCustom()
+	{
+		
+		this.editeurParterre = new EditeurParterre(this);
+		this.ihmMenu.setVisible(false);
+		this.frameEditeurParterre = new FrameEditeurParterre(this);
+		this.frameEditeurParterre.setLocation(500, 100);
+		this.frameControleEditeur = new FrameControleEditeur(this);
+		this.frameControleEditeur.setLocation(500,100+this.frameEditeurParterre.getSize().height);
+		
+	}
+	
+	public void retour()
+	{
+		this.editeurParterre.retour();
+		this.frameControleEditeur.setVisible(false);
+		this.frameEditeurParterre.setVisible(false);
+		this.ihmMenu.setVisible(true);
 	}
 
 	public void quitter()
@@ -156,35 +187,59 @@ public class Controleur
 		System.exit(0);
 	}
 
+	public void setScenario(int num)
+	{
+		this.numScenario = num;
+	}
 	public void lancerScenario()
 	{
-		
-		//this.ihmMenu.setVisible(false);
-		//this.ihmScenario.setVisible(true);
-		//int numScenario = this.ihmScenario.getScenario();
-		//this.metier = Scenario.getScenario(nomScenario);
-		//this.ihm.setVisible(true);
-		//this.ihmJoueur.setVisible(true);
-		//this.bDebutPartie = true;
+		this.ihmScenario.setVisible(false);
+		this.metier = Scenario.getScenario(this.numScenario);
+		this.ihm    .setVisible(true);
+		this.ihmJoueur.setVisible(true);
+		this.bDebutPartie = true;
+
 	}
-	
-	public void partieCustom()
+
+	public void scenario()
 	{
 		this.ihmMenu.setVisible(false);
-		this.editeurParterre = new EditeurParterre(this);
+		this.ihmScenario.setVisible(true);
 	}
 	
-	public void retour()
-	{
-		this.ihmMenu.setVisible(true);
-	}
 	public ArrayList<Dalle> getGrilleDalles() 
 	{
 		return this.metier.getGrilleDalles();
 	}
 
 	private boolean getBDebutPartie() { return this.bDebutPartie;}
-
+	
+	public void DeplacerFrames(double posX, double posY, char frame)
+	{
+		if(frame == 'c' && this.frameEditeurParterre != null && this.frameControleEditeur != null)
+		{
+			frameEditeurParterre.setLocation((int) posX, (int) posY);
+		}
+		if(frame == 'e' && this.frameEditeurParterre != null && this.frameControleEditeur != null)
+		{
+			frameControleEditeur.setLocation( (int) posX , (int) posY);
+		}
+	}
+	
+	public char getLastDalle() {return this.editeurParterre.getLastDalle();}
+	public Dalle getDalle(int i, int y) {return this.editeurParterre.getDalle(i, y);}
+	public void setCoord(Point p, int coordx, int coordy) {this.editeurParterre.setCoord(p, coordx, coordy);}
+	public boolean aUneDalleAdjacente(int x, int y) {return this.editeurParterre.aUneDalleAdjacente(x, y);}
+	public boolean emplacementVide(int x,int y) {return this.editeurParterre.emplacementVide(x, y);}
+	public void addCoord(Point point) {this.editeurParterre.addCoord(point);}
+	public boolean ajouterDalle(Dalle dalle, int x, int y) {return this.editeurParterre.ajouterDalle(dalle, x, y);}
+	public Point getLastCoord() {return this.editeurParterre.getLastCoord();}
+	public int getCoordSize() {return this.editeurParterre.getCoordSize();}
+	public void supprimerDalle( int x, int y) {this.editeurParterre.supprimerDalle(x, y);}
+	public void setJoueur(boolean joueur) {this.frameControleEditeur.setJoueur(joueur);}
+	
+	
+	
 	public static void main (String[] a)
 	{
 		new Controleur();
