@@ -1,20 +1,6 @@
-<<<<<<< HEAD
-
 package Equipe_22.ihm.gui;
 
 import Equipe_22.ihm.gui.PanelDessin;
-
-=======
-/**
- * @author Gaspard Gordien
- * 
- * 
- */
-package Equipe_22.ihm.gui;
-
-import Equipe_22.ihm.gui.PanelDessin;
-
->>>>>>> 3cdc1f7f1e9f90b9c4104430df5bb0736fcd9fa4
 import Equipe_22.Controleur;
 
 import javax.swing.*;

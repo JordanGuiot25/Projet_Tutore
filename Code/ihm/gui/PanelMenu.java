@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-=======
-/**
- * @author Gaspard Gordien
- * 
- * 
- */
->>>>>>> 3cdc1f7f1e9f90b9c4104430df5bb0736fcd9fa4
 package Equipe_22.ihm.gui;
 
 import Equipe_22.Controleur;
