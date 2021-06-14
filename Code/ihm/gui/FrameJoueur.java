@@ -52,10 +52,6 @@ public class FrameJoueur extends JFrame implements ActionListener
 	 * @see {@link JButton} */
     private JButton    btnValider;
 
-    /**Le panel qui contient le score du joueur
-	 * @see {@link JPanel} */
-    private JPanel     panelScore;
-
     /**Le label qui contient le score du joueur
 	 * @see {@link JLabel} */
     private JLabel     labelScore;
@@ -82,7 +78,6 @@ public class FrameJoueur extends JFrame implements ActionListener
         this.txtNumDalle.requestFocus();
         this.txtSommet   = new JTextField();
         this.btnValider  = new JButton   ("Valider");
-        this.panelScore  = new JPanel    (new GridLayout(1,4));
         this.labelScore  = new JLabel    ();
         
         /* positionement des composants */
