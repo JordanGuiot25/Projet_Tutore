@@ -28,7 +28,7 @@ public class FrameMenu extends JFrame
         this.ctrl = ctrl;
         this.setTitle    ( "Les pilier de la terre" );
         this.setLocation (  10,  10 );
-        this.setSize     ( 560, 885 );
+        this.setSize     ( 410, 653 );
         this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         this.setResizable(false);
        
