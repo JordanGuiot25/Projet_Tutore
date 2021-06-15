@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class PanelScenario extends JPanel implements ActionListener
 {
 	/**Nombres de scénario max à changer si on veut mettre plus de scénario */
-	private static int NB_SCENARIO = 6;	
+	private final static int NB_SCENARIO = 6;	
 	private Controleur ctrl;
 
 	private JComboBox<String> cboxScenario;
@@ -47,10 +47,10 @@ public class PanelScenario extends JPanel implements ActionListener
 		this.imgFond = java.awt.Toolkit.getDefaultToolkit().getImage( "../Ressources/fondScenario.png" );	
 
 		/**tableau de String qui va stocker les scénarios avec leur numéro pour le mettre dans un JComboBox	 */
-		String[] tabString = new String [this.NB_SCENARIO];	
+		String[] tabString = new String [PanelScenario.NB_SCENARIO];	
 
 		/**Initialisation du tableau avec les Scénarios */
-		for(int i = 0 ; i < 6 ; i++)																
+		for(int i = 0 ; i < PanelScenario.NB_SCENARIO ; i++)																
 			tabString[i] = "Scénario " + i;
 
 		/**Creation des composants */

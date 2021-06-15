@@ -283,7 +283,7 @@ public class Dalle
 	 * @param  couleur {@link Char}, numSommet {@link Int}
 	 * @return validation {@link Boolean}
 	 */
-	public boolean rajoutPillier(char couleur, int numSommet)
+	public boolean rajoutPilier(char couleur, int numSommet)
 	{
 		if ( this.listeSommet[numSommet] == null )
 		{
@@ -409,7 +409,7 @@ public class Dalle
 	 * @param  numSommet {@link Int}
 	 * @return validation {@link Boolean}
 	 */
-	public boolean detruirePillier(int numSommet)
+	public boolean detruirePilier(int numSommet)
 	{
 		if ( this.listeSommet[numSommet] != null )
 		{
@@ -480,6 +480,7 @@ public class Dalle
 		if ( num == 1 )
 			this.tabPilierDetruitJ1 = new boolean[6];
 	}
+	
 	/** Renvoie le numero du joueur
 	 * @return  numJoueur {@link Int}
 	 */
@@ -606,7 +607,7 @@ public class Dalle
 		{
 			if( this.listeSommet[cpt] != null && this.listeSommet[cpt].getCoul() != couleurMajoriter )
 			{
-				this.detruirePillier(cpt);
+				this.detruirePilier(cpt);
 				nbPilierDetruis++;
 			}	
 		}

@@ -72,7 +72,7 @@ public class Scenario
                 {
                     if( dalle.getNom() == ligne.charAt(0) )
                     {
-                        dalle.rajoutPillier( ligne.charAt(1), Integer.parseInt( ligne.substring(2) ) );
+                        dalle.rajoutPilier( ligne.charAt(1), Integer.parseInt( ligne.substring(2) ) );
                     }
                 }
 
