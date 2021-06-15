@@ -151,7 +151,7 @@ public class Controleur
 	}
 
 	/**Méthode permettant de lancer une partie rapide avec une map prédéfinie */
-	public void LancerPartieRapide()
+	public void lancerPartieRapide()
 	{
 		this.ihmMenu.setVisible(false);
 
@@ -250,7 +250,7 @@ public class Controleur
  	 * @param posY {@link Double}
 	 * @param frame{@link Char  }
 	 */
-	public void DeplacerFrames(double posX, double posY, char frame)
+	public void deplacerFrames(double posX, double posY, char frame)
 	{
 		if(frame == 'c' && this.frameEditeurParterre != null && this.frameControleEditeur != null)
 		{
