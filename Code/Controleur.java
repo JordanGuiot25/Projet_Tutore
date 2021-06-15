@@ -276,7 +276,7 @@ public class Controleur
 	 * @param coordX int
 	 * @param coordY int
 	 */
-	public void setCoord(Point p, int coordx, int coordy) {this.editeurParterre.setCoord(p, coordx, coordy);}
+	public void setCoord(Point p, int coordX, int coordY) {this.editeurParterre.setCoord(p, coordX, coordY);}
 	/**verifie si il a une dalle adajcente autour des coordonées rentrées en parametre
 	 * @param p {@link Point}
 	 * @param x int
