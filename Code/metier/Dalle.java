@@ -7,20 +7,58 @@ import iut.algo.Clavier;
  */
 public class Dalle
 {
-	private static final String IMAGE   = "../Ressources/Dalle.png";
+	/** Compteur auto incrementer permettant de donner un nom de façon automatique à une dalle créer
+	 */
 	private static char         nbDalle = 'A';
 	
+	/** Nom de la dalle
+	 * @see {@link char}
+	 */
 	private char      nomDalle;
+
+	/** Tableau de 6 pilier representant les sommets de l'hexagone
+	 * @see {@link Pillier}
+	 */
 	private Pilier[]  listeSommet;
+
+	/** Coordonnée x de la dalle
+	 * @see {@link int}
+	 */
 	private int       x;
+
+	/** Coordonnée y de la dalle
+	 * @see {@link int}
+	 */
 	private int       y;
+
+	/** Indicateur si la dalle est contrôler par un joueur
+	 * @see {@link boolean}
+	 */
 	private boolean   estControler;
+
+	/** Le joueur qui controle la dalle
+	 * @see {@link Joueur}
+	 */
 	private Joueur	  joueurProprietaire;
 
+	/** Tableau des dalles voisines à la dalle
+	 * @see {@link Dalle}
+	 */
 	private Dalle[]   listeDallesAdjacent;
 
+	/** Numero du joueur qui joue
+	 * @see {@link int}
+	 */
 	private int       numJoueur;
+
+	/** tableau indicateur si le joueur 1 à détruit un pilier sur les sommets de la dalle
+	 * @see {@link boolean}
+	 */
 	private boolean[] tabPilierDetruitJ1;
+
+	/** tableau indicateur si le joueur 2 à détruit un pilier sur les sommets de la dalle
+	 * @see {@link boolean}
+	 */
 	private boolean[] tabPilierDetruitJ2;
 
 
@@ -208,10 +246,10 @@ public class Dalle
 
 		switch(cote)
 		{
-			case 0 : voisin.setCoordonner(this.x,    this.y-68);break;
+			case 0 : voisin.setCoordonner(this.x,    this.y-66);break;
 			case 1 : voisin.setCoordonner(this.x+49, this.y-33);break;
 			case 2 : voisin.setCoordonner(this.x+49, this.y+33);break;
-			case 3 : voisin.setCoordonner(this.x,    this.y+68);break;
+			case 3 : voisin.setCoordonner(this.x,    this.y+66);break;
 			case 4 : voisin.setCoordonner(this.x-49, this.y+33);break;
 			case 5 : voisin.setCoordonner(this.x-49, this.y-33);break;
 		}
