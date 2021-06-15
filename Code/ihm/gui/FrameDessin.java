@@ -20,8 +20,6 @@ public class FrameDessin extends JFrame implements AdjustmentListener
 	public static final double POS_X = 400;
 	public static final double POS_Y = 0;
 	private JScrollPane scrollPane;
-	private JScrollBar horizontal;
-	private JScrollBar vertical;
 
 	public FrameDessin(Controleur  ctrl)
 	{
