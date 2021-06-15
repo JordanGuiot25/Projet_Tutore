@@ -73,7 +73,7 @@ public class FrameEditeurParterre extends JFrame implements AdjustmentListener ,
 		Point p = this.getLocation(); 
 		
 
-		ctrl.DeplacerFrames(p.getX(), p.getY()+600.00, 'e');
+		ctrl.deplacerFrames(p.getX(), p.getY()+600.00, 'e');
 
 	}
 
