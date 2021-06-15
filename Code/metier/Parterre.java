@@ -85,7 +85,7 @@ public class Parterre
 
 				Pilier[] tabPilierDuVoisin = this.getVoisin(dalleVoisin, dalleVoisin.getIndicePilier(tabVoisin[cpt]));
 
-				if ( this.verifictionDesVoisins( tabPilierDuVoisin, tabVoisin[cpt].getCoul()) )
+				if ( this.verificationDesVoisins( tabPilierDuVoisin, tabVoisin[cpt].getCoul()) )
 				{
 					for(Pilier pilier : this.listeGroupePilier )
 					{
@@ -96,7 +96,7 @@ public class Parterre
 		}
 	}
 
-	private boolean  verifictionDesVoisins(Pilier[] tabVoisin, char couleur)
+	private boolean  verificationDesVoisins(Pilier[] tabVoisin, char couleur)
 	{
 		for(Pilier voisin : tabVoisin )
 		{
@@ -141,7 +141,7 @@ public class Parterre
 
 		Pilier[] tabVoisin = this.getVoisin(dalleDuVoisin, numDuVoisin);
 
-		return this.verifictionDesVoisins(tabVoisin, couleur);
+		return this.verificationDesVoisins(tabVoisin, couleur);
 	}
 
 	private Dalle   getDalleGrille(char   nomDalle)
@@ -226,7 +226,7 @@ public class Parterre
 			{
 				if ( tabSommets[cpt] == pilier )
 				{
-					dalleTmp.detruirePillier(cpt);
+					dalleTmp.detruirePilier(cpt);
 				}
 			}
 		}
@@ -262,7 +262,7 @@ public class Parterre
 		{
 			if ( dalle.getNom() == nomDalle )
 			{
-				if ( dalle.rajoutPillier(joueur.getCouleur(), numSommet) ) 
+				if ( dalle.rajoutPilier(joueur.getCouleur(), numSommet) ) 
 				{
 					joueur.incrementationNbPilier(-1);
 					return true;
