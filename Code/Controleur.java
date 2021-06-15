@@ -166,7 +166,7 @@ public class Controleur
 	/**Méthode permettant de lancer une partie custom */
 	public void lancerPartieCustom()
 	{
-		if(this.editeurParterre.getLastDalle()>'P')
+		if(this.editeurParterre.getLastDalle()=='Q')
 		{
 			this.metier = new Parterre(this.editeurParterre.getNiveau(), new Joueur(1,'M'), new Joueur(2,'G'), 1);
 			this.frameControleEditeur.setVisible(false);

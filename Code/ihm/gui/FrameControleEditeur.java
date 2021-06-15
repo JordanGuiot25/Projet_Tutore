@@ -51,7 +51,7 @@ public class FrameControleEditeur extends JFrame implements ComponentListener
 	public void componentMoved(ComponentEvent e) 
 	{
 		Point p = this.getLocation(); 
-		this.ctrl.DeplacerFrames(p.getX() , p.getY()-600.00 , 'c');
+		this.ctrl.deplacerFrames(p.getX() , p.getY()-600.00 , 'c');
 	}
 	//On untilise pas
 	public void componentHidden(ComponentEvent e){}
