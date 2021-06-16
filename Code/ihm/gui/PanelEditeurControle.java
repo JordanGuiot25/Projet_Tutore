@@ -49,6 +49,9 @@ public class PanelEditeurControle extends JPanel implements ActionListener
 		//Activation
 		this.btnRetour.addActionListener(this);
 		this.btnLancer.addActionListener(this);
+		this.btnLancer.setEnabled(false);
+		
+		
 
 	}
 	
@@ -59,6 +62,8 @@ public class PanelEditeurControle extends JPanel implements ActionListener
 	{
 		if(!joueur) { this.lblMessage.setText("Joueur 1, placez une dalle"); }
 		else{ this.lblMessage.setText("Joueur 2, placez une dalle");}
+		if(this.ctrl.getLastDalle()>='Q'){this.btnLancer.setEnabled(true);}
+		else{this.btnLancer.setEnabled(false);}
 	}
 
 
