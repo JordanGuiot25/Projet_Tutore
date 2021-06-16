@@ -1,0 +1,409 @@
+[33mcommit 593295d6d5a81973c067e962786295f39d32de92[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Tue Jun 8 16:00:56 2021 +0200
+
+    Modification de Dalle pour création Scenario
+
+[33mcommit 8d42750997d873995c5f0c0d30aa7d1d7d744a74[m
+Merge: c9e4315 1062375
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 15:57:13 2021 +0200
+
+    Merge branch 'main' of https://github.com/JordanGuiot25/Projet_Tutore into main
+
+[33mcommit 1062375dc503cbe1fd7795fe2ea23bccc4a1c208[m
+Author: Enguerrand Beltran <be200919@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 15:56:28 2021 +0200
+
+    Sauvegarde du GUI qui "fonctionnne"
+
+[33mcommit c9e431597b7b952e9e740a9920931be060046a84[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 15:56:25 2021 +0200
+
+    version finale des sauvegarde
+
+[33mcommit 1621da9476a91a56b4f2ace8fcb84355fef6ca48[m
+Merge: d185511 5a89ba6
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 15:44:12 2021 +0200
+
+    Merge branch 'main' of https://github.com/JordanGuiot25/Projet_Tutore into main
+
+[33mcommit d185511b3f5c7a8278d7465b7edd52cbc5e0bb60[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 15:43:21 2021 +0200
+
+    correction sauvegarde
+
+[33mcommit 5a89ba67e20133be83d2c65cf7ceb6539d750f4b[m
+Merge: 7e94bb3 c929b61
+Author: Jordan Guiot <jordan.guiot@etu.univ-lehave.fr>
+Date:   Tue Jun 8 15:40:50 2021 +0200
+
+    Merge branch 'main' of https://github.com/JordanGuiot25/Projet_Tutore into main
+
+[33mcommit 7e94bb37721192ee81f42f40662fe34609535842[m
+Author: Jordan Guiot <jordan.guiot@etu.univ-lehave.fr>
+Date:   Tue Jun 8 15:40:45 2021 +0200
+
+    Mise a jour Scenario.java
+
+[33mcommit c929b614dc1386c7848e8bef153172db325a3ca4[m
+Merge: 8155517 d775cc9
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 15:39:11 2021 +0200
+
+    Merge branch 'main' of https://github.com/JordanGuiot25/Projet_Tutore into main
+
+[33mcommit 8155517f30cc9e6eed0cbcd606b39e6d2fb289d4[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 15:38:34 2021 +0200
+
+    classe joueur qui marche
+
+[33mcommit d775cc96273df7d5a3218edcc27513bd48915385[m
+Merge: ee26a77 a72778e
+Author: Jordan Guiot <jordan.guiot@etu.univ-lehave.fr>
+Date:   Tue Jun 8 15:21:32 2021 +0200
+
+    Merge branch 'main' of https://github.com/JordanGuiot25/Projet_Tutore into main
+
+[33mcommit ee26a775b2b830d202c57380b276c035c112503a[m
+Author: Jordan Guiot <jordan.guiot@etu.univ-lehave.fr>
+Date:   Tue Jun 8 15:20:56 2021 +0200
+
+    Rajout Scenario.java
+
+[33mcommit 393e4006864128e2968adf799b04f93644d01015[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 14:39:22 2021 +0200
+
+    contr et part avec sauvegarde v2
+
+[33mcommit a72778e389b9ce6979ae1fc10f13818e3153b0a0[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 14:35:49 2021 +0200
+
+    Changement premiere ligne sauv
+
+[33mcommit 10342d4222b7e5a09417ea950de413e75e713035[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 14:33:25 2021 +0200
+
+    Controleur avec une sauvegarde
+
+[33mcommit 528ab3c4cd54d95251b004cd4e290db903854fbf[m
+Merge: 7648b4e 7f1548a
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 14:25:51 2021 +0200
+
+    Merge branch 'main' of https://github.com/JordanGuiot25/Projet_Tutore into main
+
+[33mcommit 7648b4eb7b3fcb44cda356352366708a9b2330ad[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 14:25:26 2021 +0200
+
+    Parterre et Controleur qui gerent une sauvegarde
+
+[33mcommit eaed14ef67b6dd2968d5849ef5146c3e863df2d2[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 14:22:29 2021 +0200
+
+    Parterre qui gere une sauvegarde
+
+[33mcommit 7f1548ace740a9e64dfb0042fe49301b5ebf03ce[m
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Tue Jun 8 14:05:17 2021 +0200
+
+    Ajout de la destruction de pilier
+
+[33mcommit e130996ee5a86e038cbb257271a9bd657442b1d4[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 14:01:05 2021 +0200
+
+    Parterre qui gere une sauvegarde
+
+[33mcommit a26032da33ed1d1363d1619df10a2dfca87f225b[m
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Tue Jun 8 12:54:45 2021 +0200
+
+    Finition de la fonctionnalité rajout Pilier
+
+[33mcommit 36a3b3f792daa8a604f9625164ff13e3787d5a58[m
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Tue Jun 8 09:24:02 2021 +0200
+
+    Correction
+
+[33mcommit 5b5e62816c0157379ddcd9cac65f2a10ebcd8c55[m
+Merge: f0b5bc7 f4067ea
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 09:20:04 2021 +0200
+
+    test
+
+[33mcommit f0b5bc779af3f3a6962ffc52384f4e997b7dd2c8[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 09:18:11 2021 +0200
+
+    Erreur correction
+
+[33mcommit c3a19376ae43531bad4e3f71d25c14bb772c1304[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 09:16:06 2021 +0200
+
+    creatio dossier scenario
+
+[33mcommit f4067eaf6c44579203046ca1a18901f7984b6743[m
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Tue Jun 8 09:15:07 2021 +0200
+
+    PanelDessin rajoutAffichage Pilier
+
+[33mcommit d633ea12e950b8cd57f68458fb657d122ab5f130[m
+Merge: 73cd5c0 f46eae9
+Author: Enguerrand Beltran <be200919@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 09:12:52 2021 +0200
+
+    Merge remote-tracking branch 'origin/main' into main
+
+[33mcommit 73cd5c047299d4cb769fcad861062605d99fc064[m
+Author: Enguerrand Beltran <be200919@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 09:12:07 2021 +0200
+
+    les images n'ont plus de bords jaune
+
+[33mcommit f46eae9733bfaa5980039a4d2b163bb888b8260b[m
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Tue Jun 8 08:35:33 2021 +0200
+
+    Mise à jour du paanel dessin
+
+[33mcommit 204bda275a24e42f66f0cb126dcf262a6c88137e[m
+Merge: 35002d3 9920b86
+Author: Jordan Guiot <jordan.guiot@etu.univ-lehave.fr>
+Date:   Tue Jun 8 08:32:02 2021 +0200
+
+    Merge branch 'main' of https://github.com/JordanGuiot25/Projet_Tutore into main
+
+[33mcommit 9920b8648d8841f7cbfd8a99fac36c1b6a59d06e[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 08:30:57 2021 +0200
+
+    Pilier qui renvois sa couleur
+
+[33mcommit 35002d3e761b15004b0d11f5e5d0a71cb03b4dec[m
+Merge: 439bc2b 837215b
+Author: Jordan Guiot <jordan.guiot@etu.univ-lehave.fr>
+Date:   Tue Jun 8 08:30:56 2021 +0200
+
+    Merge branch 'main' of https://github.com/JordanGuiot25/Projet_Tutore into main
+
+[33mcommit 439bc2bcfa5a9a206a62ebde0cc4afac71c952e3[m
+Author: Jordan Guiot <jordan.guiot@etu.univ-lehave.fr>
+Date:   Tue Jun 8 08:30:40 2021 +0200
+
+    Ajout d'un methode victoire
+
+[33mcommit 837215bae6a5b0fa2328f3d0123532839c57a2fe[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Tue Jun 8 08:28:56 2021 +0200
+
+    ihm cui qui affiche maintenant les pilliers
+
+[33mcommit 8cf65504047f5eb9cc01ed17898c31069efd7034[m
+Merge: 8c713db 1c3b90d
+Author: Jordan Guiot <jordan.guiot@etu.univ-lehave.fr>
+Date:   Tue Jun 8 08:08:40 2021 +0200
+
+    .
+
+[33mcommit 8c713db2aca23e1020a85ef23ed3c61f8065b7f6[m
+Author: Jordan Guiot <jordan.guiot@etu.univ-lehave.fr>
+Date:   Tue Jun 8 08:07:38 2021 +0200
+
+    Resolution de bug
+
+[33mcommit 1c3b90dd618e7ce35d82c00a8e51bcbb9722abda[m
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Mon Jun 7 17:13:51 2021 +0200
+
+    Correction des fichiers
+
+[33mcommit af8e09a45d55e3d4057e2475d40a28ba8ccc516b[m
+Merge: 875da78 70505fa
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Mon Jun 7 16:31:38 2021 +0200
+
+    Mise à jour
+
+[33mcommit 875da783eac8ba7eee17217418f87eebc40a0e75[m
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Mon Jun 7 16:29:59 2021 +0200
+
+    Remise en propre des archives
+
+[33mcommit 70505fa25cb0da3b8c08d82af8128b97086eb6bf[m
+Author: GordienGaspard <84855680+GordienGaspard@users.noreply.github.com>
+Date:   Mon Jun 7 15:43:07 2021 +0200
+
+    Delete Degeu directory
+
+[33mcommit f61e3689a1ca242f33471e788a6b300540b8e9a8[m
+Author: GordienGaspard <84855680+GordienGaspard@users.noreply.github.com>
+Date:   Mon Jun 7 15:42:22 2021 +0200
+
+    Delete TabParterre.java
+
+[33mcommit 5786e74004d61f7919aff10061344365adaec2c9[m
+Author: GordienGaspard <84855680+GordienGaspard@users.noreply.github.com>
+Date:   Mon Jun 7 15:42:04 2021 +0200
+
+    Delete CodeGG directory
+
+[33mcommit 314a780e9ec4b5e7ae1c7498d82ba2b00bb5f0e2[m
+Merge: 15332ec e46f6cb
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Mon Jun 7 15:40:13 2021 +0200
+
+    Merge branch 'main' of https://github.com/JordanGuiot25/Projet_Tutore into main
+
+[33mcommit 15332ec3bef6337e1634bf23e750f08deaa72b29[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Mon Jun 7 15:39:30 2021 +0200
+
+    mise en commun du lundi 07/06/21
+
+[33mcommit fff4349d43da9e50123df00a8c7916d4ae33e08a[m
+Merge: 76a24d1 e46f6cb
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Mon Jun 7 15:35:22 2021 +0200
+
+    test
+
+[33mcommit 76a24d12eb3b88ab8ace6d5b05a20a4ef146c66f[m
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Mon Jun 7 15:34:51 2021 +0200
+
+    Test
+
+[33mcommit e46f6cbc5485228e252e0ac6cd41f9e02455fd8f[m
+Merge: 0bda977 8eb70fa
+Author: Enguerrand Beltran <be200919@etu.univ-lehavre.fr>
+Date:   Mon Jun 7 15:31:24 2021 +0200
+
+    Merge remote-tracking branch 'origin/main' into main
+
+[33mcommit 8eb70fadaee34e2d118e31fc8dc6183c3f9e72f7[m
+Merge: 2e86f1b a6fb882
+Author: Jordan Guiot <jordan.guiot@etu.univ-lehave.fr>
+Date:   Mon Jun 7 15:23:51 2021 +0200
+
+    Merge branch 'main' of https://github.com/JordanGuiot25/Projet_Tutore into main
+
+[33mcommit 2e86f1b79c2ac6936bced5d2942fed97237d0834[m
+Author: Jordan Guiot <jordan.guiot@etu.univ-lehave.fr>
+Date:   Mon Jun 7 15:23:43 2021 +0200
+
+    Update
+
+[33mcommit ad8cdd786eedc9a57af1af1d9dca51f9973f1a74[m
+Author: Jordan Guiot <jordan.guiot@etu.univ-lehave.fr>
+Date:   Mon Jun 7 15:20:42 2021 +0200
+
+    Ajout de la classe joueur
+
+[33mcommit a6fb8828d07a89d0db82fce0be6ac9aa1872a395[m
+Merge: 67ee885 1bbdc0f
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Mon Jun 7 14:48:27 2021 +0200
+
+    Finition de la grille de dalle
+
+[33mcommit 67ee88522da77df9a0bca97fbe9cd5ee028e6be3[m
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Mon Jun 7 14:47:41 2021 +0200
+
+    Finition de la grille de dalle
+
+[33mcommit 1bbdc0f8e280a2cbf251a6cbe16d3fc448c7cb7a[m
+Merge: c4dd41a 0fde59d
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Mon Jun 7 14:37:11 2021 +0200
+
+    Merge branch 'main' of https://github.com/JordanGuiot25/Projet_Tutore into main
+
+[33mcommit 0bda9770a054c8851b163a9a2180a186daa8bf6d[m[33m ([m[1;31morigin/GUI[m[33m)[m
+Author: Enguerrand Beltran <be200919@etu.univ-lehavre.fr>
+Date:   Mon Jun 7 14:35:44 2021 +0200
+
+    Ajout du GUI (Certaines ligne sont commentées)
+
+[33mcommit c4dd41a82eadd3ed139e34b4d91ff25f55be54c6[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Mon Jun 7 14:30:20 2021 +0200
+
+    Etape 1 affichage tableau cui
+
+[33mcommit 0fde59d548ebc19811c8a64a1e72545b9da97f38[m
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Mon Jun 7 14:13:39 2021 +0200
+
+    Modification du code
+
+[33mcommit 96a50df0095b08068d470339dda7c6d455bad241[m
+Merge: ec5748f dbeb97c
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Mon Jun 7 11:23:41 2021 +0200
+
+    Modification des codes
+
+[33mcommit ec5748fcc5b7e6601f0f7528200719692473d982[m
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Mon Jun 7 11:21:39 2021 +0200
+
+    Rajout Pilier.java
+
+[33mcommit dbeb97c806fd4bff7bf1f8c70a8c7c8bff3efecf[m
+Merge: 32cb268 536ef99
+Author: Jordan Guiot <jordan.guiot@etu.univ-lehave.fr>
+Date:   Mon Jun 7 10:52:12 2021 +0200
+
+    Merge branch 'main' of https://github.com/JordanGuiot25/Projet_Tutore into main
+
+[33mcommit 32cb26836e8becd4dcd3a0dfbeb99d413dc7dfc2[m
+Author: Jordan Guiot <jordan.guiot@etu.univ-lehave.fr>
+Date:   Mon Jun 7 10:51:20 2021 +0200
+
+    Ajout du fichier ressources
+
+[33mcommit 536ef994fccecec9810753e52568e0069afec347[m
+Author: Raphaël Lizot <raphael.lizot@gmail.com>
+Date:   Mon Jun 7 10:43:01 2021 +0200
+
+    test 2
+
+[33mcommit 1eb958209e890ac6e21305ab49ed61d6769c2707[m
+Author: Enguerrand Beltran <be200919@etu.univ-lehavre.fr>
+Date:   Mon Jun 7 10:17:21 2021 +0200
+
+    Mes fichiers
+
+[33mcommit 3520f49e9678be47fdb779d0bb942356dc10d6ac[m
+Author: Gaspard Gordien <gaspard.gordien@etu.univ-lehavre.fr>
+Date:   Fri Jun 4 15:34:36 2021 +0200
+
+    premier test d'affichage d'un tableau de dalle (etape 1)
+
+[33mcommit b084dae8d5f482f85c4c25eaae0561cab7f8ea0c[m
+Author: Jordan Guiot <jordan.guiot@etu.univ-lehave.fr>
+Date:   Fri Jun 4 15:12:12 2021 +0200
+
+    Ajout des noms du groupe dans le README
+
+[33mcommit aff83c2dddbbaaaebb44258bec6cbba310c5fc76[m
+Author: JordanGuiot25 <84856220+JordanGuiot25@users.noreply.github.com>
+Date:   Fri Jun 4 15:01:04 2021 +0200
+
+    Initial commit
