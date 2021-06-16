@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class Joueur 
 {
     private ArrayList<Dalle>   listeDalles;
-    private ArrayList<Pilier>  listePilier;
 
     private int  numJoueur ;
     private char coulJoueur;
@@ -22,7 +21,6 @@ public class Joueur
         this.nbPilier        = 24;
         this.nbPilierDetruis = 0;
         this.listeDalles = new ArrayList<Dalle> ();
-        this.listePilier = new ArrayList<Pilier>();
     }
 
     public boolean poserPilier()
@@ -78,5 +76,4 @@ public class Joueur
     public char getCouleur()         { return this.coulJoueur;      }
 
     public ArrayList<Dalle>  getListeDalles() { return this.listeDalles; }
-    public ArrayList<Pilier> getListePilier() { return this.listePilier; }
 }
