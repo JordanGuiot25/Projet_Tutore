@@ -44,7 +44,7 @@ public class PanelScenario extends JPanel implements ActionListener
 		this.setOpaque(false);
 		
 		/**image de fond dans le PanelScenario */
-		this.imgFond = java.awt.Toolkit.getDefaultToolkit().getImage( "../Ressources/fond.png" );	
+		this.imgFond = java.awt.Toolkit.getDefaultToolkit().getImage( "../Ressources/fondScenario.png" );	
 
 		/**tableau de String qui va stocker les scénarios avec leur numéro pour le mettre dans un JComboBox	 */
 		String[] tabString = new String [PanelScenario.NB_SCENARIO];	
