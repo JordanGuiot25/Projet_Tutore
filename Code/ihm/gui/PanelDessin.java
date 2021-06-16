@@ -13,10 +13,16 @@ import java.awt.Image;
 
 import java.util.ArrayList;
 
+/**	Le panel de l'affichage du jeu
+ *  * @author Enguerrand Beltran, Raphael Lizot, Gaspard Gordien, Jordan Guiot
+ */
 public class PanelDessin extends JPanel
 {
+	/**L'image de la dalle */
 	private static final Image RESSOURCE_DALLE        = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/Dalle.png"       );
+	/**L'image du pilier maron */
 	private static final Image RESSOURCE_ANNEAU_MARON = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/anneau_maron.png");
+	/**L'image du pilier gris */
 	private static final Image RESSOURCE_ANNEAU_GRIS  = java.awt.Toolkit.getDefaultToolkit().getImage("../Ressources/anneau_gris.png" );
 	private Controleur  ctrl;
 	/** Taille en largeur du panel calculée en fonction de la largeur des images moins les partie qui se superposent multiplié par leur nombre*/
@@ -24,6 +30,10 @@ public class PanelDessin extends JPanel
 	/** Taille en hauteur du panel calculée en fonction de la hauteur des images multiplié par leur nombre*/
 	private final int RES_Y = (67*31)+33;
 
+	/**
+	 * Le constructeur du panel Dessin
+	 * @param ctrl
+	 */
 	public PanelDessin(Controleur  ctrl)
 	{
 		this.ctrl  = ctrl;
@@ -31,6 +41,7 @@ public class PanelDessin extends JPanel
 		this.miseAJourGrille();
 	}
 
+	/**La méthode pour peindre les piliers */
 	public void paint(Graphics g)
 	{
 		super.paint(g);
@@ -68,6 +79,7 @@ public class PanelDessin extends JPanel
 		}
 	}
 
+	/**Méthode qui met à jour la grille */
 	public void miseAJourGrille()
 	{
 		this.repaint();
