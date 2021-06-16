@@ -1,7 +1,7 @@
 package Equipe_22.metier;
 
 import java.awt.Image;
-/** 
+/** Cette classe gère les piliers
 	*@author Jordan Guiot, Enguerrand Beltran, Raphael Lizot, Gaspard Gordien
  	*/
 public class Pilier
