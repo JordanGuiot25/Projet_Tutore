@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class PanelScenario extends JPanel implements ActionListener
 {
 	/**Nombres de scénario max à changer si on veut mettre plus de scénario */
-	private final static int NB_SCENARIO = 6;	
+	private final static int NB_SCENARIO = 5;	
 	private Controleur ctrl;
 
 	private JComboBox<String> cboxScenario;

@@ -69,7 +69,7 @@ PG2
 PG3
 PG4
 //Joueur
-J1	1	1
+J1	1	5
 J2	1	0
 J2J
 J2O

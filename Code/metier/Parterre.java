@@ -235,9 +235,9 @@ public class Parterre
 
 	public void victoire()
 	{
-		if(this.joueur1.getListeDalles().size() == 9) { this.victoireJ1 = true;}
+		if(this.joueur1.getListeDalles().size() >= 9) { this.victoireJ1 = true;}
 
-		if(this.joueur2.getListeDalles().size() == 9) { this.victoireJ2 = true;}
+		if(this.joueur2.getListeDalles().size() >= 9) { this.victoireJ2 = true;}
 
 		if(this.joueur1.getNbPilier() == 0 && this.joueur2.getNbPilier() == 0)
 		{
