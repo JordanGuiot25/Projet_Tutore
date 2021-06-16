@@ -6,20 +6,52 @@ import Equipe_22.metier.Joueur;
 import java.util.ArrayList;
 import iut.algo.Clavier;
 
+/** Classe Parterre
+ * @author  Raphaël Lizot, Jordan Guiot, Enguerrand Beltran, Gaspard Gordien
+ */
 public class Parterre
 {
+	/** GrilleDalle représentant le terrain de jeux
+	 * @see {@link Dalle}
+	 */
 	private ArrayList<Dalle> grilleDalles;
 
+	/** Variable représentant le premier joueur
+	 * @see {@link Joueur}
+	 */
 	private Joueur joueur1;
+
+	/** Variable représentant le deuxième joueur
+	 * @see {@link Joueur}
+	 */
 	private Joueur joueur2;
 
+	/** Variable représentant la Victoire du J1
+	 * @see {@link Boolean}
+	 */
 	private boolean victoireJ1;
+
+	/** Variable représentant la Victoire du J2
+	 * @see {@link Boolean}
+	 */
 	private boolean victoireJ2;
 
+	/** Variable représentant le nombre de tour 
+	 * @see {@link Int}
+	 */
 	private int     tour;
 
+	/** Variable servant pour la méthode enfermemant
+	 * @see {@link Pilier}
+	 */
 	private ArrayList<Pilier> listeGroupePilier;
 
+	/** Constructeur Parterre
+	 * @param grille {@link Dalle}
+	 * @param joueur1 {@link Joueur}
+	 * @param joueur2 {@link Joueur}
+	 * @param tour 	  {@link tour}
+	*/
 	public Parterre(ArrayList<Dalle> grille, Joueur joueur1, Joueur joueur2, int tour)
 	{
 		this.grilleDalles = grille;
@@ -27,13 +59,17 @@ public class Parterre
 		this.joueur2      = joueur2;
 		this.tour         = tour;
 	}
-
+	/** Constructeur Parterre*/
 	public Parterre()
 	{
 		Scenario.getScenario(0);
 	}	
 
-
+	/**
+	 * @param nomDalle {@link Char}
+	 * @param numSommet {@link Int}
+	 * @param coulJoueur {@link Char}
+	 */
 	public void finTourJoueur(char nomDalle, int numSommet, char coulJoueur)
 	{
 		this.verifEnfermement(nomDalle, numSommet, coulJoueur);
@@ -42,6 +78,7 @@ public class Parterre
 		this.victoire();
 	}
 
+	/**Méthode de vérification du controle */
 	public void verifControle()
 	{
 		for(Dalle dalle : this.grilleDalles)
@@ -55,7 +92,10 @@ public class Parterre
 			}
 		}
 	}
-
+	/**
+	 * 
+	 * @param numJoueur {@link Int}
+	 */
 	public void setNumJoueur(int numJoueur )
 	{
 		for(Dalle dalle : this.grilleDalles )
@@ -64,6 +104,12 @@ public class Parterre
 		}
 	}
 
+	/**
+	 * 
+	 * @param nomDalle {@link Char}
+	 * @param numSommet {@link Int}
+	 * @param coulPilier {@link Char}
+	 */
 	public void verifEnfermement(char nomDalle, int numSommet, char coulPilier)
 	{
 		this.listeGroupePilier = new ArrayList<Pilier>();
@@ -96,6 +142,12 @@ public class Parterre
 		}
 	}
 
+	/**
+	 * 
+	 * @param tabVoisin {@link Pillier}
+	 * @param couleur {@link Char}
+	 * @return {@link Boolean}
+	 */
 	private boolean  verificationDesVoisins(Pilier[] tabVoisin, char couleur)
 	{
 		for(Pilier voisin : tabVoisin )
@@ -120,6 +172,12 @@ public class Parterre
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param voisin {@link Pilier}
+	 * @param couleur {@link Char}
+	 * @return {@link Boolean}
+	 */
 	private boolean parcourVoisin(Pilier voisin, char couleur)
 	{
 		Dalle dalleDuVoisin = null;
@@ -144,6 +202,11 @@ public class Parterre
 		return this.verificationDesVoisins(tabVoisin, couleur);
 	}
 
+	/**
+	 * 
+	 * @param nomDalle {@link Char}
+	 * @return {@link Dalle}
+	 */
 	private Dalle   getDalleGrille(char   nomDalle)
 	{
 		for(Dalle dalle : this.grilleDalles)
@@ -155,6 +218,11 @@ public class Parterre
 		return null;
 	}
 
+	/**
+	 * 
+	 * @param pilier {@link Pillier}
+	 * @return {@link Dalle}
+	 */
 	private Dalle   getDallePilier(Pilier pilier)
 	{
 		for (Dalle dalle : this.grilleDalles )
@@ -171,6 +239,12 @@ public class Parterre
 		return null;
 	}
 
+	/**
+	 * 
+	 * @param dalle {@link Dalle}
+	 * @param numSommet {@link Int}
+	 * @return {@link Pilier}
+	 */
 	private Pilier[] getVoisin(Dalle dalle, int numSommet)
 	{
 		int nbVoisin = 0;
@@ -217,6 +291,10 @@ public class Parterre
 		return voisin;
 	}
 	
+	/**
+	 * 
+	 * @param pilier {@link Pilier}
+	 */
 	private void detruireLePilier(Pilier pilier)
 	{
 		for(Dalle dalleTmp : this.grilleDalles )
@@ -232,7 +310,7 @@ public class Parterre
 		}
 	}
 
-
+	/**Méthode permettant de vérifier si il y a victoire */
 	public void victoire()
 	{
 		if(this.joueur1.getListeDalles().size() >= 9) { this.victoireJ1 = true;}
@@ -249,6 +327,13 @@ public class Parterre
 		}
 	}
 
+	/**
+	 * méthode permettant de poser un pilier
+	 * @param numJoueur
+	 * @param nomDalle
+	 * @param numSommet
+	 * @return {@link Boolean}
+	 */
 	public boolean poserPilier(int numJoueur, char nomDalle, int numSommet )
 	{
 		Joueur joueur = null;
@@ -275,13 +360,30 @@ public class Parterre
 		return false;
 	}
 
+	/**Méthode permettant d'incrémenter la variable tour */
 	public void     prochainTour() { this.tour++;}
 
+	/**
+	 * Méthode permettant de retourner le booléen de la victoire J1
+	 * @return {@link Boolean}
+	 */
 	private boolean getVictoireJ1() {return this.victoireJ1;}
+
+	/**
+	 * Méthode permettant de retourner le booléen de la victoire J2
+	 * @return {@link Boolean}
+	 */
 	private boolean getVictoireJ2() {return this.victoireJ2;}
+
+	/**
+	 * retourne la grilleDalles
+	 * @return {@link Dalle}
+	 */
 
 	public ArrayList<Dalle> getGrilleDalles() { return this.grilleDalles; }
 
+
+	//méhode pas utilisé
 	public String getSauvegarde()
     {
 		// Sauvegarde le plateau //
@@ -346,6 +448,11 @@ public class Parterre
 		return sRep;
     }
 
+	/**
+	 * retourne le joueur
+	 * @param numJoueur
+	 * @return {@link Joueur}
+	 */
 	public  Joueur  getJoueur(int numJoueur)
 	{
 		if ( numJoueur == 1 )
@@ -354,6 +461,10 @@ public class Parterre
 			return this.joueur2;
 	}
 
+	/**
+	 * retourne le gagnant
+	 * @return	{@link Joueur}
+	 */
 	public  Joueur getGagnant()
 	{
 		if( this.victoireJ1 )
@@ -365,6 +476,10 @@ public class Parterre
 		return null;
 	}
 
+	/**
+	 * retourne le nombre de Tour
+	 * @return {@link Int}
+	 */
 	public int getTour()
 	{
 		return this.tour;

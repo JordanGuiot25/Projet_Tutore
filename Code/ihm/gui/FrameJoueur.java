@@ -54,7 +54,7 @@ public class FrameJoueur extends JFrame implements ActionListener
 
     /**Le label qui contient le score du joueur
 	 * @see {@link JLabel} */
-    private JLabel     labelScore;
+    private JLabel     lblScore;
 
     /**Constructeur de la frame prend un controleur en parametre 
 	 * @param ctrl {@link Controleur}
@@ -78,12 +78,12 @@ public class FrameJoueur extends JFrame implements ActionListener
         this.txtNumDalle.requestFocus();
         this.txtSommet   = new JTextField();
         this.btnValider  = new JButton   ("Valider");
-        this.labelScore  = new JLabel    ();
+        this.lblScore  = new JLabel    ();
         
         /* positionement des composants */
         this            .add(this.lbImg,BorderLayout.NORTH);
         this            .add(this.panelJoueur,BorderLayout.CENTER);
-        this            .add(this.labelScore, BorderLayout.SOUTH);
+        this            .add(this.lblScore, BorderLayout.SOUTH);
         this.panelJoueur.add(this.lblJoueur);
         this.panelJoueur.add(new JLabel("Dalle"));
         this.panelJoueur.add(this.txtNumDalle);
@@ -114,7 +114,7 @@ public class FrameJoueur extends JFrame implements ActionListener
         this.lblJoueur  .setText("Joueur "+j.getNumJoueur());
         this.txtNumDalle.setText("");
         this.txtSommet  .setText("");
-        this.labelScore .setText("nombre de pilier restant: "+j.getNbPilier()+"   nombre de pilier detruit: "+j.getNbPilierDetruis());
+        this.lblScore .setText("nombre de pilier restant: "+j.getNbPilier()+"   nombre de pilier detruit: "+j.getNbPilierDetruis());
     }
 
     /** s'active quand le joueur clique sur le bouton 

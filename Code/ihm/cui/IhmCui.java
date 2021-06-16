@@ -36,7 +36,7 @@ public class IhmCui
     /** empéche les erreur et renvois le nom du pilier
      * @return  {@link char  }
 	 * @param p {@link Pilier}*/
-    private char PilierToChar(Pilier p)
+    private char pilierToChar(Pilier p)
     {
         if(p == null){return ' ';}
         return p.getCoul();
@@ -89,10 +89,10 @@ public class IhmCui
             Pilier[] lstPil = d.getSommets();
             if(d != null)
             {
-                sRep   +="| Dalle " + d.getNom()  + " | "             + this.PilierToChar(lstPil[0]) +
-                        " | "+ this.PilierToChar(lstPil[1])  + " | " + this.PilierToChar(lstPil[2]) +
-                        " | "+ this.PilierToChar(lstPil[3])  + " | " + this.PilierToChar(lstPil[4]) +
-                        " | "+ this.PilierToChar(lstPil[5])  + " |\n"+
+                sRep   +="| Dalle " + d.getNom()  + " | "             + this.pilierToChar(lstPil[0]) +
+                        " | "+ this.pilierToChar(lstPil[1])  + " | " + this.pilierToChar(lstPil[2]) +
+                        " | "+ this.pilierToChar(lstPil[3])  + " | " + this.pilierToChar(lstPil[4]) +
+                        " | "+ this.pilierToChar(lstPil[5])  + " |\n"+
                         "+---------+---+---+---+---+---+---+\n";
             }
         }
